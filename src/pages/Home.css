@@ -1,0 +1,12 @@
+.home-container {
+    background: linear-gradient(to right, #F5DEAA, #c75c10,#BB5104);
+    position: fixed;
+    padding: 200px;
+    margin-top: 0px;
+    height: 150px;
+    padding-left: 600px; 
+    padding-right: 600px;
+    border-radius: 0px;
+    position: absolute;
+    top: 0;
+  }
