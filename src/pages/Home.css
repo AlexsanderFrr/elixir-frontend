@@ -1,12 +1,136 @@
-.home-container {
-    background: linear-gradient(to right, #F5DEAA, #c75c10,#BB5104);
-    position: fixed;
-    padding: 200px;
-    margin-top: 0px;
-    height: 150px;
-    padding-left: 600px; 
-    padding-right: 600px;
-    border-radius: 0px;
-    position: absolute;
-    top: 0;
-  }
+/* App.css */
+
+body {
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  color: white;
+  background: linear-gradient(to right, #f5deaa,#f0a671, #c75c10, #bb5104);
+  /* Outros estilos conforme necessário */
+}
+
+/* Navbar.css */
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.logo-container span {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #bb5104; /* Cor do texto do logotipo */
+}
+
+.nav-links a {
+  color: #fff; /* Cor do texto dos links */
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: 1rem;
+}
+
+/* Adicione estilos adicionais conforme necessário para links ativos, por exemplo */
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* Container inferior */
+/* Estilos para o contêiner da parte inferior da página Home */
+
+.container-baixo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; 
+  max-height: 700vh; 
+  background-color: #fff; 
+}
+
+.textos-baixos {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start; 
+  max-height: 700vh; 
+  
+}
+/* Estilos para o grupo de h1 dentro do contêiner */
+.frasesuco {
+  display: flex;
+  flex-direction: row; /* Muda a direção do flex para coluna */
+  align-items: center; /* Centraliza os itens na coluna */
+}
+
+/* Estilos para cada h1 dentro do grupo */
+.suco1,
+.suco2 {
+  margin: 0; /* Remove as margens padrão */
+  padding: 10px; /* Adiciona algum preenchimento para espaçamento */
+}
+
+.suco1 {
+  color: #000000; /* Cor para o primeiro h1 */
+}
+
+.suco2 {
+  color: #bb5104; /* Cor para o segundo h1 */
+}
+
+/* Estilos para as divs de texto informativo */
+
+/* ... (outros estilos) */
+
+/* Estilos para as divs de texto informativo */
+.texto-informativo1,
+.texto-informativo2 {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 800px; /* Largura máxima das divs */
+  margin: 20px auto; /* Margens superior e inferior com espaçamento automático nas laterais */
+  justify-content: space-between; /* Espaço entre os itens (alinhamento nos cantos) */
+}
+
+/* Estilos para a div de texto-informativo1 */
+
+
+/* Estilos para as imagens dentro das divs */
+.texto-informativo1 img,
+.texto-informativo2 img {
+  width: 100px; /* Largura da imagem */
+  height: 100px; /* Altura da imagem */
+  margin-right: 20px; /* Espaçamento à direita da imagem */
+}
+
+/* Estilos para os textos dentro das divs */
+.texto-informativo1 h5,
+.texto-informativo2 h5 {
+  color: #000; /* Cor do texto preto */
+}
+.texto-informativo1 {
+  /* ... (outros estilos) */
+  margin-right: 250px; /* Adiciona margem à direita da div */
+}
+
+.texto-informativo2 {
+  /* ... (outros estilos) */
+  margin-left: 250px; /* Adiciona margem à esquerda da div */
+}
+
+

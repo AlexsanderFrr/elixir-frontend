@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BiCameraMovie, BiSearchAlt2 } from "react-icons/bi";
+import { BiSearchAlt2 } from "react-icons/bi";
 
 import "./Navbar.css";
 
@@ -25,7 +25,7 @@ const Navbar = () => {
     <nav id="navbar">
       <h2>
         <Link to="/">
-          <BiCameraMovie /> Movies
+      Movies
         </Link>
       </h2>
 
