@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import logo from "../imgs/copo-logo.png";
 import cruz from "../imgs/img-logo-cruz.png";
 import medico from "../imgs/img-medico.png";
+import frutas from "../imgs/frutas-home.png";
 
 const Home = () => {
   return (
     <div className="container">
-      <div>
       <nav id="navbar">
         <div className="logo-container">
           <img src={logo} alt="Copo Logo" />
@@ -20,32 +20,53 @@ const Home = () => {
           <Link to="/">Contatos</Link>
         </div>
       </nav>
-      </div>
-      
-      <div>
-      <h2 className="title1">Elixir natural</h2>
-      <h2 className="title2">Elixir natural</h2>
-      </div>
-      
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br /><br /><br /><br /><br /><br /><br /><br />
 
-      <div className="container-baixo"><br/>
+      <div className="central">
+        <br />
+        <div className="foto-frutas">
+          <img src={frutas} alt="Frutas" />
+        </div>
+        <div className="container-lateral">
+          <h1 className="title1">Faça o seu dia</h1>
+          <h1 className="title2">com Elixir Natural</h1><br/>
+          <h2 className="linha">__________________________</h2><br/>
+          <p className="texto-lateral">
+            Desperte o seu bem-estar com o Elixir <br/>
+            Natural, a essência da vitalidade em cada <br/>
+            gole. Descubra uma revolução em saúde com <br/>
+            a nossa linha exclusiva de sucos medicinais<br/>
+            e detox, cuidadosamente elaborados para <br/>
+            nutrir o seu corpo e revitalizar a sua mente.
+          </p>
+        </div>
+      </div>
+      <br/><br/><br/>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+
+      <div className="container-baixo">
+        <br />
         <div className="frasesuco">
-
           <h1 className="suco1">Suco Saúdavel,</h1>
           <h1 className="suco2">Você Saúdavel</h1>
         </div>
+
         <div className="textos-baixos">
           <div className="texto-informativo1">
             <img src={medico} alt="Medico" />

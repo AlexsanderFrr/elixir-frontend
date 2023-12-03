@@ -16,7 +16,7 @@ body {
   align-items: center;
   padding: 1rem 2rem;
   background-color: transparent;
-  position: absolute;
+  
   top: 0;
   left: 0;
   right: 0;
@@ -53,6 +53,7 @@ body {
 
 /* Container inferior */
 /* Estilos para o contêiner da parte inferior da página Home */
+
 
 .container-baixo {
   display: flex;
@@ -103,7 +104,7 @@ body {
   align-items: center;
   flex-direction: column;
   max-width: 800px; /* Largura máxima das divs */
-  margin: 20px auto; /* Margens superior e inferior com espaçamento automático nas laterais */
+  margin: 0px auto; /* Margens superior e inferior com espaçamento automático nas laterais */
   justify-content: space-between; /* Espaço entre os itens (alinhamento nos cantos) */
 }
 
@@ -113,15 +114,16 @@ body {
 /* Estilos para as imagens dentro das divs */
 .texto-informativo1 img,
 .texto-informativo2 img {
-  width: 100px; /* Largura da imagem */
-  height: 100px; /* Altura da imagem */
-  margin-right: 20px; /* Espaçamento à direita da imagem */
+  width: 80px; /* Largura da imagem */
+  height: 80px; /* Altura da imagem */
+   /* Espaçamento à direita da imagem */
 }
 
 /* Estilos para os textos dentro das divs */
 .texto-informativo1 h5,
 .texto-informativo2 h5 {
   color: #000; /* Cor do texto preto */
+  font-size: 14px;
 }
 .texto-informativo1 {
   /* ... (outros estilos) */
@@ -134,3 +136,41 @@ body {
 }
 
 
+.foto-frutas {
+  position: absolute;
+  top: -50px; /* Ajuste conforme necessário para a sobreposição */
+  left: 50px; /* Ajuste conforme necessário para a sobreposição */
+}
+
+/* Estilos para a imagem de frutas */
+.foto-frutas img {
+  width: 600px; /* Ajuste o tamanho da imagem conforme necessário */
+  height: auto;
+  margin-top: 100px;
+  margin-left: 50px;
+}
+
+.central {
+  margin-top: 20px; 
+}
+.container-lateral {
+  float: right; /* Faz com que a div flutue à esquerda */
+  width: 40%; /* Define a largura como 50% da largura do pai (div.central) */
+}
+
+.title1 {
+  color: #ffffff; /* Cor para o primeiro h1 */
+}
+
+.title2 {
+  color: #8FF75B; /* Cor para o segundo h1 */
+}
+.linha {
+  color: #F5DEAA; /* Cor para o segundo h1 */
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.5;
+
+}
