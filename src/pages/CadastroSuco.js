@@ -10,13 +10,12 @@ const CadastroSuco = () => {
         ingredientes: "",
         modo_de_preparo: "",
         beneficios: "",
-        img1: null,
-        data_lancamento: "",
+        img1: null    
       });
     
       const handleInputChange = (event) => {
-        const { nome, value } = event.target;
-        setSuco({ ...suco, [nome]: value });
+        const { name, value } = event.target;
+        setSuco({ ...suco, [name]: value });
       };
     
       const handleFileChange = (event) => {
@@ -30,7 +29,7 @@ const CadastroSuco = () => {
         const formData = new FormData();
         formData.append("nome", suco.nome);
         formData.append("ingredientes", suco.ingredientes);
-        formData.append("modo_de_preparo", suco.mode_de_preparo);
+        formData.append("modo_de_preparo", suco.modo_de_preparo);
         formData.append("beneficios", suco.beneficios);
         formData.append("img1", suco.img1);
     
@@ -52,7 +51,7 @@ const CadastroSuco = () => {
 
 
   return (
-    <div className="cadastro-filme-container">
+    <div className="cadastro-suco-container">
       <h1>Cadastro de Suco</h1><br/>
       <form onSubmit={handleSubmit} className="cadastro-suco-form">
         <label>
@@ -84,6 +83,15 @@ const CadastroSuco = () => {
         </label>
         <br />
         <label>
+        <label>
+          Beneficios:
+          <textarea
+            name="beneficios"
+            value={suco.beneficios}
+            onChange={handleInputChange}
+          />
+        </label>
+        <br />
           <div className="upload-container">
             <LiaFileUploadSolid />
             <input type="file" name="imagem" onChange={handleFileChange} />
