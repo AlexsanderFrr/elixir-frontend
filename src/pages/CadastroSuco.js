@@ -10,7 +10,9 @@ const CadastroSuco = () => {
         ingredientes: "",
         modo_de_preparo: "",
         beneficios: "",
-        img1: null    
+        img1: null,
+        pingredientes: [],
+        diagnostico:[]    
       });
     
       const handleInputChange = (event) => {

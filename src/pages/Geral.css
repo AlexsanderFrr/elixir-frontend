@@ -52,3 +52,16 @@ body{
     background-color: #ffcd38; /* Amarelo mais claro ao passar o mouse */
   }
   
+  /* Geral.css */
+
+.imagem-lateral {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .container-lateral {
+    float: right; 
+    width: 40%; 
+  }
