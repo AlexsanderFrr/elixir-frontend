@@ -4,6 +4,9 @@ import Home from "./pages/Home";
 import Main from "./main";
 import CadastroSuco from "./pages/CadastroSuco";
 import CadIngrediente from "./pages/CadIngrediente";
+import CadDiagnostico from "./pages/CadDiagnostico";
+import SucoList from "./pages/SucosList";
+
 
 function App() {
   return (
@@ -16,6 +19,8 @@ function App() {
                <Route path="/home" element={<Home />} />
                <Route path="/cadsuco" element={<CadastroSuco />} />
                <Route path="/cadingrediente" element={<CadIngrediente />} />
+               <Route path="/caddiagnostico" element={<CadDiagnostico />} />
+               <Route path="/sucos" element={<SucoList />} />
           </Routes>
         </BrowserRouter>
       </header>
