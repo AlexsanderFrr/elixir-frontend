@@ -1,6 +1,4 @@
-body{
-    background: #F5DEAA;
-}
+
 
 /* styles.css */
 
@@ -54,14 +52,16 @@ body{
   
   /* Geral.css */
 
-.imagem-lateral {
+  .cadDiagIng {
+    display: flex;
+    height: 100vh; /* 100% da altura da tela */
+  }
+  
+  
+  
+  .imagem-lateral {
     max-width: 100%;
     height: auto;
     display: block;
     margin: 0 auto;
-  }
-  
-  .container-lateral {
-    float: right; 
-    width: 40%; 
   }

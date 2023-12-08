@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Main from "./main";
 import CadastroSuco from "./pages/CadastroSuco";
-import CadastroDiagIng from "./pages/CadastroDiagIng";
+import CadIngrediente from "./pages/CadIngrediente";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
               <Route path="/" element={<Home />} />
                <Route path="/home" element={<Home />} />
                <Route path="/cadsuco" element={<CadastroSuco />} />
-               <Route path="/caddiagnosticosuco" element={<CadastroDiagIng />} />
+               <Route path="/cadingrediente" element={<CadIngrediente />} />
           </Routes>
         </BrowserRouter>
       </header>

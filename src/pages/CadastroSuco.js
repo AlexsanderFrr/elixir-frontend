@@ -4,6 +4,7 @@ import "./Geral.css";
 import axios from "axios";
 import { LiaFileUploadSolid } from "react-icons/lia";
 
+
 const CadastroSuco = () => {
     const [suco, setSuco] = useState({
         nome: "",
@@ -53,6 +54,7 @@ const CadastroSuco = () => {
 
 
   return (
+    
     <div className="cadastro-suco-container">
       <h1>Cadastro de Suco</h1><br/>
       <form onSubmit={handleSubmit} className="cadastro-suco-form">
