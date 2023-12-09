@@ -48,13 +48,37 @@ const SucoCard = ({ suco, showLink = true }) => {
           marginBottom: "16px",
         }}
       >
-        <p style={{ fontSize: "14px" }}>Ingredientes: {suco.ingredientes}</p>
+        
       </div>
       <div
         className="suco-details"
         style={{ display: "flex", justifyContent: "center", marginBottom: "16px" }}
       >
-        {showLink && <Link to={`/suco/${suco.id}`}>Ver detalhes</Link>}
+        {showLink && (
+          <button
+          style={{
+            backgroundColor: "#BB5104",
+            color: "#fff",
+            padding: "10px 20px",
+            borderRadius: "5px",
+            cursor: "pointer",
+            border: "none",
+            textDecoration: "none",
+            textAlign: "center",
+            transition: "background-color: #ffff",
+            }}
+          >
+            <Link
+              to={`/suco/${suco.id}`}
+              style={{
+                color: "#fff",
+                textDecoration: "none",
+              }}
+            >
+                Ver Mais  
+            </Link>
+          </button>
+        )}
       </div>
     </div>
   );

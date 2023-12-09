@@ -6,6 +6,7 @@ import CadastroSuco from "./pages/CadastroSuco";
 import CadIngrediente from "./pages/CadIngrediente";
 import CadDiagnostico from "./pages/CadDiagnostico";
 import SucoList from "./pages/SucosList";
+import ReadSuco from "./pages/ReadSuco";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
                <Route path="/cadingrediente" element={<CadIngrediente />} />
                <Route path="/caddiagnostico" element={<CadDiagnostico />} />
                <Route path="/sucos" element={<SucoList />} />
+               <Route path="/suco/:id" element={<ReadSuco />} />
           </Routes>
         </BrowserRouter>
       </header>

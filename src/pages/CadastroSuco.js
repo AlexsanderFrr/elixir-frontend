@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { LiaFileUploadSolid } from "react-icons/lia";
-
+import "./Cadastro.css";
+import logo from "../imgs/copo-logo-branco.png";
 
 const CadastroSuco = () => {
   const [suco, setSuco] = useState({
@@ -68,11 +69,12 @@ const CadastroSuco = () => {
   };
 
   return (
+    <div className="cadastro-container">
     <div className="cadastro-suco-container">
-      <h1>Cadastro de Suco</h1>
+      <h1>Cadastro de Suco</h1><br/>
       <form onSubmit={handleSubmit} className="cadastro-suco-form">
         <label>
-          Nome:
+          Nome <br/>
           <input
             type="text"
             name="nome"
@@ -83,7 +85,7 @@ const CadastroSuco = () => {
         <br />
         <br />
         <label>
-          Ingredientes:
+          Ingredientes<br/>
           <textarea
             name="ingredientes"
             value={suco.ingredientes}
@@ -93,7 +95,7 @@ const CadastroSuco = () => {
         <br />
         <br />
         <label>
-          Modo de Preparo:
+          Modo de Preparo<br/>
           <textarea
             name="modo_de_preparo"
             value={suco.modo_de_preparo}
@@ -103,7 +105,7 @@ const CadastroSuco = () => {
         <br />
         <br />
         <label>
-          Benefícios:
+          Benefícios<br/>
           <textarea
             name="beneficios"
             value={suco.beneficios}
@@ -114,7 +116,7 @@ const CadastroSuco = () => {
         <br />
 
         <label>
-          Diagnóstico:
+          Diagnóstico<br/>
           <select
             name="diagnostico"
             value={suco.diagnostico}
@@ -149,6 +151,13 @@ const CadastroSuco = () => {
           Cadastrar Suco
         </button>
       </form>
+    </div>
+    <div className="teste-container">
+        <div className="logo-container-lateral">
+          <img src={logo} alt="Copo Logo" />
+          <h1>Elixir Natural</h1>
+        </div>
+      </div>
     </div>
   );
 };
