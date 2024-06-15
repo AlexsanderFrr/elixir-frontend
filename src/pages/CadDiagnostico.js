@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import logo from "../imgs/copo-logo-branco.png";
+import { Link } from "react-router-dom";
 
 const CadDiagnostico = () => {
   const [diagnostico, setDiagnostico] = useState({
@@ -18,7 +19,7 @@ const CadDiagnostico = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8081/diagnostico/add",
+        "elixir.c322c4yyu9oc.us-east-1.rds.amazonaws.com/diagnostico/add",
         diagnostico
       );
 
@@ -66,8 +67,11 @@ const CadDiagnostico = () => {
       </div>
       <div className="teste-container">
         <div className="logo-container-lateral">
-          <img src={logo} alt="Copo Logo" />
-          <h1>Elixir Natural</h1>
+          <Link to="/cadsuco">
+            <img src={logo} alt="Copo Logo" />
+            
+            <h1>Elixir Natural</h1>
+            </Link>
         </div>
       </div>
     </div>

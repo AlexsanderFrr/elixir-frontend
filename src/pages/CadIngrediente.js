@@ -28,7 +28,7 @@ const CadIngrediente = () => {
     formData.append('img', ingrediente.img);
 
     try {
-      await axios.post('http://localhost:8081/ingredientes/add', formData, {
+      await axios.post('elixir.c322c4yyu9oc.us-east-1.rds.amazonaws.com/ingredientes/add', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

@@ -53,7 +53,7 @@ const SucoList = () => {
         <div className="nav-links">
           <Link to="/">Home</Link>
           <Link to="https://www.figma.com/proto/A1CPyR2lt8WWjbOa0ILfRG/Design-Projeto-Suco?type=design&node-id=55-70&t=kd4GC4rMACgRHFQv-0&scaling=min-zoom&page-id=0%3A1">Sucos</Link>
-          <Link to="/">Contatos</Link>
+          <Link to="/caddiagnostico">Cadastro</Link>
         </div>
       </nav>
       <div className="container-meio">
