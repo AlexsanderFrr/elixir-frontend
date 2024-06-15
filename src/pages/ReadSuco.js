@@ -10,7 +10,7 @@ const ReadSuco = () => {
   useEffect(() => {
     if (id) {
       axios
-        .get(`http://localhost:8081/suco/with-diagnostico/${id}`)
+        .get(`https://elixir-backend-60fb.onrender.com/suco/with-diagnostico/${id}`)
         .then((res) => {
           console.log(res.data); // Examine os dados recebidos no console
           const sucoData = res.data[0] || {};
@@ -21,7 +21,7 @@ const ReadSuco = () => {
     }
   }, [id]);
 
-  const imageUrl = `http://localhost:8081${suco.img1}`;
+  const imageUrl = `https://elixir-backend-60fb.onrender.com${suco.img1}`;
 
   return (
     <div>

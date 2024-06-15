@@ -12,11 +12,11 @@ const SucoList = () => {
   useEffect(() => {
     const fetchSucos = async () => {
       try {
-        let url = "http://localhost:8081/suco/all";
+        let url = "https://elixir-backend-60fb.onrender.com/suco/all";
 
         // Adiciona o filtro de pesquisa se houver um termo
         if (searchTerm) {
-          url = `http://localhost:8081/suco/title/${searchTerm}`;
+          url = `https://elixir-backend-60fb.onrender.com/${searchTerm}`;
         }
 
         const res = await axios.get(url);

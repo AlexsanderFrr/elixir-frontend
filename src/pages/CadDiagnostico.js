@@ -19,7 +19,7 @@ const CadDiagnostico = () => {
 
     try {
       const response = await axios.post(
-        "elixir.c322c4yyu9oc.us-east-1.rds.amazonaws.com/diagnostico/add",
+        "https://elixir-backend-60fb.onrender.com/diagnostico/add",
         diagnostico
       );
 
