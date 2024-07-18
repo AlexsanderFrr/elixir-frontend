@@ -21,7 +21,7 @@ const CadastroSuco = () => {
     // Buscar a lista de diagnósticos quando o componente montar
     const fetchData = async () => {
       const diagnosticosResponse = await axios.get(
-        "https://elixir-backend-60fb.onrender.com/diagnostico/all"
+        "http://localhost:8081/diagnostico/all"
       );
       setDiagnosticosList(diagnosticosResponse.data);
     };
@@ -54,7 +54,7 @@ const CadastroSuco = () => {
     formData.append("diagnostico", suco.diagnostico);
 
     try {
-      await axios.post("https://elixir-backend-60fb.onrender.com/suco/add", formData, {
+      await axios.post("http://localhost:8081/suco/add", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

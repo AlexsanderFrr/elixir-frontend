@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SucoCard = ({ suco, showLink = true }) => {
-  const imageUrl = `http://localhost:8081${suco.img1}`;
+  const imageUrl = `https://elixir-backend-60fb.onrender.com${suco.img1}`;
 
   return (
     <div
