@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { apiEndpoint } from "../config/constantes";
 
 const SucoCard = ({ suco, showLink = true }) => {
-  const imageUrl = `${apiEndpoint}${suco.img1}`;
+  const imageUrl = `${apiEndpoint}/${suco.img1}`;
 
   return (
     <div

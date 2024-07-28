@@ -55,7 +55,7 @@ const CadastroSuco = () => {
     formData.append("diagnostico", suco.diagnostico);
 
     try {
-      await axios.post(`${apiEndpoint}/suco/add${apiEndpoint}`, formData, {
+      await axios.post(`${apiEndpoint}/suco/add`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
