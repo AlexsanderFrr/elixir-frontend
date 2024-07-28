@@ -55,7 +55,8 @@ const CadastroSuco = () => {
     formData.append("diagnostico", suco.diagnostico);
 
     try {
-      await axios.post(`${apiEndpoint}/suco/add`, formData, {
+      await axios.post(
+        "https://elixir-backend-60fb.onrender.com/suco/add", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
