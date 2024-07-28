@@ -4,7 +4,7 @@ import { LiaFileUploadSolid } from "react-icons/lia";
 import "./Cadastro.css";
 import logo from "../imgs/copo-logo-branco.png";
 import { Link } from "react-router-dom";
-import { apiEndpoint } from "../../config/constantes";
+import { apiEndpoint } from "../config/constantes";
 
 const CadastroSuco = () => {
   const [suco, setSuco] = useState({

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { apiEndpoint } from "../../config/constantes";
+import { apiEndpoint } from "../config/constantes";
 
 const SucoCard = ({ suco, showLink = true }) => {
   const imageUrl = `${apiEndpoint}${suco.img1}`;

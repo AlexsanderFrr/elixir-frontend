@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import logo from "../imgs/copo-logo-branco.png";
 import { Link } from "react-router-dom";
-import { apiEndpoint } from "../../config/constantes";
+import { apiEndpoint } from "../config/constantes";
 
 const CadDiagnostico = () => {
   const [diagnostico, setDiagnostico] = useState({

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import SucoCard from "../components/SucoCard";
 import logo from "../imgs/copo-logo-branco.png";
 import "./SucoList.css";
-import { apiEndpoint } from "../../config/constantes";
+import { apiEndpoint } from "../config/constantes";
 
 const SucoList = () => {
   const [allSucos, setSucos] = useState([]);

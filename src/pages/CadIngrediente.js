@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { LiaFileUploadSolid } from 'react-icons/lia';
 import axios from 'axios';
-import { apiEndpoint } from '../../config/constantes';
+import { apiEndpoint } from '../config/constantes';
 
 const CadIngrediente = () => {
   const [ingrediente, setIngrediente] = useState({
