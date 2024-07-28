@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { apiEndpoint } from "../../config/constantes";
 
 const ReadSuco = () => {
   const { id } = useParams();
@@ -10,7 +11,7 @@ const ReadSuco = () => {
   useEffect(() => {
     if (id) {
       axios
-        .get(`https://elixir-backend-60fb.onrender.com/suco/with-diagnostico/${id}`)
+        .get(`${apiEndpoint}/suco/with-diagnostico/${id}`)
         .then((res) => {
           console.log(res.data); // Examine os dados recebidos no console
           const sucoData = res.data[0] || {};

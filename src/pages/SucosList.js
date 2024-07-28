@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import SucoCard from "../components/SucoCard";
 import logo from "../imgs/copo-logo-branco.png";
 import "./SucoList.css";
+import { apiEndpoint } from "../../config/constantes";
 
 const SucoList = () => {
   const [allSucos, setSucos] = useState([]);
@@ -12,11 +13,11 @@ const SucoList = () => {
   useEffect(() => {
     const fetchSucos = async () => {
       try {
-        let url = "https://elixir-backend-60fb.onrender.com/suco/all";
+        let url = `${apiEndpoint}/suco/all`;
 
         // Adiciona o filtro de pesquisa se houver um termo
         if (searchTerm) {
-          url = `https://elixir-backend-60fb.onrender.com/${searchTerm}`;
+          url = `${apiEndpoint}/${searchTerm}`;
         }
 
         const res = await axios.get(url);

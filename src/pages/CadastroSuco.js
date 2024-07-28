@@ -4,6 +4,7 @@ import { LiaFileUploadSolid } from "react-icons/lia";
 import "./Cadastro.css";
 import logo from "../imgs/copo-logo-branco.png";
 import { Link } from "react-router-dom";
+import { apiEndpoint } from "../../config/constantes";
 
 const CadastroSuco = () => {
   const [suco, setSuco] = useState({
@@ -21,7 +22,7 @@ const CadastroSuco = () => {
     // Buscar a lista de diagnósticos quando o componente montar
     const fetchData = async () => {
       const diagnosticosResponse = await axios.get(
-        "http://localhost:8081/diagnostico/all"
+        `${apiEndpoint}/diagnostico/all`
       );
       setDiagnosticosList(diagnosticosResponse.data);
     };
@@ -54,7 +55,7 @@ const CadastroSuco = () => {
     formData.append("diagnostico", suco.diagnostico);
 
     try {
-      await axios.post("http://localhost:8081/suco/add", formData, {
+      await axios.post(`${apiEndpoint}/suco/add${apiEndpoint}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

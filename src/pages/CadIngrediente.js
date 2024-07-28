@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { LiaFileUploadSolid } from 'react-icons/lia';
 import axios from 'axios';
+import { apiEndpoint } from '../../config/constantes';
 
 const CadIngrediente = () => {
   const [ingrediente, setIngrediente] = useState({
@@ -28,7 +29,7 @@ const CadIngrediente = () => {
     formData.append('img', ingrediente.img);
 
     try {
-      await axios.post('https://elixir-backend-60fb.onrender.com/ingredientes/add', formData, {
+      await axios.post(`${apiEndpoint}/ingredientes/add`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
