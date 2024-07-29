@@ -32,7 +32,6 @@ const CadastroSuco = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-
     setSuco({ ...suco, [name]: value });
   };
 
@@ -55,13 +54,23 @@ const CadastroSuco = () => {
     formData.append("diagnostico", suco.diagnostico);
 
     try {
-      await axios.post(
-        "https://elixir-backend-60fb.onrender.com/suco/add", formData, {
+      await axios.post(`${apiEndpoint}/suco/add`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log("Suco cadastrado com sucesso!");
+      // Mostrar mensagem de sucesso
+      alert("Suco cadastrado com sucesso!");
+
+      // Limpar os campos do formulário
+      setSuco({
+        nome: "",
+        ingredientes: "",
+        modo_de_preparo: "",
+        beneficios: "",
+        img1: null,
+        diagnostico: "",
+      });
     } catch (error) {
       console.error(
         "Erro ao cadastrar o Suco:",
@@ -164,7 +173,6 @@ const CadastroSuco = () => {
         <div className="logo-container-lateral">
           <Link to="/caddiagnostico">
             <img src={logo} alt="Copo Logo" />
-
             <h1>Elixir Natural</h1>
           </Link>
         </div>
