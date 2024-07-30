@@ -25,6 +25,13 @@ const CadDiagnostico = () => {
       );
 
       console.log("Diagnostico cadastrado com sucesso!", response.data);
+      // Limpar campos de entrada
+      setDiagnostico({
+        nome_da_condicao: "",
+        descricao: "",
+      });
+      // Exibir alerta de sucesso
+      alert("Diagnostico cadastrado com sucesso!");
     } catch (error) {
       console.error(
         "Erro ao cadastrar o Diagnostico:",
@@ -70,9 +77,8 @@ const CadDiagnostico = () => {
         <div className="logo-container-lateral">
           <Link to="/cadsuco">
             <img src={logo} alt="Copo Logo" />
-            
             <h1>Elixir Natural</h1>
-            </Link>
+          </Link>
         </div>
       </div>
     </div>
