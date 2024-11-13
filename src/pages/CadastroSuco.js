@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { LiaFileUploadSolid } from "react-icons/lia";
-import "./Cadastro.css";
+import "../css/Cadastro.css";
 import logo from "../imgs/copo-logo-branco.png";
 import { Link } from "react-router-dom";
 import { apiEndpoint } from "../config/constantes";

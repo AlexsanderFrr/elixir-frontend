@@ -1,5 +1,5 @@
 import React from "react";
-import "./Home.css";
+import "../css/Home.css";
 import { Link } from "react-router-dom";
 import logo from "../imgs/copo-logo.png";
 import cruz from "../imgs/img-logo-cruz.png";
