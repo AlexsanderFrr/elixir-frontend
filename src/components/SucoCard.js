@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { apiEndpoint } from "../config/constantes";
+//import { apiEndpoint } from "../config/constantes";
 import "./css/SucoCard.css"; 
 
 const SucoCard = ({ suco, showLink = true }) => {

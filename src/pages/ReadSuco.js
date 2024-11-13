@@ -22,7 +22,7 @@ const ReadSuco = () => {
     }
   }, [id]);
 
-  const imageUrl = `https://elixir-backend-60fb.onrender.com${suco.img1}`;
+  const imageUrl = `${suco.img1}`;
 
   return (
     <div>
