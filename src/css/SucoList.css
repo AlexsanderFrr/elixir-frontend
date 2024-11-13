@@ -1,0 +1,117 @@
+/* SucoList.css */
+
+.container-suco-list {
+  margin: 0 auto;
+  background: #f5deaa;
+}
+
+.container-meio {
+  margin: 0 20px;
+  background: #f5deaa;
+}
+
+#navbar2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #BB5104;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.logo-container2 {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container2 img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.logo-container2 span {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff; /* Cor do texto do logotipo */
+}
+
+.title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.sucos-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  justify-content: space-around; /* Distribui os cards uniformemente */
+}
+
+.suco-card {
+  width: calc(20% - 20px); /* Calcula a largura para 4 cards por linha com gap de 20px */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.5);/* Fundo branco com transparência */
+}
+
+.suco-card:hover {
+  background-color: #d27837; /* Cor hexadecimal quando hover */
+  color: #fff; 
+}
+
+.suco-card img {
+  width: 100%;
+  height: auto;
+  margin: 8px auto;
+  border-radius: 10px 10px 0 0;
+}
+
+.suco-card h3 {
+  font-family: "Merriweather", sans-serif;
+  text-align: center;
+  font-size: 22px; /* Corrigi a unidade de medida para px */
+}
+
+.search-container input {
+  width: 100%; /* Tornar a largura 100% do container */
+  height: 40px; /* Ajusta a altura */
+  padding: 1rem; /* Ajusta o espaçamento interno */
+  margin-top: 20px; /* Ajusta o espaçamento superior */
+  border-radius: 10px;
+  border: none;
+}
+
+/* Responsividade */
+@media (min-width: 600px) {
+  .container-meio {
+    margin: 0 50px;
+  }
+  .suco-card {
+    width: calc(50% - 20px); /* 2 cards por linha */
+  }
+}
+
+@media (min-width: 900px) {
+  .container-meio {
+    margin: 0 100px;
+  }
+  .suco-card {
+    width: calc(33.33% - 20px); /* 3 cards por linha */
+  }
+}
+
+@media (min-width: 1200px) {
+  .container-meio {
+    margin: 0 200px;
+  }
+  .suco-card {
+    width: calc(20% - 20px); /* 5 cards por linha */
+  }
+}
