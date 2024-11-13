@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import SucoCard from "../components/SucoCard";
-import logo from "../imgs/copo-logo-branco.png";
-import "./SucoList.css";
+//import logo from "../imgs/copo-logo-branco.png";
+import "../css/SucoList.css";
 import { apiEndpoint } from "../config/constantes";
+import Navbar from "../components/Navbar.js";
 
 const SucoList = () => {
   const [allSucos, setSucos] = useState([]);
@@ -44,19 +45,7 @@ const SucoList = () => {
 
   return (
     <div className="container-suco-list">
-      <nav id="navbar2">
-        <Link to="/">
-          <div className="logo-container2">
-            <img src={logo} alt="Copo Logo" />
-            <span>Elixir Natural</span>
-          </div>
-        </Link>
-        <div className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="https://www.figma.com/proto/A1CPyR2lt8WWjbOa0ILfRG/Design-Projeto-Suco?type=design&node-id=55-70&t=kd4GC4rMACgRHFQv-0&scaling=min-zoom&page-id=0%3A1">Sucos</Link>
-          <Link to="/caddiagnostico">Cadastro</Link>
-        </div>
-      </nav>
+      <Navbar/>
       <div className="container-meio">
         <form onSubmit={handleSearchSubmit}>
           <div className="search-container">
