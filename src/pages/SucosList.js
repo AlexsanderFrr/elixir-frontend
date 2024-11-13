@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-//import { Link } from "react-router-dom";
 import SucoCard from "../components/SucoCard";
-//import logo from "../imgs/copo-logo-branco.png";
 import "../css/SucoList.css";
 import { apiEndpoint } from "../config/constantes";
 import Navbar from "../components/Navbar.js";
