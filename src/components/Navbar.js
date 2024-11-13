@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BiSearchAlt2 } from "react-icons/bi";
 
-import "./Navbar.css";
+import "./css/Navbar.css";
 
 const Navbar = () => {
   const [search, setSearch] = useState("");
