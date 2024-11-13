@@ -1,7 +1,5 @@
 import React from "react";
 import "../css/Home.css";
-//import { Link } from "react-router-dom";
-//import logo from "../imgs/copo-logo.png";
 import cruz from "../imgs/img-logo-cruz.png";
 import medico from "../imgs/img-medico.png";
 import frutas from "../imgs/frutas-home.png";
