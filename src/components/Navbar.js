@@ -1,50 +1,20 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { BiSearchAlt2 } from "react-icons/bi";
-
-import "./css/Navbar.css";
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from "../imgs/copo-logo.png";
+import "./css/Navbar.css"; 
 
 const Navbar = () => {
-  const [search, setSearch] = useState("");
-  const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (!search) return;
-
-    // Construa a URL de pesquisa para a API
-    const searchUrl = `/search/${search}`;
-
-    // Navegue para a nova URL
-    navigate(searchUrl, { replace: true });
-    setSearch("");
-  };
-
   return (
     <nav id="navbar">
-      <h2>
-        <Link to="/">
-      Movies
-        </Link>
-      </h2>
-
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Busque um filme"
-          onChange={(e) => setSearch(e.target.value)}
-          value={search}
-        />
-        <button type="submit">
-          <BiSearchAlt2 />
-        </button>
-      </form>
-
-      {/* Alterei a rota para 'cadastro' */}
-      <Link to="/cadastro">
-        <button className="cadfilme">Cadastrar Filme</button>
-      </Link>
+      <div className="logo-container">
+        <img src={logo} alt="Copo Logo" />
+        <span>Elixir Natural</span>
+      </div>
+      <div className="nav-links">
+        <Link to="/">Home</Link>
+        <Link to="/Sucos">Sucos</Link>
+        <Link to="/caddiagnostico">Cadastro</Link>
+      </div>
     </nav>
   );
 };

@@ -1,1 +1,64 @@
-    
+.read-suco-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f5deaa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .suco-title {
+    font-size: 28px;
+    font-family: "Merriweather", sans-serif;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .suco-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .suco-info {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  .suco-info p {
+    margin-bottom: 10px;
+  }
+  
+  .diagnostico-container {
+    margin-top: 20px;
+  }
+  
+  .diagnostico-container h3 {
+    font-size: 24px;
+    font-family: "Merriweather", sans-serif;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .diagnostico-container p {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 600px) {
+    .read-suco-container {
+      padding: 10px;
+    }
+  
+    .suco-title {
+      font-size: 24px;
+    }
+  
+    .suco-info, .diagnostico-container p {
+      font-size: 16px;
+    }
+  }
+  

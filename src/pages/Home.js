@@ -1,25 +1,16 @@
 import React from "react";
 import "../css/Home.css";
-import { Link } from "react-router-dom";
-import logo from "../imgs/copo-logo.png";
+//import { Link } from "react-router-dom";
+//import logo from "../imgs/copo-logo.png";
 import cruz from "../imgs/img-logo-cruz.png";
 import medico from "../imgs/img-medico.png";
 import frutas from "../imgs/frutas-home.png";
+import Navbar from "../components/Navbar";
 
 const Home = () => {
   return (
     <div className="container">
-      <nav id="navbar">
-        <div className="logo-container">
-          <img src={logo} alt="Copo Logo" />
-          <span>Elixir Natural</span>
-        </div>
-        <div className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/Sucos">Sucos</Link>
-          <Link to="/caddiagnostico">Cadastro</Link>
-        </div>
-      </nav>
+      <Navbar />
 
       <div className="central">
         <br />
@@ -28,19 +19,24 @@ const Home = () => {
         </div>
         <div className="container-lateral">
           <h1 className="title1">Faça o seu dia</h1>
-          <h1 className="title2">com Elixir Natural</h1><br/>
-          <h2 className="linha">__________________________</h2><br/>
+          <h1 className="title2">com Elixir Natural</h1>
+          <br />
+          <h2 className="linha">__________________________</h2>
+          <br />
           <p className="texto-lateral">
-            Desperte o seu bem-estar com o Elixir <br/>
-            Natural, a essência da vitalidade em cada <br/>
-            gole. Descubra uma revolução em saúde com <br/>
-            a nossa linha exclusiva de sucos medicinais<br/>
-            e detox, cuidadosamente elaborados para <br/>
+            Desperte o seu bem-estar com o Elixir <br />
+            Natural, a essência da vitalidade em cada <br />
+            gole. Descubra uma revolução em saúde com <br />
+            a nossa linha exclusiva de sucos medicinais
+            <br />
+            e detox, cuidadosamente elaborados para <br />
             nutrir o seu corpo e revitalizar a sua mente.
           </p>
         </div>
       </div>
-      <br/><br/><br/>
+      <br />
+      <br />
+      <br />
       <br />
       <br />
       <br />

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { apiEndpoint } from "../config/constantes";
-import "./css/ReadSuco.css"; 
+import "../css/ReadSuco.css"; 
 
 const ReadSuco = () => {
   const { id } = useParams();
