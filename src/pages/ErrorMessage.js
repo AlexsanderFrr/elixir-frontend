@@ -1,7 +1,6 @@
 import React from "react";
-import { Text } from 'react-native';
-import css from '../css/styles.css';
+import '../css/styles.css';
 
-const ErrorMessage = ({ message }) => message ? <Text style={css.labelError}>{message}</Text> : null;
+const ErrorMessage = ({ message }) => message ? <div className="labelError">{message}</div> : null;
 
 export default ErrorMessage;
