@@ -13,10 +13,12 @@ const CadastroSuco = () => {
     modo_de_preparo: "",
     beneficios: "",
     img1: null,
-    diagnostico: "", // Usar uma string para um único diagnóstico
+    diagnosticos: [], // Alterar para um array para múltiplos diagnósticos
   });
 
   const [diagnosticosList, setDiagnosticosList] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const maxDiagnosticos = 5;
 
   useEffect(() => {
     // Buscar a lista de diagnósticos quando o componente montar
@@ -40,6 +42,23 @@ const CadastroSuco = () => {
     setSuco({ ...suco, img1: file });
   };
 
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleDiagnosticoSelect = (diagnosticoId) => {
+    if (!suco.diagnosticos.includes(diagnosticoId) && suco.diagnosticos.length < maxDiagnosticos) {
+      setSuco({ ...suco, diagnosticos: [...suco.diagnosticos, diagnosticoId] });
+    }
+  };
+
+  const handleDiagnosticoRemove = (diagnosticoId) => {
+    setSuco({
+      ...suco,
+      diagnosticos: suco.diagnosticos.filter((id) => id !== diagnosticoId),
+    });
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -51,7 +70,9 @@ const CadastroSuco = () => {
     if (suco.img1) {
       formData.append("img1", suco.img1, suco.img1.name);
     }
-    formData.append("diagnostico", suco.diagnostico);
+    suco.diagnosticos.forEach((diagnostico) => {
+      formData.append("diagnosticos[]", diagnostico);
+    });
 
     try {
       await axios.post(`${apiEndpoint}/suco/add`, formData, {
@@ -69,8 +90,9 @@ const CadastroSuco = () => {
         modo_de_preparo: "",
         beneficios: "",
         img1: null,
-        diagnostico: "",
+        diagnosticos: [],
       });
+      setSearchTerm("");
     } catch (error) {
       console.error(
         "Erro ao cadastrar o Suco:",
@@ -79,6 +101,10 @@ const CadastroSuco = () => {
       );
     }
   };
+
+  const filteredDiagnosticos = diagnosticosList.filter((diagnostico) =>
+    diagnostico.nome_da_condicao.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="cadastro-container">
@@ -132,21 +158,51 @@ const CadastroSuco = () => {
           <br />
 
           <label>
-            Diagnóstico
+            Diagnóstico (Selecione até 5)
             <br />
-            <select
-              name="diagnostico"
-              value={suco.diagnostico}
-              onChange={handleInputChange}
-            >
-              <option value="">Selecione um diagnóstico</option>
-              {diagnosticosList.map((diagnostico) => (
-                <option key={diagnostico.id} value={diagnostico.id}>
+            <input
+              type="text"
+              placeholder="Pesquisar diagnóstico"
+              value={searchTerm}
+              onChange={handleSearchChange}
+            />
+            <div className="diagnosticos-list">
+              {filteredDiagnosticos.map((diagnostico) => (
+                <div
+                  key={diagnostico.id}
+                  onClick={() => handleDiagnosticoSelect(diagnostico.id)}
+                  className={`diagnostico-item ${
+                    suco.diagnosticos.includes(diagnostico.id) ? "selected" : ""
+                  }`}
+                >
                   {diagnostico.nome_da_condicao}
-                </option>
+                </div>
               ))}
-            </select>
+            </div>
           </label>
+          {suco.diagnosticos.length > maxDiagnosticos && (
+            <p style={{ color: "red" }}>
+              Você pode selecionar no máximo 5 diagnósticos.
+            </p>
+          )}
+          <div className="diagnosticos-selecionados">
+            {suco.diagnosticos.map((diagnosticoId) => {
+              const diagnostico = diagnosticosList.find(
+                (diag) => diag.id === diagnosticoId
+              );
+              return (
+                <div key={diagnosticoId} className="diagnostico-selecionado">
+                  {diagnostico?.nome_da_condicao}
+                  <span
+                    className="remove-diagnostico"
+                    onClick={() => handleDiagnosticoRemove(diagnosticoId)}
+                  >
+                    &times;
+                  </span>
+                </div>
+              );
+            })}
+          </div>
           <br />
           <br />
           <div className="upload-container">
@@ -164,7 +220,11 @@ const CadastroSuco = () => {
           )}
           <br />
           <br />
-          <button type="submit" className="button">
+          <button
+            type="submit"
+            className="button"
+            disabled={suco.diagnosticos.length > maxDiagnosticos}
+          >
             Cadastrar Suco
           </button>
         </form>
