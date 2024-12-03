@@ -13,18 +13,28 @@ const CadastroSuco = () => {
     modo_de_preparo: "",
     beneficios: "",
     img1: null,
-    diagnostico: "", // Usar uma string para um único diagnóstico
+    diagnostico: "",
+    categoria: [], // Modificado para array
   });
 
   const [diagnosticosList, setDiagnosticosList] = useState([]);
+  const [categoriasList, setCategoriasList] = useState([]);
 
   useEffect(() => {
-    // Buscar a lista de diagnósticos quando o componente montar
     const fetchData = async () => {
-      const diagnosticosResponse = await axios.get(
-        `${apiEndpoint}/diagnostico/all`
-      );
-      setDiagnosticosList(diagnosticosResponse.data);
+      try {
+        const diagnosticosResponse = await axios.get(
+          `${apiEndpoint}/diagnostico/all`
+        );
+        setDiagnosticosList(diagnosticosResponse.data);
+
+        const categoriasResponse = await axios.get(
+          `${apiEndpoint}/categoria/all`
+        );
+        setCategoriasList(categoriasResponse.data);
+      } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+      }
     };
 
     fetchData();
@@ -32,7 +42,17 @@ const CadastroSuco = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setSuco({ ...suco, [name]: value });
+
+    // Lidar com seleção múltipla
+    if (name === "categoria") {
+      const selectedOptions = Array.from(
+        event.target.selectedOptions,
+        (option) => option.value
+      );
+      setSuco({ ...suco, categoria: selectedOptions });
+    } else {
+      setSuco({ ...suco, [name]: value });
+    }
   };
 
   const handleFileChange = (event) => {
@@ -53,16 +73,19 @@ const CadastroSuco = () => {
     }
     formData.append("diagnostico", suco.diagnostico);
 
+    // Enviar categorias como array de IDs
+    suco.categoria.forEach((categoriaId) =>
+      formData.append("categoria[]", categoriaId)
+    );
+
     try {
       await axios.post(`${apiEndpoint}/suco/add`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      // Mostrar mensagem de sucesso
       alert("Suco cadastrado com sucesso!");
 
-      // Limpar os campos do formulário
       setSuco({
         nome: "",
         ingredientes: "",
@@ -70,13 +93,10 @@ const CadastroSuco = () => {
         beneficios: "",
         img1: null,
         diagnostico: "",
+        categoria: [],
       });
     } catch (error) {
-      console.error(
-        "Erro ao cadastrar o Suco:",
-        error.message,
-        error.response?.data
-      );
+      console.error("Erro ao cadastrar o Suco:", error.message, error.response?.data);
     }
   };
 
@@ -130,7 +150,6 @@ const CadastroSuco = () => {
           </label>
           <br />
           <br />
-
           <label>
             Diagnóstico
             <br />
@@ -143,6 +162,24 @@ const CadastroSuco = () => {
               {diagnosticosList.map((diagnostico) => (
                 <option key={diagnostico.id} value={diagnostico.id}>
                   {diagnostico.nome_da_condicao}
+                </option>
+              ))}
+            </select>
+          </label>
+          <br />
+          <br />
+          <label>
+            Categoria
+            <br />
+            <select
+              name="categoria"
+              value={suco.categoria}
+              onChange={handleInputChange}
+              multiple
+            >
+              {categoriasList.map((categoria) => (
+                <option key={categoria.id} value={categoria.id}>
+                  {categoria.nome}
                 </option>
               ))}
             </select>
