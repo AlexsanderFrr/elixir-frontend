@@ -9,6 +9,9 @@ const CadDiagnostico = () => {
     nome_da_condicao: "",
     descricao: "",
   });
+  const [loading, setLoading] = useState(false); // Para controle de carregamento
+  const [error, setError] = useState(""); // Para mostrar mensagens de erro
+  const [success, setSuccess] = useState(""); // Para mostrar mensagens de sucesso
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -17,6 +20,15 @@ const CadDiagnostico = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true); // Inicia o estado de carregamento
+    setError(""); // Limpa mensagens de erro anteriores
+    setSuccess(""); // Limpa mensagens de sucesso
+
+    if (!diagnostico.nome_da_condicao || !diagnostico.descricao) {
+      setError("Por favor, preencha todos os campos.");
+      setLoading(false);
+      return;
+    }
 
     try {
       const response = await axios.post(
@@ -24,29 +36,28 @@ const CadDiagnostico = () => {
         diagnostico
       );
 
-      console.log("Diagnostico cadastrado com sucesso!", response.data);
-      // Limpar campos de entrada
+      setSuccess("Diagnóstico cadastrado com sucesso!");
+      console.log("Diagnóstico cadastrado com sucesso!", response.data);
       setDiagnostico({
         nome_da_condicao: "",
         descricao: "",
       });
-      // Exibir alerta de sucesso
-      alert("Diagnostico cadastrado com sucesso!");
     } catch (error) {
-      console.error(
-        "Erro ao cadastrar o Diagnostico:",
-        error.message,
-        error.response?.data
-      );
+      setError("Erro ao cadastrar o diagnóstico. Tente novamente.");
+      console.error("Erro ao cadastrar o Diagnóstico:", error.message, error.response?.data);
+    } finally {
+      setLoading(false); // Finaliza o estado de carregamento
     }
   };
 
   return (
     <div className="cadastro-container">
       <div className="cadastro-diagnostico-container">
-        <h1>Cadastro de Diagnostico</h1>
+        <h1>Cadastro de Diagnóstico</h1>
         <br />
         <form onSubmit={handleSubmit} className="cadastro-diagnostico-form">
+          {error && <p className="error-message">{error}</p>} {/* Exibe erros */}
+          {success && <p className="success-message">{success}</p>} {/* Exibe sucesso */}
           <label>
             Nome da Condição
             <br />
@@ -55,6 +66,8 @@ const CadDiagnostico = () => {
               name="nome_da_condicao"
               value={diagnostico.nome_da_condicao}
               onChange={handleInputChange}
+              aria-label="Nome da Condição"
+              required
             />
           </label>
           <br />
@@ -65,18 +78,20 @@ const CadDiagnostico = () => {
               name="descricao"
               value={diagnostico.descricao}
               onChange={handleInputChange}
+              aria-label="Descrição"
+              required
             />
           </label>
           <br />
-          <button type="submit" className="button">
-            Cadastrar Diagnóstico
+          <button type="submit" className="button" disabled={loading}>
+            {loading ? "Cadastrando..." : "Cadastrar Diagnóstico"}
           </button>
         </form>
       </div>
       <div className="teste-container">
         <div className="logo-container-lateral">
           <Link to="/cadsuco">
-            <img src={logo} alt="Copo Logo" />
+            <img src={logo} alt="Logo Elixir Natural" />
             <h1>Elixir Natural</h1>
           </Link>
         </div>

@@ -1,9 +1,12 @@
+/* Contêiner principal */
 .cadastro-container {
   background-color: #bb5104;
   display: flex;
   height: 100vh;
+  font-size: 18px; /* Define um tamanho de fonte maior para todo o conteúdo */
 }
 
+/* Containers divididos */
 .cadastro-suco-container,
 .cadastro-diagnostico-container {
   background-color: white;
@@ -11,60 +14,113 @@
   padding: 20px;
   box-sizing: border-box;
   display: flex;
-  height: 100vh;
   flex-direction: column;
-  align-items: justify; 
+  justify-content: center; /* Centraliza verticalmente os elementos */
+  align-items: center; /* Centraliza horizontalmente os elementos */
 }
 
+/* Campos de entrada e textarea */
 .cadastro-suco-container input,
 .cadastro-suco-container textarea,
 .cadastro-diagnostico-container input,
 .cadastro-diagnostico-container textarea {
-  width: 80%; 
-  padding: 7px;
-  margin-bottom: 10px;
-  border: 1px solid #bb5104; 
-  border-radius: 5px; 
+  font-size: 18px; /* Aumenta o tamanho do texto */
+  width: 90%; /* Aumenta a largura dos campos */
+  padding: 20px; /* Aumenta o padding para dar mais espaçamento interno */
+  margin-bottom: 15px; /* Ajusta o espaço entre os campos */
+  border: 2px solid #bb5104; /* Borda mais visível */
+  border-radius: 10px; /* Bordas arredondadas */
+}
+
+/* Aumentando a altura do textarea para a descrição */
+.cadastro-suco-container textarea,
+.cadastro-diagnostico-container textarea {
+  height: 150px; /* Aumenta a altura do campo de descrição */
+}
+
+/* Ajustando os labels para melhorar a visibilidade */
+.cadastro-suco-container label,
+.cadastro-diagnostico-container label {
+  font-weight: bold; /* Negrito nos labels */
+  font-size: 20px; /* Tamanho maior para os labels */
+  margin-bottom: 8px; /* Espaço abaixo dos labels */
+  width: 100%; /* Faz os labels ocuparem toda a largura */
+  text-align: left; /* Alinha os labels à esquerda */
 }
 
 /* Estilo para o botão */
 .cadastro-suco-container button,
 .cadastro-diagnostico-container button {
-  width: 50%; 
-  padding: 15px;
-  background-color: #BB5104; 
-  color: white; 
+  width: 90%; /* Ajusta o botão para ficar mais largo */
+  padding: 20px; /* Aumenta o padding do botão */
+  background-color: #BB5104;
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
-  margin-left: auto; 
-  margin-right: auto; 
-  transition: background-color 0.3s; 
+  font-size: 20px; /* Aumenta o tamanho da fonte do botão */
+  margin: 20px;
+  transition: background-color 0.3s;
 }
 
 .cadastro-suco-container button:hover,
 .cadastro-diagnostico-container button:hover {
-  background-color: #FF7F00;
+  background-color: #FF7F00; /* Cor de hover */
 }
 
+/* Estilo para a mensagem de sucesso */
+.success-message {
+  background-color: #28a745; /* Verde, cor de sucesso */
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  width: 90%;
+  max-width: 600px; /* Limita a largura máxima da mensagem */
+  margin: 20px 0; /* Espaçamento entre a mensagem e os outros elementos */
+  box-shadow: 0 4px 10px rgba(53, 186, 53, 0.2); /* Sombra para destacar */
+  animation: fadeIn 1s ease-out; /* Animação de fade in */
+}
+
+/* Animação de fade-in */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Estilo do container lateral (opcional, para referência) */
 .teste-container {
-    background-color: #bb5104;
-    color: white;
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    height: 100vh;
-    width: 20%; 
-  }
+  background-color: #bb5104;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 20%;
+}
+
+/* Logo ao lado do texto */
+.logo-container-lateral {
+  display: flex;
+  align-items: center;  /* Alinha a imagem e o título horizontalmente */
+  justify-content: center;  /* Garante que a imagem e o título fiquem à esquerda */
   
-  .logo-container-lateral {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo-container-lateral img {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-  }
+}
+
+.logo-container-lateral img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;  /* Espaço entre a imagem e o texto */
+}
+
+.logo-container-lateral h1 {
+  color: white;  /* Cor do título */
+  font-size: 35px;  /* Tamanho do título */
+  margin: 0; /* Remove margens extras que podem causar deslocamento */
+}
