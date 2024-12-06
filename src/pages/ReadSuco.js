@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";  // Importando Link para navegação
 import { apiEndpoint } from "../config/constantes";
 import "../css/ReadSuco.css"; 
 
@@ -47,6 +47,8 @@ const ReadSuco = () => {
               <p><strong>Nome da Condição:</strong> {diagnostico.nome_da_condicao}</p>
             </div>
           )}
+          {/* Link para editar o suco */}
+          <Link to={`/editar-suco/${id}`} className="edit-suco-link">Editar Suco</Link>
         </>
       )}
     </div>
