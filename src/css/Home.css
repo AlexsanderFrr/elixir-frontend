@@ -143,11 +143,15 @@
 
 /* Estilos para a imagem de frutas */
 .foto-frutas img {
-  width: 600px; /* Ajuste o tamanho da imagem conforme necessário */
-  height: auto;
-  margin-top: 100px;
-  margin-left: 50px;
+  width: 100%; /* Faz a imagem ocupar 100% da largura do seu contêiner pai */
+  height: auto; /* Mantém a proporção da imagem */
+  max-width: 600px; /* Define um tamanho máximo para a imagem */
+  margin-top: 50px;
+  margin-left: 79px;
+  position: relative;
+  z-index: 1;
 }
+
 
 .central {
   margin-top: 20px; 

@@ -14,7 +14,7 @@ const CadastroSuco = () => {
     beneficios: "",
     img1: null,
     diagnostico: "",
-    categoria: [], // Modificado para array
+    categoria: "", // Alterado para string, armazenando apenas uma categoria
   });
 
   const [diagnosticosList, setDiagnosticosList] = useState([]);
@@ -43,13 +43,9 @@ const CadastroSuco = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
-    // Lidar com seleção múltipla
+    // Lidar com a categoria como único valor (não mais array)
     if (name === "categoria") {
-      const selectedOptions = Array.from(
-        event.target.selectedOptions,
-        (option) => option.value
-      );
-      setSuco({ ...suco, categoria: selectedOptions });
+      setSuco({ ...suco, categoria: value }); // Agora armazena apenas um valor
     } else {
       setSuco({ ...suco, [name]: value });
     }
@@ -73,10 +69,8 @@ const CadastroSuco = () => {
     }
     formData.append("diagnostico", suco.diagnostico);
 
-    // Enviar categorias como array de IDs
-    suco.categoria.forEach((categoriaId) =>
-      formData.append("categoria[]", categoriaId)
-    );
+    // Enviar categoria como único valor (não mais como array)
+    formData.append("categoria", suco.categoria);
 
     try {
       await axios.post(`${apiEndpoint}/suco/add`, formData, {
@@ -93,7 +87,7 @@ const CadastroSuco = () => {
         beneficios: "",
         img1: null,
         diagnostico: "",
-        categoria: [],
+        categoria: "", // Resetando categoria após envio
       });
     } catch (error) {
       console.error("Erro ao cadastrar o Suco:", error.message, error.response?.data);
@@ -173,9 +167,8 @@ const CadastroSuco = () => {
             <br />
             <select
               name="categoria"
-              value={suco.categoria}
+              value={suco.categoria} // Agora valor é uma única categoria
               onChange={handleInputChange}
-              multiple
             >
               {categoriasList.map((categoria) => (
                 <option key={categoria.id} value={categoria.id}>

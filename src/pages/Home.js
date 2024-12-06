@@ -2,7 +2,7 @@ import React from "react";
 import "../css/Home.css";
 import cruz from "../imgs/img-logo-cruz.png";
 import medico from "../imgs/img-medico.png";
-import frutas from "../imgs/frutas-home.png";
+import frutas from "../imgs/fundoHome.png.png";
 import Navbar from "../components/Navbar";
 
 const Home = () => {
@@ -22,13 +22,9 @@ const Home = () => {
           <h2 className="linha">__________________________</h2>
           <br />
           <p className="texto-lateral">
-            Desperte o seu bem-estar com o Elixir <br />
-            Natural, a essência da vitalidade em cada <br />
-            gole. Descubra uma revolução em saúde com <br />
-            a nossa linha exclusiva de sucos medicinais
-            <br />
-            e detox, cuidadosamente elaborados para <br />
-            nutrir o seu corpo e revitalizar a sua mente.
+          Transforme o seu dia com o Elixir Natural, a verdadeira essência da vitalidade. 
+          Descubra uma revolução em saúde com nossa exclusiva linha de sucos medicinais e detox, 
+          cuidadosamente elaborados para nutrir o seu corpo e revitalizar sua mente, trazendo bem-estar em cada gole.
           </p>
         </div>
       </div>

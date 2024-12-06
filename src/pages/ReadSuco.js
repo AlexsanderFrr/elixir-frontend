@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { apiEndpoint } from "../config/constantes";
-import "../css/ReadSuco.css"; 
+import "../css/ReadSuco.css";
 
 const ReadSuco = () => {
   const { id } = useParams();
@@ -47,6 +47,10 @@ const ReadSuco = () => {
               <p><strong>Nome da Condição:</strong> {diagnostico.nome_da_condicao}</p>
             </div>
           )}
+          {/* Botão de Editar */}
+          <Link to={`/editar-suco/${id}`} className="edit-button">
+            Editar Suco
+          </Link>
         </>
       )}
     </div>
