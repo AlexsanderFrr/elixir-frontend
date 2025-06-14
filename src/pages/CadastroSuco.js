@@ -208,9 +208,9 @@ const CadastroSuco = () => {
       </div>
       <div className="teste-container">
         <div className="logo-container-lateral">
-          <Link to="/caddiagnostico">
+          <Link to="/caddiagnostico" className="logo-text">
             <img src={logo} alt="Copo Logo" />
-            <h1>Elixir Natural</h1>
+            Elixir Natural
           </Link>
         </div>
       </div>

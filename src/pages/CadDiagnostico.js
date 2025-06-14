@@ -3,6 +3,7 @@ import axios from "axios";
 import logo from "../imgs/copo-logo-branco.png";
 import { Link } from "react-router-dom";
 import { apiEndpoint } from "../config/constantes";
+import "../css/Cadastro.css";
 
 const CadDiagnostico = () => {
   const [diagnostico, setDiagnostico] = useState({
@@ -75,7 +76,7 @@ const CadDiagnostico = () => {
       </div>
       <div className="teste-container">
         <div className="logo-container-lateral">
-          <Link to="/cadsuco">
+          <Link to="/cadsuco" className="logo-text">
             <img src={logo} alt="Copo Logo" />
             <h1>Elixir Natural</h1>
           </Link>

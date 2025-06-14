@@ -27,7 +27,6 @@
   border-radius: 5px; 
 }
 
-/* Estilo para o botão */
 .cadastro-suco-container button,
 .cadastro-diagnostico-container button {
   width: 50%; 
@@ -48,23 +47,35 @@
   background-color: #FF7F00;
 }
 
+/* Estilização da lateral com logo e texto */
 .teste-container {
-    background-color: #bb5104;
-    color: white;
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    height: 100vh;
-    width: 20%; 
-  }
-  
-  .logo-container-lateral {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo-container-lateral img {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-  }
+  background-color: #bb5104;
+  color: white;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh;
+  width: 20%;
+}
+
+.logo-container-lateral {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container-lateral img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.logo-text {
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+/* Opcional: efeito hover no link */
+.logo-text:hover {
+  text-decoration: underline;
+}

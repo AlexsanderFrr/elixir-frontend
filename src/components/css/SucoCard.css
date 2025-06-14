@@ -17,7 +17,6 @@
     width: 100%;
     height: 200px; /* Definindo uma altura fixa para padronizar */
     object-fit: cover; /* Faz a imagem cobrir o espaço sem distorcer */
-    margin-top: 8px;
     border-radius: 10px 10px 0 0;
   }
   
