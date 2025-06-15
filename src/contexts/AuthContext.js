@@ -1,10 +1,9 @@
-// src/contexts/AuthContext.js
 import { createContext, useContext, useState, useEffect } from 'react';
-import { apiEndpoint } from "../config/constantes";
+import { apiEndpoint } from '../config/constantes';
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -14,7 +13,7 @@ export const AuthProvider = ({ children }) => {
       if (token) {
         try {
           apiEndpoint.defaults.headers.Authorization = `Bearer ${token}`;
-          const { data } = await apiEndpoint.get('/me');
+          const { data } = await apiEndpoint.get('/usuario/me');
           setUser({
             ...data,
             isAdmin: data.tipo === 'admin'
@@ -31,16 +30,19 @@ export const AuthProvider = ({ children }) => {
 
   async function login(email, password) {
     try {
-      const { data } = await apiEndpoint.post('/login', { email, senha: password });
+      const { data } = await apiEndpoint.post('/usuario/login', { email, senha: password });
       localStorage.setItem('token', data.token);
       apiEndpoint.defaults.headers.Authorization = `Bearer ${data.token}`;
       setUser({
-        ...data,
-        isAdmin: data.tipo === 'admin'
+        ...data.usuario,
+        isAdmin: data.usuario.tipo === 'admin'
       });
-      return { success: true };
+      return { success: true, user: data.usuario };
     } catch (error) {
-      return { success: false, message: error.response?.data?.message || 'Erro ao fazer login' };
+      return { 
+        success: false, 
+        message: error.response?.data?.message || 'Erro ao fazer login' 
+      };
     }
   }
 
@@ -55,12 +57,12 @@ export const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
-};
+}
 
-export const useAuth = () => {
+export function useAuth() {
   const context = useContext(AuthContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useAuth deve ser usado dentro de um AuthProvider');
   }
   return context;
-};
+}
