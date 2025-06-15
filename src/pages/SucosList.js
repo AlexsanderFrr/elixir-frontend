@@ -3,7 +3,7 @@ import axios from "axios";
 import SucoCard from "../components/SucoCard";
 import "../css/SucoList.css";
 import { apiEndpoint } from "../config/constantes";
-import Navbar from "../components/Navbar.js";
+
 
 const SucoList = () => {
   const [allSucos, setSucos] = useState([]);
@@ -41,7 +41,7 @@ const SucoList = () => {
 
   return (
     <div className="container-suco-list">
-      <Navbar />
+      
       <div className="container-meio">
         <form onSubmit={handleSearchSubmit}>
           <div className="search-container">

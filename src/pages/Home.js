@@ -3,12 +3,12 @@ import "../css/Home.css";
 import cruz from "../imgs/img-logo-cruz.png";
 import medico from "../imgs/img-medico.png";
 import frutas from "../imgs/frutas-home.png";
-import Navbar from "../components/Navbar";
+
 
 const Home = () => {
   return (
     <div className="container">
-      <Navbar />
+      
 
       <div className="central">
         <br />

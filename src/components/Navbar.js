@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../imgs/copo-logo.png";
+import logo from "../imgs/copo-logo-branco.png";
 import "./css/Navbar.css"; 
 
 const Navbar = () => {
