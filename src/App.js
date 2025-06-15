@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
 import Home from "./pages/Home";
 import Main from "./main";
 import CadastroSuco from "./pages/CadastroSuco";
@@ -13,6 +14,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <BrowserRouter>
+        <AuthProvider>
           <Routes>
             {/* Rota isolada para login */}
             <Route path="/login" element={<Login />} />
@@ -28,6 +30,7 @@ function App() {
               <Route path="/suco/:id" element={<ReadSuco />} />
             </Route>
           </Routes>
+          </AuthProvider>
         </BrowserRouter>
       </header>
     </div>
