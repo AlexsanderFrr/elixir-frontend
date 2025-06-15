@@ -5,7 +5,11 @@ import logo from "../imgs/copo-logo-branco.png";
 import "./css/Navbar.css";
 
 const Navbar = () => {
-  const { user, logout } = useAuth();
+  const { user, logout, loading } = useAuth();
+
+  if (loading) {
+    return <div>Carregando...</div>; // Ou um spinner
+  }
 
   return (
     <nav id="navbar">
@@ -18,14 +22,12 @@ const Navbar = () => {
         <Link to="/">Home</Link>
         <Link to="/Sucos">Sucos</Link>
         
-        {/* Mostrar link de admin apenas para usuários administradores */}
         {user?.isAdmin && (
           <Link to="/admin" className="admin-link">
             <i className="fas fa-crown"></i> Admin
           </Link>
         )}
         
-        {/* Mostrar Perfil ou Login/Cadastro baseado no estado de autenticação */}
         {user ? (
           <>
             <Link to="/perfil" className="profile-link">

@@ -1,86 +1,65 @@
 #navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: #2e7d32; /* Verde natural */
-  color: white;
-}
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: transparent;
+    position: relative;
+  }
 
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
 
-.logo-container img {
-  height: 40px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-}
-
-#navbar a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-#navbar a:hover {
-  opacity: 0.8;
-  transform: translateY(-2px);
-}
-
-/* Estilo especial para links de admin */
-.admin-link {
-  background-color: #ffab00; /* Amarelo dourado */
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-}
-
-.admin-link:hover {
-  background-color: #ffc400;
-}
-
-/* Estilo para botão de logout */
-.logout-button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: inherit;
-}
-
-.logout-button:hover {
-  opacity: 0.8;
-}
-
-/* Ícones */
-.fas {
-  font-size: 1rem;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  #navbar {
-    flex-direction: column;
-    padding: 1rem;
+  
+  #navbar h2 a {
+    display: flex;
+    color: #f7d354;
+    align-items: center;
+    color: #f7d354;
   }
   
-  .nav-links {
-    margin-top: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
+  #navbar form {
+    display: flex;
+    gap: 0.5rem;
   }
-}
+  
+  #navbar input {
+    width: 300px;
+    padding: 0.2rem 0.8rem;
+    border-radius: 4px;
+    border: none;
+  }
+  
+  #navbar form button {
+    background-color: #f7d354;
+    border: 2px solid #f7d354;
+    border-radius: 4px;
+    color: #000;
+    padding: 0.3rem;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .navbar-buttons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-buttons button {
+    margin-right: 0;
+  }
+  
+  .cadfilme {
+    background-color: #ffcd38; 
+    color: #000000;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .cadfilme:hover {
+    background-color: transparent;
+    color: #f7d354; 
+  }
