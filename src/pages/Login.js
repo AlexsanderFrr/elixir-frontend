@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-//import { apiEndpoint } from '../config/constantes';
 import '../css/Login.css';
 import logo from '../../src/imgs/copo-logo.png';
 
@@ -14,7 +13,6 @@ function Login() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Redireciona para a página que tentou acessar ou para a home
   const from = location.state?.from?.pathname || '/home';
 
   const handleLogin = async (e) => {
@@ -23,39 +21,44 @@ function Login() {
     setCarregando(true);
 
     try {
-      // Validação básica dos campos
-      if (!email || !senha) {
-        throw new Error('Por favor, preencha todos os campos');
+      console.log('Tentando login com:', { email }); // Não logue a senha por segurança
+
+      // Validação dos campos
+      if (!email.trim() || !senha.trim()) {
+        throw new Error('Por favor, preencha todos os campos corretamente');
       }
 
-      // Usa a função login do AuthContext
       const result = await login(email, senha);
-
-      if (result.success) {
-        // Redireciona com base no tipo de usuário
-        const destino = result.user.tipo === 'admin' ? '/admin' : from;
-        navigate(destino, { replace: true });
-      } else {
-        throw new Error(result.message || 'Erro ao fazer login');
-      }
-    } catch (err) {
-      console.error('Erro no login:', {
-        error: err,
-        message: err.message,
-        response: err.response?.data
+      console.log('Resultado do login:', {
+        success: result.success,
+        user: result.user ? { id: result.user.id, tipo: result.user.tipo } : null
       });
 
-      // Mensagens de erro mais amigáveis
-      let mensagemErro = 'Erro ao fazer login';
-      if (err.response) {
-        mensagemErro = err.response.data?.message || 
-                      err.response.statusText || 
-                      `Erro ${err.response.status}`;
-      } else if (err.message) {
-        mensagemErro = err.message;
+      if (!result.success) {
+        throw new Error(result.message || 'Falha na autenticação');
       }
 
-      setErro(mensagemErro);
+      if (!result.user) {
+        throw new Error('Dados do usuário não recebidos');
+      }
+
+      const redirectPath = result.user.tipo === 'admin' ? '/admin' : from;
+      console.log(`Redirecionando ${result.user.tipo} para:`, redirectPath);
+      navigate(redirectPath, { replace: true });
+
+    } catch (err) {
+      console.error('Falha no login:', {
+        name: err.name,
+        message: err.message,
+        stack: err.stack,
+        responseData: err.response?.data
+      });
+
+      setErro(
+        err.response?.data?.message || 
+        err.message || 
+        'Erro ao conectar com o servidor. Tente novamente.'
+      );
     } finally {
       setCarregando(false);
     }
@@ -68,30 +71,39 @@ function Login() {
         <h1>Bem vindo a <br/>Elixir Natural</h1>
         <p className="login-subtitle">Faça login na sua conta</p>
 
-        {erro && <div className="login-error">{erro}</div>}
+        {erro && (
+          <div className="login-error">
+            <i className="fas fa-exclamation-circle"></i> {erro}
+          </div>
+        )}
 
-        <form onSubmit={handleLogin} className="login-form">
+        <form onSubmit={handleLogin} className="login-form" noValidate>
           <div className="input-group">
-            <label>Email</label>
+            <label htmlFor="email">Email</label>
             <input
+              id="email"
               type="email"
               placeholder="seu@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
               disabled={carregando}
+              autoComplete="username"
             />
           </div>
 
           <div className="input-group">
-            <label>Senha</label>
+            <label htmlFor="senha">Senha</label>
             <input
+              id="senha"
               type="password"
               placeholder="Digite sua senha"
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
               required
               disabled={carregando}
+              autoComplete="current-password"
+              minLength="6"
             />
           </div>
 
@@ -103,10 +115,16 @@ function Login() {
 
           <button 
             type="submit" 
-            className="login-button"
+            className={`login-button ${carregando ? 'loading' : ''}`}
             disabled={carregando}
+            aria-busy={carregando}
           >
-            {carregando ? 'Entrando...' : 'Entrar'}
+            {carregando ? (
+              <>
+                <span className="spinner"></span>
+                Entrando...
+              </>
+            ) : 'Entrar'}
           </button>
         </form>
 
