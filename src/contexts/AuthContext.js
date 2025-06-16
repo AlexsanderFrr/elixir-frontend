@@ -28,6 +28,7 @@ export const AuthProvider = ({ children }) => {
           nome: data.nome,
           email: data.email,
           tipo: data.tipo,
+          isAdmin: data.tipo === "admin",
           token: data.token,
         };
 
