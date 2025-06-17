@@ -76,8 +76,8 @@ const CadDiagnostico = () => {
       </div>
       <div className="teste-container">
         <div className="logo-container-lateral">
+          <img src={logo} alt="Copo Logo" />
           <Link to="/cadsuco" className="logo-text">
-            <img src={logo} alt="Copo Logo" />
             <h1>Elixir Natural</h1>
           </Link>
         </div>
