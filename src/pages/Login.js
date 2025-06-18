@@ -27,8 +27,10 @@ function Login() {
         apiEndpoint.defaults.headers.Authorization = `Bearer ${response.data.token}`;
       }
 
-      const tipo = response.data.usuario?.tipo || 'comum';
-      navigate(tipo === 'master' ? '/admin' : '/home');
+      console.log(response.data)
+
+      const tipo = response.data.userData.tipo;
+      navigate(tipo === 'admin' ? '/home' : '/home');
       
     } catch (err) {
       console.error('Erro completo:', err); // DEBUG
@@ -95,7 +97,7 @@ function Login() {
         </div>
 
         <div className="register-link">
-          Não possui uma conta? <a href="/cadastro">Cadastre-se</a>
+          Não possui uma conta? <a href="/signup">Cadastre-se</a>
         </div>
       </div>
     </div>
