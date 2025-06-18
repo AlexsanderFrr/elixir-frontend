@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
+import AdminRoute from './components/AdminRoute';
 import Home from "./pages/Home";
+import AdminPanel from "./pages/AdminPanel"
 import Main from "./main";
 import CadastroSuco from "./pages/CadastroSuco";
 import CadIngrediente from "./pages/CadIngrediente";
@@ -25,6 +27,10 @@ function App() {
             <Route element={<Main />}>
               <Route path="/" element={<Home />} />
               <Route path="/home" element={<Home />} />
+               <Route path="/admin/*" element={
+              <AdminRoute>
+                <AdminPanel />
+              </AdminRoute>}/>
               <Route path="/cadsuco" element={<CadastroSuco />} />
               <Route path="/cadingrediente" element={<CadIngrediente />} />
               <Route path="/caddiagnostico" element={<CadDiagnostico />} />

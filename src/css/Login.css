@@ -24,7 +24,7 @@
 
 .login-card h1 {
   font-size: 24px;
-  color: #2e7d32;
+  color: #BB5104;
   margin-bottom: 8px;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .login-button {
-  background-color: #2e7d32;
+  background-color: #BB5104;
   color: white;
   border: none;
   padding: 14px;
@@ -90,7 +90,7 @@
 }
 
 .login-button:hover {
-  background-color: #1b5e20;
+  background-color: #BB5104;
 }
 
 .login-error {
@@ -162,7 +162,7 @@
 }
 
 .register-link a {
-  color: #2e7d32;
+  color: #f08050;
   text-decoration: none;
   font-weight: 500;
 }

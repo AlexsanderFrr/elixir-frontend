@@ -1,41 +1,66 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { apiEndpoint } from '../config/constantes';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import '../css/Login.css';
-import logo from '../../src/imgs/copo-logo.png'; 
+import logo from '../../src/imgs/copo-logo.png';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [erro, setErro] = useState('');
+  const [carregando, setCarregando] = useState(false);
+  const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || '/home';
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setErro('');
+    setCarregando(true);
+
     try {
-      console.log('Enviando para o backend:', { email, senha }); // DEBUG
-      
-      const response = await apiEndpoint.post('/usuario/login', { 
-        email, 
-        senha 
-      });
+      console.log('Tentando login com:', { email }); // Não logue a senha por segurança
 
-      console.log('Resposta do backend:', response.data); // DEBUG
-
-      if (response.data.token) {
-        localStorage.setItem('token', response.data.token);
-        apiEndpoint.defaults.headers.Authorization = `Bearer ${response.data.token}`;
+      // Validação dos campos
+      if (!email.trim() || !senha.trim()) {
+        throw new Error('Por favor, preencha todos os campos corretamente');
       }
 
-      console.log(response.data)
+      const result = await login(email, senha);
+      console.log('Resultado do login:', {
+        success: result.success,
+        user: result.user ? { id: result.user.id, tipo: result.user.tipo } : null
+      });
 
-      const tipo = response.data.userData.tipo;
-      navigate(tipo === 'admin' ? '/home' : '/home');
-      
+      if (!result.success) {
+        throw new Error(result.message || 'Falha na autenticação');
+      }
+
+      if (!result.user) {
+        throw new Error('Dados do usuário não recebidos');
+      }
+
+      const redirectPath = result.user.tipo === 'admin' ? '/admin' : from;
+      console.log(`Redirecionando ${result.user.tipo} para:`, redirectPath);
+      navigate(redirectPath, { replace: true });
+
     } catch (err) {
-      console.error('Erro completo:', err); // DEBUG
-      console.error('Resposta de erro:', err.response); // DEBUG
-      setErro(err.response?.data?.message || 'Email ou senha inválidos');
+      console.error('Falha no login:', {
+        name: err.name,
+        message: err.message,
+        stack: err.stack,
+        responseData: err.response?.data
+      });
+
+      setErro(
+        err.response?.data?.message || 
+        err.message || 
+        'Erro ao conectar com o servidor. Tente novamente.'
+      );
+    } finally {
+      setCarregando(false);
     }
   };
 
@@ -46,40 +71,60 @@ function Login() {
         <h1>Bem vindo a <br/>Elixir Natural</h1>
         <p className="login-subtitle">Faça login na sua conta</p>
 
-        {erro && <div className="login-error">{erro}</div>}
+        {erro && (
+          <div className="login-error">
+            <i className="fas fa-exclamation-circle"></i> {erro}
+          </div>
+        )}
 
-        <form onSubmit={handleLogin} className="login-form">
+        <form onSubmit={handleLogin} className="login-form" noValidate>
           <div className="input-group">
-            <label>Email</label>
+            <label htmlFor="email">Email</label>
             <input
+              id="email"
               type="email"
               placeholder="seu@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={carregando}
+              autoComplete="username"
             />
           </div>
 
           <div className="input-group">
-            <label>Senha</label>
+            <label htmlFor="senha">Senha</label>
             <input
+              id="senha"
               type="password"
               placeholder="Digite sua senha"
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
               required
+              disabled={carregando}
+              autoComplete="current-password"
+              minLength="6"
             />
           </div>
 
           <div className="login-options">
-            
             <a href="/esqueci-senha" className="forgot-password">
               Esqueceu sua senha?
             </a>
           </div>
 
-          <button type="submit" className="login-button">
-            Entrar
+          <button 
+            type="submit" 
+            className={`login-button ${carregando ? 'loading' : ''}`}
+            disabled={carregando}
+            aria-busy={carregando}
+          >
+            {carregando ? (
+              <>
+                <span className="spinner"></span>
+                Entrando...
+              </>
+            ) : 'Entrar'}
           </button>
         </form>
 
@@ -88,11 +133,12 @@ function Login() {
         </div>
 
         <div className="social-login">
-          <button className="social-button google">
+          <button 
+            type="button" 
+            className="social-button google"
+            disabled={carregando}
+          >
             <i className="fab fa-google"></i> Entrar com Google
-          </button>
-          <button className="social-button facebook">
-            <i className="fab fa-facebook-f"></i> Entrar com Facebook
           </button>
         </div>
 
