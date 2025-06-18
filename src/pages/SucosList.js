@@ -11,13 +11,13 @@ const SucoList = () => {
 
   const fetchSucos = async () => {
     try {
-      let url = `${apiEndpoint}/suco/all`;
+      let url = `/suco/all`;
 
       if (searchTerm.trim()) {
-        url = `${apiEndpoint}/suco/title/${searchTerm.trim()}`;
+        url = `/suco/title/${searchTerm.trim()}`;
       }
 
-      const res = await axios.get(url);
+      const res = await apiEndpoint.get(`${url}`);
       setSucos(res.data);
       console.log(res.data);
     } catch (err) {

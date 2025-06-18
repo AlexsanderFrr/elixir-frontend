@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../css/Signup.css';
 import { apiEndpoint } from "../config/constantes";
-import imglateral from "../imgs/imglateral-esquerda.png";
+import logo from '../../src/imgs/copo-logo.png'; 
 
 function Signup() {
   const [email, setEmail] = useState('');
@@ -15,10 +15,7 @@ function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        `${apiEndpoint}/usuario/add`,
-        { nome, email, senha }
-      );
+      const response = await apiEndpoint.post(`/usuario/add`, { nome, email, senha });
 
       navigate('/login')
     } catch (err) {
@@ -27,43 +24,70 @@ function Signup() {
   };
 
   return (
-    <div id='main-container'>
-        <div className='lateral a'>
-            <div className='img-container'>
-                <img src={imglateral}/>
-            </div>
+    <div className="login-page">
+      <div className="login-card">
+        <img src={logo} alt="Elixir Natural" className="login-logo" />
+        <h1>Bem vindo a <br/>Elixir Natural</h1>
+        <p className="login-subtitle">Cadastre sua conta!</p>
+
+        {erro && <div className="login-error">{erro}</div>}
+
+        <form onSubmit={handleSignup} className="login-form">
+          <div className="input-group">
+            <label>Nome</label>
+            <input
+              type="text"
+              placeholder="Digite seu nome"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="input-group">
+            <label>Email</label>
+            <input
+              type="email"
+              placeholder="seu@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="input-group">
+            <label>Senha</label>
+            <input
+              type="password"
+              placeholder="Digite sua senha"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+              required
+            />
+          </div>
+
+          <button type="submit" className="login-button">
+            Cadastrar
+          </button>
+        </form>
+
+        <div className="login-separator">
+          <span>Ou</span>
         </div>
-        <div className="lateral">
-            <div className="signup-container">
-                <h2>Signup</h2>
-                <form onSubmit={handleSignup}>
-                <input
-                    type="text"
-                    placeholder="Digite seu nome"
-                    value={nome}
-                    onChange={(e) => setNome(e.target.value)}
-                    required
-                />
-                <input
-                    type="email"
-                    placeholder="Digite seu email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="Digite sua senha"
-                    value={senha}
-                    onChange={(e) => setSenha(e.target.value)}
-                    required
-                />
-                {erro && <p className="erro">{erro}</p>}
-                <p>Já tem cadastro? <a href='./login'>Logar</a></p>
-                <button type="submit">Cadastrar</button>
-                </form>
-            </div>
+
+        <div className="social-login">
+          <button className="social-button google">
+            <i className="fab fa-google"></i> Entrar com Google
+          </button>
+          <button className="social-button facebook">
+            <i className="fab fa-facebook-f"></i> Entrar com Facebook
+          </button>
         </div>
+
+        <div className="register-link">
+          Já possui uma conta? <a href="/login">Logar</a>
+        </div>
+      </div>
     </div>
   );
 }

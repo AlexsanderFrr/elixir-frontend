@@ -8,6 +8,7 @@ import CadDiagnostico from "./pages/CadDiagnostico";
 import SucoList from "./pages/SucosList";
 import ReadSuco from "./pages/ReadSuco";
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             {/* Rota isolada para login */}
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
 
             {/* Rota com layout padrão */}
             <Route element={<Main />}>
