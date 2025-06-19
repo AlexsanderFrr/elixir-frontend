@@ -1,0 +1,122 @@
+.perfil-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 300px 16px;
+  font-family: sans-serif;
+  max-width: 9000px;
+  margin: 0 auto;
+  background-color: #fff;
+  width: 100%; /* deixa fluido */
+  box-sizing: border-box; /* para padding não expandir fora da tela */
+}
+
+/* Foto de perfil */
+.perfil-foto-wrapper {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.foto-perfil {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #bb5104;
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.icon-camera {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #bb5104;
+  color: white;
+  border-radius: 50%;
+  padding: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* Nome e email */
+.perfil-info {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.perfil-info h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.perfil-info p {
+  margin: 4px 0;
+  color: #555;
+  font-size: 14px;
+}
+
+/* Botões */
+.perfil-opcoes {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  gap: 12px;
+}
+
+.opcao-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: none;
+  background: #f3f3f3;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  justify-content: center;
+}
+
+.opcao-btn:hover {
+  background: #e1e1e1;
+}
+
+.opcao-btn .icon {
+  color: #bb5104;
+  font-size: 18px;
+}
+
+.opcao-btn.sair {
+  background: #ffe6e6;
+  color: #bb0000;
+}
+
+/* Media Query para mobile */
+@media (max-width: 480px) {
+  .perfil-container {
+    padding: 16px 12px;
+    max-width: 100%;
+  }
+
+  .foto-perfil {
+    width: 90px;
+    height: 90px;
+  }
+
+  .perfil-info h2 {
+    font-size: 18px;
+  }
+
+  .perfil-info p {
+    font-size: 13px;
+  }
+
+  .opcao-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .opcao-btn .icon {
+    font-size: 16px;
+  }
+}
