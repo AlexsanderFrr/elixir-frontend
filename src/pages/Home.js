@@ -67,7 +67,7 @@ const Home = () => {
             <h5>
               Se possível, consulte profissionais de saúde ou <br />
               nutricionistas para garantir que suas recomendações
-              <br /> estejam alinhadas com práticas seguras e saudáveis
+              <br /> estejam alinhadas com práticas seguras e saudáveis.
             </h5>
           </div>
 
