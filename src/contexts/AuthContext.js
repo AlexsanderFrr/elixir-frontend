@@ -22,21 +22,22 @@ export const AuthProvider = ({ children }) => {
       const data = response.data;
       console.log("Resposta da API:", data);
 
-      if (data.token && data.id && data.nome && data.email && data.tipo) {
-        const userData = {
-          id: data.id,
-          nome: data.nome,
-          email: data.email,
-          tipo: data.tipo,
-          isAdmin: data.tipo === "admin",
-          token: data.token,
-        };
+     if (data.token && data.id && data.nome && data.email && data.tipo) {
+  const userData = {
+    id: data.id,
+    nome: data.nome,
+    email: data.email,
+    tipo: data.tipo,
+    isAdmin: data.tipo === "admin",
+    token: data.token,
+  };
 
-        setUser(userData);
-        localStorage.setItem("user", JSON.stringify(userData));
+  setUser(userData);
+  localStorage.setItem("user", JSON.stringify(userData));
+  localStorage.setItem("token", data.token); 
 
-        return { success: true, user: userData };
-      } else {
+  return { success: true, user: userData };
+} else {
         console.error("Resposta inválida da API:", data);
         throw new Error("Dados incompletos recebidos do servidor");
       }

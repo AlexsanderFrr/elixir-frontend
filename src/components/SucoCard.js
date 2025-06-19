@@ -1,40 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import axios from "axios";
 import "./css/SucoCard.css";
 import { apiEndpoint } from "../config/constantes";
 
 const SucoCard = ({ suco, showLink = true }) => {
   const [favorito, setFavorito] = useState(false);
-  const imageUrl = suco.img1 || suco.img1; // Ajuste conforme seu campo de imagem
-  const token = localStorage.getItem("token");
+  const imageUrl = suco.img1 || suco.img1;
 
   // Verifica se este suco está entre os favoritos do usuário
   useEffect(() => {
     async function verificarFavorito() {
-      if (!token) return;
       try {
-  const res = await axios.get(`${apiEndpoint}/favoritos/all`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await apiEndpoint.get("/favoritos/all");
         const idsFavoritos = res.data.map((fav) => fav.suco.id || fav.suco.suco_id);
         setFavorito(idsFavoritos.includes(suco.suco_id || suco.id));
       } catch (error) {
         console.error("Erro ao verificar favoritos", error);
       }
     }
+
     verificarFavorito();
-  }, [suco.suco_id, suco.id, token]);
+  }, [suco.suco_id, suco.id]);
 
   // Função para favoritar
   const favoritarSuco = async () => {
     try {
-      await axios.post(
-        `${apiEndpoint}/favoritos/add`,
-        { id: suco.suco_id || suco.id },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      await apiEndpoint.post("/favoritos/add", {
+        id: suco.suco_id || suco.id,
+      });
       setFavorito(true);
     } catch (error) {
       alert("Erro ao adicionar favorito");
@@ -45,10 +39,7 @@ const SucoCard = ({ suco, showLink = true }) => {
   // Função para remover favorito
   const removerFavorito = async () => {
     try {
-      await axios.delete(
-        `${apiEndpoint}/favoritos/delete/${suco.suco_id || suco.id}`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      await apiEndpoint.delete(`/favoritos/delete/${suco.suco_id || suco.id}`);
       setFavorito(false);
     } catch (error) {
       alert("Erro ao remover favorito");
