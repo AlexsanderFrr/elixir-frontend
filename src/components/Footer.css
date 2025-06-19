@@ -1,0 +1,27 @@
+.custom-footer {
+  position: relative;
+  background-color: #ffffff;
+  color: #ffffff;
+  text-align: center;
+  padding-top: 0;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+.wave-container {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  margin-bottom: -5px;
+}
+
+.footer-wave {
+  display: block;
+  width: 100%;
+  height: 100px;
+}
+
+.footer-content {
+  background-color: #d27837;
+  padding: 50px 0;
+}
