@@ -1,4 +1,4 @@
-// AuthContext.js
+// contexts/AuthContext.js
 import React, { createContext, useContext, useState } from "react";
 import { apiEndpoint } from '../config/constantes';
 
@@ -11,34 +11,27 @@ export const AuthProvider = ({ children }) => {
   });
 
   const login = async (email, senha) => {
-    console.log("Iniciando login para:", email);
-
     try {
-      const response = await apiEndpoint.post("/usuario/login", {
-        email,
-        senha,
-      });
-
+      const response = await apiEndpoint.post("/usuario/login", { email, senha });
       const data = response.data;
-      console.log("Resposta da API:", data);
 
-     if (data.token && data.id && data.nome && data.email && data.tipo) {
-  const userData = {
-    id: data.id,
-    nome: data.nome,
-    email: data.email,
-    tipo: data.tipo,
-    isAdmin: data.tipo === "admin",
-    token: data.token,
-  };
+      if (data.token && data.id && data.nome && data.email && data.tipo) {
+        const userData = {
+          id: data.id,
+          nome: data.nome,
+          email: data.email,
+          tipo: data.tipo,
+          imagem: data.imagem || null, // Adiciona imagem recebida (ou null)
+          isAdmin: data.tipo === "admin",
+          token: data.token,
+        };
 
-  setUser(userData);
-  localStorage.setItem("user", JSON.stringify(userData));
-  localStorage.setItem("token", data.token); 
+        setUser(userData);
+        localStorage.setItem("user", JSON.stringify(userData));
+        localStorage.setItem("token", data.token);
 
-  return { success: true, user: userData };
-} else {
-        console.error("Resposta inválida da API:", data);
+        return { success: true, user: userData };
+      } else {
         throw new Error("Dados incompletos recebidos do servidor");
       }
     } catch (error) {
@@ -50,10 +43,17 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
+  };
+
+  // Função para atualizar usuário após mudanças, ex: imagem
+  const updateUser = (newUserData) => {
+    setUser(newUserData);
+    localStorage.setItem("user", JSON.stringify(newUserData));
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, updateUser }}>
       {children}
     </AuthContext.Provider>
   );

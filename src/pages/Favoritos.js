@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaHeart } from 'react-icons/fa';
-import axios from 'axios';
 import { apiEndpoint } from "../config/constantes";
 import SucoCard from "../components/SucoCard";
-
+import "../css/SucoList.css";
 
 function Favoritos() {
   const navigate = useNavigate();
@@ -21,9 +20,7 @@ function Favoritos() {
       }
       try {
         const res = await apiEndpoint.get('/favoritos/all', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         });
         setFavoritos(res.data);
       } catch (error) {
@@ -36,41 +33,46 @@ function Favoritos() {
     fetchFavoritos();
   }, [token]);
 
+  // Callback para remover o suco da lista local quando desfavoritado
+  const handleRemoveFavorito = (sucoId) => {
+    setFavoritos((prevFavoritos) => 
+      prevFavoritos.filter((fav) => (fav.suco.id || fav.suco.suco_id) !== sucoId)
+    );
+  };
+
   return (
-    <div style={{ padding: 20, fontFamily: 'sans-serif' }}>
-      <button
-        onClick={() => navigate(-1)}
-        style={{
-          background: 'none',
-          border: 'none',
-          color: '#bb5104',
-          cursor: 'pointer',
-          fontSize: 18,
-          marginBottom: 20,
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-        }}
-      >
-        <FaArrowLeft /> Voltar
-      </button>
+    <div className="container-suco-list">
+      <div className="container-meio">
+        <button
+          onClick={() => navigate(-1)}
+          className="btn-voltar"
+          style={{ marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8 }}
+        >
+          <FaArrowLeft style={{ color: '#bb5104' }} /> Voltar
+        </button>
 
-      <h2 style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        <FaHeart style={{ color: '#bb5104' }} /> Meus Favoritos
-      </h2>
+        <h2 className="title" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <FaHeart style={{ color: '#bb5104' }} /> Meus Favoritos
+        </h2>
 
-{loading ? (
-  <p>Carregando favoritos...</p>
-) : favoritos.length === 0 ? (
-  <p>Você ainda não adicionou favoritos.</p>
-) : (
-  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
-    {favoritos.map((item) => (
-      <SucoCard key={item.suco.id || item.suco.suco_id} suco={item.suco} />
-    ))}
-  </div>
-)}
-
+        {loading ? (
+          <p>Carregando favoritos...</p>
+        ) : favoritos.length === 0 ? (
+          <p>Você ainda não adicionou favoritos.</p>
+        ) : (
+          <div className="sucos-list-container">
+            {favoritos.map((item) => (
+              <SucoCard
+                key={item.suco.id || item.suco.suco_id}
+                suco={item.suco}
+                isLoggedIn={!!token}
+                token={token}
+                onRemoveFavorito={handleRemoveFavorito}  // passa a callback para o SucoCard
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

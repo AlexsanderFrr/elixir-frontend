@@ -1,66 +1,103 @@
+// components/PerfilUsers.js
 import React, { useState, useEffect } from 'react';
 import '../css/PerfilUsers.css';
 import { useAuth } from '../contexts/AuthContext';
 import { FaHeart, FaSignOutAlt, FaCamera } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-
+import { apiEndpoint } from '../config/constantes';
 
 function PerfilUsers() {
-  const { user, logout } = useAuth();
+  const { user, logout, updateUser } = useAuth();
   const navigate = useNavigate();
-  const [fotoPerfil, setFotoPerfil] = useState(null);
+  const [fotoPerfil, setFotoPerfil] = useState(user?.imagem || null);
 
   useEffect(() => {
-    if (user?.fotoPerfil) {
-      setFotoPerfil(user.fotoPerfil);
+    if (user?.imagem) {
+      setFotoPerfil(user.imagem);
     }
   }, [user]);
 
-  const handleFotoChange = (e) => {
+  const handleFotoChange = async (e) => {
     const file = e.target.files[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setFotoPerfil(imageUrl);
-      // Aqui você pode chamar uma função para salvar essa foto no backend
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("imagem", file);
+
+    try {
+      const response = await apiEndpoint.put("/usuario/me", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+
+      if (response.status === 200) {
+        // Buscar dados atualizados do usuário
+        const usuarioAtualizado = await apiEndpoint.get("/usuario/me", {
+          headers: { Authorization: `Bearer ${user.token}` },
+        });
+
+        // Atualizar estado local e contexto global com nova imagem
+        setFotoPerfil(usuarioAtualizado.data.imagem);
+        updateUser({ ...user, imagem: usuarioAtualizado.data.imagem });
+
+        alert("Foto de perfil atualizada com sucesso!");
+      } else {
+        alert("Falha ao atualizar foto de perfil.");
+      }
+    } catch (error) {
+      console.error("Erro ao atualizar foto de perfil:", error);
+      alert("Falha ao atualizar foto de perfil.");
+    }
+  };
+
+  const handleLogout = () => {
+    const confirmado = window.confirm("Você realmente deseja sair do site?");
+    if (confirmado) {
+      logout();
+      navigate('/');  // Redireciona para a home
     }
   };
 
   return (
-    <div className="perfil-container">
-      <div className="perfil-foto-wrapper">
-        <img
-          src={fotoPerfil || 'https://via.placeholder.com/150'}
-          alt="Foto de Perfil"
-          className="foto-perfil"
-        />
-        <label className="icon-camera">
-          <FaCamera />
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFotoChange}
-            hidden
-          />
-        </label>
-      </div>
+    <div className="login-page">
+      <div className="login-card">
+        <div className="perfil-container">
+          <div className="perfil-foto-wrapper">
+            <img
+              src={fotoPerfil || 'https://via.placeholder.com/150'}
+              alt="Foto de Perfil"
+              className="foto-perfil"
+            />
+            <label className="icon-camera" title="Alterar foto de perfil">
+              <FaCamera />
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFotoChange}
+                hidden
+              />
+            </label>
+          </div>
 
-      <div className="perfil-info">
-        <h2>{user?.nome || 'Usuário'}</h2>
-        <p>{user?.email || 'email@exemplo.com'}</p>
-      </div>
+          <div className="perfil-info">
+            <h2>{user?.nome || 'Usuário'}</h2>
+            <p>{user?.email || 'email@exemplo.com'}</p>
+          </div>
 
-      <div className="perfil-opcoes">
-        <button className="opcao-btn" 
-        onClick={() => navigate('/favoritos')}>
-        <FaHeart className="icon" />
-         Favoritos
-        </button>
+          <div className="perfil-opcoes">
+            <button className="opcao-btn" onClick={() => navigate('/favoritos')}>
+              <FaHeart className="icon" />
+              Favoritos
+            </button>
 
-
-        <button className="opcao-btn sair" onClick={logout}>
-          <FaSignOutAlt className="icon" />
-          Sair
-        </button>
+            <button className="opcao-btn sair" onClick={handleLogout}>
+              <FaSignOutAlt className="icon" />
+              Sair
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

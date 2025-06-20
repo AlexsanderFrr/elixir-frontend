@@ -7,8 +7,8 @@
   max-width: 800px;
   margin: 0 auto;
   background-color: #fff;
-  width: 100%; /* deixa fluido */
-  box-sizing: border-box; /* para padding não expandir fora da tela */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Foto de perfil */

@@ -24,7 +24,7 @@
 }
 
 .admin-card {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.5); /* aumenta a opacidade para 50% */
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(188, 164, 164, 0.3);
   padding: 1.5rem 2rem;
@@ -37,6 +37,7 @@
   align-items: center;
   text-align: center;
 }
+
 
 .admin-card:hover {
   background-color: rgba(255, 255, 255, 0.3);

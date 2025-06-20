@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { LiaFileUploadSolid } from "react-icons/lia";
 import "../css/Cadastro.css";
 import logo from "../imgs/copo-logo-branco.png";
@@ -14,7 +13,7 @@ const CadastroSuco = () => {
     beneficios: "",
     img1: null,
     diagnostico: "",
-    categoria: [], // Modificado para array
+    categoria: [],
   });
 
   const [diagnosticosList, setDiagnosticosList] = useState([]);
@@ -23,14 +22,11 @@ const CadastroSuco = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const diagnosticosResponse = await axios.get(
-          `${apiEndpoint}/diagnostico/all`
-        );
+        // CORRIGIDO: uso correto da instância axios
+        const diagnosticosResponse = await apiEndpoint.get("/diagnostico/all");
         setDiagnosticosList(diagnosticosResponse.data);
 
-        const categoriasResponse = await axios.get(
-          `${apiEndpoint}/categoria/all`
-        );
+        const categoriasResponse = await apiEndpoint.get("/categoria/all");
         setCategoriasList(categoriasResponse.data);
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
@@ -43,7 +39,6 @@ const CadastroSuco = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
-    // Lidar com seleção múltipla
     if (name === "categoria") {
       const selectedOptions = Array.from(
         event.target.selectedOptions,
@@ -73,19 +68,19 @@ const CadastroSuco = () => {
     }
     formData.append("diagnostico", suco.diagnostico);
 
-    // Enviar categorias como array de IDs
     suco.categoria.forEach((categoriaId) =>
       formData.append("categoria[]", categoriaId)
     );
 
     try {
-      await axios.post(`${apiEndpoint}/suco/add`, formData, {
+      // CORRIGIDO: uso da instância apiEndpoint
+      await apiEndpoint.post("/suco/add", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      alert("Suco cadastrado com sucesso!");
 
+      alert("Suco cadastrado com sucesso!");
       setSuco({
         nome: "",
         ingredientes: "",
@@ -108,56 +103,31 @@ const CadastroSuco = () => {
         <form onSubmit={handleSubmit} className="cadastro-suco-form">
           <label>
             Nome <br />
-            <input
-              type="text"
-              name="nome"
-              value={suco.nome}
-              onChange={handleInputChange}
-            />
+            <input type="text" name="nome" value={suco.nome} onChange={handleInputChange} />
           </label>
-          <br />
-          <br />
+          <br /><br />
+
           <label>
-            Ingredientes
-            <br />
-            <textarea
-              name="ingredientes"
-              value={suco.ingredientes}
-              onChange={handleInputChange}
-            />
+            Ingredientes<br />
+            <textarea name="ingredientes" value={suco.ingredientes} onChange={handleInputChange} />
           </label>
-          <br />
-          <br />
+          <br /><br />
+
           <label>
-            Modo de Preparo
-            <br />
-            <textarea
-              name="modo_de_preparo"
-              value={suco.modo_de_preparo}
-              onChange={handleInputChange}
-            />
+            Modo de Preparo<br />
+            <textarea name="modo_de_preparo" value={suco.modo_de_preparo} onChange={handleInputChange} />
           </label>
-          <br />
-          <br />
+          <br /><br />
+
           <label>
-            Benefícios
-            <br />
-            <textarea
-              name="beneficios"
-              value={suco.beneficios}
-              onChange={handleInputChange}
-            />
+            Benefícios<br />
+            <textarea name="beneficios" value={suco.beneficios} onChange={handleInputChange} />
           </label>
-          <br />
-          <br />
+          <br /><br />
+
           <label>
-            Diagnóstico
-            <br />
-            <select
-              name="diagnostico"
-              value={suco.diagnostico}
-              onChange={handleInputChange}
-            >
+            Diagnóstico<br />
+            <select name="diagnostico" value={suco.diagnostico} onChange={handleInputChange}>
               <option value="">Selecione um diagnóstico</option>
               {diagnosticosList.map((diagnostico) => (
                 <option key={diagnostico.id} value={diagnostico.id}>
@@ -166,17 +136,11 @@ const CadastroSuco = () => {
               ))}
             </select>
           </label>
-          <br />
-          <br />
+          <br /><br />
+
           <label>
-            Categoria
-            <br />
-            <select
-              name="categoria"
-              value={suco.categoria}
-              onChange={handleInputChange}
-              multiple
-            >
+            Categoria<br />
+            <select name="categoria" value={suco.categoria} onChange={handleInputChange} multiple>
               {categoriasList.map((categoria) => (
                 <option key={categoria.id} value={categoria.id}>
                   {categoria.nome}
@@ -184,12 +148,13 @@ const CadastroSuco = () => {
               ))}
             </select>
           </label>
-          <br />
-          <br />
+          <br /><br />
+
           <div className="upload-container">
             <LiaFileUploadSolid />
             <input type="file" name="img1" onChange={handleFileChange} />
           </div>
+
           {suco.img1 && (
             <div className="image-preview">
               <img
@@ -199,13 +164,12 @@ const CadastroSuco = () => {
               />
             </div>
           )}
-          <br />
-          <br />
-          <button type="submit" className="button">
-            Cadastrar Suco
-          </button>
+          <br /><br />
+
+          <button type="submit" className="button">Cadastrar Suco</button>
         </form>
       </div>
+
       <div className="teste-container">
         <div className="logo-container-lateral">
           <Link to="/caddiagnostico" className="logo-text">

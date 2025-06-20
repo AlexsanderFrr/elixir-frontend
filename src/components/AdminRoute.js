@@ -11,14 +11,14 @@ export default function AdminPanel() {
 
   const cards = [
     {
-      title: "Gerenciar Bebidas",
-      description: "Adicione, edite ou remova bebidas do catálogo.",
+      title: "Cadastrar Bebidas",
+      description: "Cadastre suas bebidas no catálago.",
       icon: "🍹",
     },
     {
-      title: "Gerenciar Usuários",
-      description: "Controle permissões e visualize usuários cadastrados.",
-      icon: "👥",
+      title: "Gerenciar Bebidas",
+      description: "Atualize ou remova bebidas já cadastradas no catálogo.",
+      icon: "⚙️🍹",
     },
     {
       title: "Visualizar Estatísticas",
