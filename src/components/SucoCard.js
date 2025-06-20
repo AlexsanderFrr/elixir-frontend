@@ -68,7 +68,8 @@ const SucoCard = ({ suco, showLink = true }) => {
         </button>
       </div>
 
-      <h3 className="suco-title">{suco.suco_nome}</h3>
+      <h3 className="suco-title">{suco.suco_nome || suco.nome}</h3>
+      <h4 >{suco.diagnostico_nome_da_condicao}</h4>
 
       <div className="suco-details">
         {showLink && (

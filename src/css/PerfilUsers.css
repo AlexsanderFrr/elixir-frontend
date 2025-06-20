@@ -2,9 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 300px 16px;
+  padding: 100px 16px;
   font-family: sans-serif;
-  max-width: 9000px;
+  max-width: 800px;
   margin: 0 auto;
   background-color: #fff;
   width: 100%; /* deixa fluido */

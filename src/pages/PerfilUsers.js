@@ -50,7 +50,8 @@ function PerfilUsers() {
       </div>
 
       <div className="perfil-opcoes">
-        <button className="opcao-btn" onClick={() => navigate('/favoritos')}>
+        <button className="opcao-btn" 
+        onClick={() => navigate('/favoritos')}>
         <FaHeart className="icon" />
          Favoritos
         </button>

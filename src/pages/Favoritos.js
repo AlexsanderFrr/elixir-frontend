@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaHeart } from 'react-icons/fa';
 import axios from 'axios';
+import { apiEndpoint } from "../config/constantes";
+import SucoCard from "../components/SucoCard";
+
 
 function Favoritos() {
   const navigate = useNavigate();
@@ -17,7 +20,7 @@ function Favoritos() {
         return;
       }
       try {
-        const res = await axios.get('http://localhost:8080/favoritos/all', {
+        const res = await apiEndpoint.get('/favoritos/all', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -56,19 +59,18 @@ function Favoritos() {
         <FaHeart style={{ color: '#bb5104' }} /> Meus Favoritos
       </h2>
 
-      {loading ? (
-        <p>Carregando favoritos...</p>
-      ) : favoritos.length === 0 ? (
-        <p>Você ainda não adicionou favoritos.</p>
-      ) : (
-        <ul style={{ paddingLeft: 20 }}>
-          {favoritos.map((item) => (
-            <li key={item.suco.id || item.suco.suco_id} style={{ marginBottom: 10 }}>
-              {item.suco.nome || item.suco.suco_nome}
-            </li>
-          ))}
-        </ul>
-      )}
+{loading ? (
+  <p>Carregando favoritos...</p>
+) : favoritos.length === 0 ? (
+  <p>Você ainda não adicionou favoritos.</p>
+) : (
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
+    {favoritos.map((item) => (
+      <SucoCard key={item.suco.id || item.suco.suco_id} suco={item.suco} />
+    ))}
+  </div>
+)}
+
     </div>
   );
 }
