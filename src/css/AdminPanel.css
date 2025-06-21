@@ -2,7 +2,7 @@
   padding: 2rem;
   font-family: "Arial", sans-serif;
   color: white;
-  background: linear-gradient(to right, #f5deaa, #f0a671, #c75c10, #bb5104);
+  background: #ffff;
   min-height: 100vh;
   box-sizing: border-box;
 }
@@ -24,12 +24,12 @@
 }
 
 .admin-card {
-  background-color: rgba(255, 255, 255, 0.5); /* aumenta a opacidade para 50% */
+  background-color: #c75c10; /* aumenta a opacidade para 50% */
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(188, 164, 164, 0.3);
   padding: 1.5rem 2rem;
   width: 280px;
-  color: #8c0000;
+  color: #f0a671;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
   display: flex;

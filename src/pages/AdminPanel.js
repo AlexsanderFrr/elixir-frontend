@@ -16,27 +16,32 @@ export default function AdminPanel() {
       title: "Cadastrar Bebidas",
       description: "Cadastre novas bebidas e mantenha seu catálogo sempre atualizado.",
       icon: "🍹",
-      route: "/cadsuco",
+      route: "/admin/cadsuco", 
     },
     {
       title: "Gerenciar Bebidas",
       description: "Atualize ou remova bebidas já cadastradas no catálogo.",
       icon: "⚙️🍹",
-      route: "/sucos",
+      route: "/admin/sucos",
     },
     {
-      title: "Visualizar Estatísticas",
+      title: "Cadastrar Ingredientes",
       description: "Acompanhe dados de uso e desempenho do sistema.",
       icon: "📊",
-      route: "/estatisticas",
+      route: "/admin/cadingrediente", 
+    },
+    {
+      title: "Cadastrar Condições",
+      description: "Acompanhe dados de uso e desempenho do sistema.",
+      icon: "📊",
+      route: "/admin/caddiagnostico", 
     },
   ];
 
-const handleNavigate = (route) => {
-  console.log("Indo para rota:", route);
-  navigate(route);
-};
-
+  const handleNavigate = (route) => {
+    console.log("Navegando para:", route);
+    navigate(route);
+  };
 
   return (
     <div className="admin-container">

@@ -1,44 +1,20 @@
-import React from "react";
-import "../css/AdminPanel.css"; // CSS separado pro painel
-import { useAuth } from "../contexts/AuthContext";
+import { Navigate, Outlet } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import React from 'react';
 
-export default function AdminPanel() {
+export default function AdminRoute() {
   const { user } = useAuth();
-
-  if (!user?.isAdmin) {
-    return <p style={{ color: "#fff", padding: "20px" }}>Acesso negado.</p>;
+  
+  if (!user) {
+    // Usuário não está logado, redireciona para login
+    return <Navigate to="/login" replace />;
   }
 
-  const cards = [
-    {
-      title: "Cadastrar Bebidas",
-      description: "Cadastre suas bebidas no catálago.",
-      icon: "🍹",
-    },
-    {
-      title: "Gerenciar Bebidas",
-      description: "Atualize ou remova bebidas já cadastradas no catálogo.",
-      icon: "⚙️🍹",
-    },
-    {
-      title: "Visualizar Estatísticas",
-      description: "Acompanhe dados de uso e desempenho do sistema.",
-      icon: "📊",
-    },
-  ];
+  if (!user.isAdmin) {
+    // Usuário não é admin, redireciona para home
+    return <Navigate to="/" replace />;
+  }
 
-  return (
-    <div className="admin-container">
-      <h1 className="admin-title">Painel Administrativo</h1>
-      <div className="cards-container">
-        {cards.map(({ title, description, icon }) => (
-          <div key={title} className="admin-card">
-            <div className="card-icon">{icon}</div>
-            <h2 className="card-title">{title}</h2>
-            <p className="card-desc">{description}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+  // Usuário é admin, permite acesso às rotas
+  return <Outlet />;
 }

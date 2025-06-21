@@ -12,7 +12,7 @@ import ReadSuco from "./pages/ReadSuco";
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import PerfilUsers from "./pages/PerfilUsers";
-import Favoritos from "./pages/Favoritos"; // Importando o Favoritos
+import Favoritos from "./pages/Favoritos";
 
 function App() {
   return (
@@ -21,26 +21,24 @@ function App() {
         <BrowserRouter>
           <AuthProvider>
             <Routes>
-              {/* Rota isolada para login */}
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
 
-              {/* Rota com layout padrão (Main inclui Footer e Navbar) */}
               <Route element={<Main />}>
                 <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
-
                 <Route path="/perfil" element={<PerfilUsers />} />
-                <Route path="/favoritos" element={<Favoritos />} />  {/* Rota Favoritos adicionada */}
+                <Route path="/favoritos" element={<Favoritos />} />
 
-                <Route path="/admin/*" element={
-                  <AdminRoute>
-                    <AdminPanel />
-                  </AdminRoute>
-                } />
-                <Route path="/cadsuco" element={<CadastroSuco />} />
-                <Route path="/cadingrediente" element={<CadIngrediente />} />
-                <Route path="/caddiagnostico" element={<CadDiagnostico />} />
+                  {/* Rota administrativa */}
+                <Route element={<AdminRoute />}>
+                  <Route path="/admin" element={<AdminPanel />} />
+                  <Route path="/admin/cadsuco" element={<CadastroSuco />} />
+                  <Route path="/admin/sucos" element={<SucoList />} />
+                  <Route path="/admin/cadingrediente" element={<CadIngrediente />} />
+                  <Route path="/admin/caddiagnostico" element={<CadDiagnostico />} />
+                </Route>
+
                 <Route path="/sucos" element={<SucoList />} />
                 <Route path="/suco/:id" element={<ReadSuco />} />
               </Route>
