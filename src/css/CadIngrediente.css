@@ -1,0 +1,77 @@
+.cadastro-ingrediente-container {
+  background-color: white;
+  padding: 50px 60px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin: 40px auto;
+}
+
+.cadastro-ingrediente-container h1 {
+  font-size: 28px;
+  margin-bottom: 32px;
+  color: #bb5104;
+  text-align: center;
+}
+
+.cadastro-ingrediente-form label {
+  display: block;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.cadastro-ingrediente-form input,
+.cadastro-ingrediente-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 24px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  resize: none; /* para textarea não ser redimensionável */
+}
+
+.upload-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.upload-container input[type="file"] {
+  cursor: pointer;
+}
+
+.image-preview img {
+  max-width: 100px;
+  border-radius: 6px;
+}
+
+.button {
+  background-color: #bb5104;
+  color: white;
+  border: none;
+  padding: 14px;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #ff7f00;
+}
+
+@media (max-width: 600px) {
+  .cadastro-ingrediente-container {
+    padding: 30px 20px;
+  }
+
+  .cadastro-ingrediente-form input,
+  .cadastro-ingrediente-form textarea {
+    font-size: 14px;
+  }
+}
