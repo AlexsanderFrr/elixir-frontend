@@ -16,7 +16,7 @@ export default function AdminPanel() {
       title: "Cadastrar Bebidas",
       description: "Cadastre novas bebidas e mantenha seu catálogo sempre atualizado.",
       icon: "🍹",
-      route: "/admin/cadsuco",
+      route: "/cadsuco",
     },
     {
       title: "Gerenciar Bebidas",

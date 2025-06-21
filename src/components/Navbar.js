@@ -20,18 +20,18 @@ const Navbar = () => {
       
       <div className="nav-links">
         <Link to="/">Home</Link>
-        <Link to="/Sucos">Sucos</Link>
+        <Link to="/Sucos"> | Bebidas</Link>
         
         {user?.isAdmin && (
           <Link to="/admin" className="admin-link">
-            <i className="fas fa-crown"></i> Admin
+            <i className="fas fa-crown"></i> | Painel do Administrador
           </Link>
         )}
         
         {user ? (
           <>
             <Link to="/perfil" className="profile-link">
-              <i className="fas fa-user"></i> Perfil
+              <i className="fas fa-user"></i> | Perfil
             </Link>
             {/* Botão Sair removido daqui */}
           </>
