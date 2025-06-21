@@ -75,7 +75,7 @@ const SucoCard = ({ suco, isLoggedIn, isAdmin, token, onDeleteSuco }) => {
   };
 
   const editarSuco = () => {
-    navigate(`/admin/editar/${suco.suco_id || suco.id}`);
+    navigate(`/admin/sucos/editar/${suco.suco_id || suco.id}`);
   };
 
   const excluirSuco = () => {

@@ -13,6 +13,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import PerfilUsers from "./pages/PerfilUsers";
 import Favoritos from "./pages/Favoritos";
+import EditSuco from "./pages/EditSuco";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
                   <Route path="/admin/sucos" element={<SucoList />} />
                   <Route path="/admin/cadingrediente" element={<CadIngrediente />} />
                   <Route path="/admin/caddiagnostico" element={<CadDiagnostico />} />
+                  <Route path="/admin/sucos/editar/:id" element={<EditSuco />} />
                 </Route>
 
                 <Route path="/sucos" element={<SucoList />} />

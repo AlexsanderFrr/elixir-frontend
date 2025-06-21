@@ -1,0 +1,51 @@
+/* Estilos específicos para a tela de edição */
+.button-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.button {
+  padding: 15px 30px;
+  background-color: #BB5104;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  text-align: center;
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: #FF7F00;
+}
+
+.button.cancel {
+  background-color: #6c757d;
+}
+
+.button.cancel:hover {
+  background-color: #5a6268;
+}
+
+.image-preview {
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  padding: 5px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.upload-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.upload-container span {
+  font-size: 14px;
+  color: #555;
+}
