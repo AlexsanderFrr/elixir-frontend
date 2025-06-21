@@ -2,22 +2,20 @@ import React, { useEffect, useState } from "react";
 import SucoCard from "../components/SucoCard";
 import "../css/SucoList.css";
 import { apiEndpoint } from "../config/constantes";
-import { useAuth } from "../contexts/AuthContext"; // Importa contexto de autenticação
+import { useAuth } from "../contexts/AuthContext";
 
 const SucoList = () => {
   const [allSucos, setSucos] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const { user, token } = useAuth(); // Obtém usuário e token do contexto
+  const { user, token } = useAuth();
 
   const fetchSucos = async () => {
     try {
       let url = `/suco/all`;
-
       if (searchTerm.trim()) {
         url = `/suco/title/${searchTerm.trim()}`;
       }
-
-      const res = await apiEndpoint.get(`${url}`);
+      const res = await apiEndpoint.get(url);
       setSucos(res.data);
     } catch (err) {
       console.log("Erro no frontend:", err);
@@ -35,6 +33,25 @@ const SucoList = () => {
   const handleSearchSubmit = (event) => {
     event.preventDefault();
     fetchSucos();
+  };
+
+  // Atualiza um suco na lista após edição
+  const updateSuco = (sucoAtualizado) => {
+    setSucos((prev) =>
+      prev.map((suco) => (suco.id === sucoAtualizado.id ? sucoAtualizado : suco))
+    );
+  };
+
+  // Remove um suco da lista após exclusão
+  const deleteSuco = async (id) => {
+    try {
+      await apiEndpoint.delete(`/suco/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setSucos((prev) => prev.filter((suco) => suco.id !== id));
+    } catch (error) {
+      alert("Erro ao deletar suco");
+    }
   };
 
   return (
@@ -61,7 +78,10 @@ const SucoList = () => {
                 key={suco.id}
                 suco={suco}
                 isLoggedIn={!!user}
+                isAdmin={user?.isAdmin}
                 token={token}
+                onUpdateSuco={updateSuco}
+                onDeleteSuco={deleteSuco}
               />
             ))}
         </div>

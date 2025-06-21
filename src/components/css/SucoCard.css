@@ -13,7 +13,6 @@
   transform: scale(1.05);
 }
 
-/* Container da imagem precisa ser relativo para o botão absoluto */
 .suco-fav-container {
   position: relative;
 }
@@ -25,7 +24,6 @@
   border-radius: 10px 10px 0 0;
 }
 
-/* Botão favorito fixado no canto inferior direito da imagem */
 .favorito-btn {
   position: absolute;
   bottom: 165px;
@@ -83,4 +81,30 @@
 .suco-link {
   color: #fff;
   text-decoration: none;
+}
+
+/* Botões de admin editar/excluir */
+.admin-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.admin-buttons button {
+  background-color: #bb5104;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.3s;
+}
+
+.admin-buttons button:hover {
+  background-color: #d27837;
 }
