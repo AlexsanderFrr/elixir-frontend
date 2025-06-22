@@ -11,8 +11,8 @@ const ReadSuco = () => {
 
   useEffect(() => {
     if (id) {
-      axios
-        .get(`${apiEndpoint}/suco/with-diagnostico/${id}`)
+      apiEndpoint
+        .get(`/suco/with-diagnostico/${id}`)
         .then((res) => {
           const sucoData = res.data[0] || {};
           setSuco(sucoData);
