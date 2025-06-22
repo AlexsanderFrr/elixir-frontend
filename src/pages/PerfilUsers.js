@@ -11,6 +11,8 @@ function PerfilUsers() {
   const navigate = useNavigate();
   const [fotoPerfil, setFotoPerfil] = useState(user?.imagem || null);
 
+  const isAdmin = user?.tipo === 'admin'; // 👈 verifica se é admin
+
   useEffect(() => {
     if (user?.imagem) {
       setFotoPerfil(user.imagem);
@@ -33,12 +35,10 @@ function PerfilUsers() {
       });
 
       if (response.status === 200) {
-        // Buscar dados atualizados do usuário
         const usuarioAtualizado = await apiEndpoint.get("/usuario/me", {
           headers: { Authorization: `Bearer ${user.token}` },
         });
 
-        // Atualizar estado local e contexto global com nova imagem
         setFotoPerfil(usuarioAtualizado.data.imagem);
         updateUser({ ...user, imagem: usuarioAtualizado.data.imagem });
 
@@ -56,7 +56,7 @@ function PerfilUsers() {
     const confirmado = window.confirm("Você realmente deseja sair do site?");
     if (confirmado) {
       logout();
-      navigate('/');  // Redireciona para a home
+      navigate('/');
     }
   };
 
@@ -87,10 +87,13 @@ function PerfilUsers() {
           </div>
 
           <div className="perfil-opcoes">
-            <button className="opcao-btn" onClick={() => navigate('/favoritos')}>
-              <FaHeart className="icon" />
-              Favoritos
-            </button>
+            {/* Só exibe favoritos se NÃO for admin */}
+            {!isAdmin && (
+              <button className="opcao-btn" onClick={() => navigate('/favoritos')}>
+                <FaHeart className="icon" />
+                Favoritos
+              </button>
+            )}
 
             <button className="opcao-btn sair" onClick={handleLogout}>
               <FaSignOutAlt className="icon" />
