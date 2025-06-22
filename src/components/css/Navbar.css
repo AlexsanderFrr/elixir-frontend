@@ -1,12 +1,17 @@
 #navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: transparent;
-    position: relative;
-  }
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #BB5104; /* Cor laranja que você estava usando */
+  position: fixed; /* Mudei para fixed */
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box;
+}
 
   
   #navbar h2 a {
@@ -63,3 +68,7 @@
     background-color: transparent;
     color: #f7d354; 
   }
+  /* Adicione isso para o conteúdo não ficar escondido atrás do navbar */
+body {
+  padding-top: 80px;
+}
