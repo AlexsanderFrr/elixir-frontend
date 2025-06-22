@@ -4,7 +4,7 @@ import { FaHeart, FaRegHeart, FaEdit, FaTrash } from "react-icons/fa";
 import { apiEndpoint } from "../config/constantes";
 import "./css/SucoCard.css";
 
-const SucoCard = ({ suco, isLoggedIn, isAdmin, token, onDeleteSuco }) => {
+const SucoCard = ({ suco, isLoggedIn, isAdmin, token, page, onDeleteSuco }) => {
   const [favorito, setFavorito] = useState(false);
   const navigate = useNavigate();
   const imageUrl = suco.img1 || suco.img1;
@@ -109,7 +109,7 @@ const SucoCard = ({ suco, isLoggedIn, isAdmin, token, onDeleteSuco }) => {
       <h4>{suco.diagnostico_nome_da_condicao}</h4>
 
       <div className="suco-details">
-        {!isAdmin && (
+        { page != 'gerenciar' &&(
           <button className="suco-button">
             <Link
               to={`/suco/${suco.suco_id || suco.id}`}
@@ -121,7 +121,7 @@ const SucoCard = ({ suco, isLoggedIn, isAdmin, token, onDeleteSuco }) => {
         )}
       </div>
 
-      {isAdmin && (
+      {isAdmin && page == 'gerenciar' &&(
         <div className="admin-buttons">
           <button onClick={editarSuco} aria-label="Editar Suco">
             <FaEdit /> Editar

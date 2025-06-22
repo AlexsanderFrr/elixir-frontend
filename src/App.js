@@ -13,6 +13,7 @@ import CadIngrediente from "./pages/CadIngrediente";
 import CadDiagnostico from "./pages/CadDiagnostico";
 import SucoList from "./pages/SucosList";
 import ReadSuco from "./pages/ReadSuco";
+import GerenciarBebidas from "./pages/GerenciarBebidas"; // Importe Gerenciar bebidas
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import PerfilUsers from "./pages/PerfilUsers";
@@ -40,6 +41,7 @@ function AppWrapper() {
           <Route path="/chatbot" element={<ChatBot />} />
 
           <Route element={<AdminRoute />}>
+            <Route path="admin/gerenciar" element={<GerenciarBebidas/>} />
             <Route path="/admin" element={<AdminPanel />} />
             <Route path="/admin/cadsuco" element={<CadastroSuco />} />
             <Route path="/admin/sucos" element={<SucoList />} />
