@@ -1,0 +1,124 @@
+/* CadDiagnostico.css */
+
+.cadastro-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+}
+
+.cadastro-card {
+  background-color: #fff;
+  max-width: 500px;
+  width: 100%;
+  padding: 40px;
+  border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.card-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.card-header h1 {
+  font-size: 1.8rem;
+  color: #bb5104;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cadastro-form label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.cadastro-form input,
+.cadastro-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 24px;
+  border: 2px solid #bb5104;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: #333;
+  resize: none;
+  box-shadow: inset 0 2px 8px rgba(187, 81, 4, 0.15);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cadastro-form input::placeholder,
+.cadastro-form textarea::placeholder {
+  font-style: italic;
+  color: #bb7a4a;
+}
+
+.cadastro-form input:focus,
+.cadastro-form textarea:focus {
+  outline: none;
+  border-color: #ff7f00;
+  box-shadow: 0 0 12px rgba(255, 127, 0, 0.6);
+}
+
+.button {
+  background-color: #bb5104;
+  color: white;
+  border: none;
+  padding: 14px;
+  width: 100%;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(187, 81, 4, 0.45);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button:hover {
+  background-color: #ff7f00;
+  box-shadow: 0 6px 18px rgba(255, 127, 0, 0.7);
+}
+
+.link-back {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  color: #bb5104;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.link-back:hover {
+  color: #ff7f00;
+}
+
+@media (max-width: 520px) {
+  .cadastro-card {
+    padding: 30px 24px;
+  }
+
+  .card-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .button {
+    font-size: 1rem;
+    padding: 12px;
+  }
+}

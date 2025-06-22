@@ -1,77 +1,123 @@
-.cadastro-ingrediente-container {
-  background-color: white;
-  padding: 50px 60px;
-  border-radius: 12px;
-  width: 100%;
-  max-width: 800px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  margin: 40px auto;
+.perfil-page {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+  box-sizing: border-box;
+  min-height: 100vh;
 }
 
-.cadastro-ingrediente-container h1 {
+.perfil-page .cadastro-ingrediente-container {
+  background-color: white;
+  padding: 40px 50px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.perfil-page .cadastro-ingrediente-container h1 {
   font-size: 28px;
   margin-bottom: 32px;
   color: #bb5104;
   text-align: center;
+  font-weight: 700;
 }
 
-.cadastro-ingrediente-form label {
+.perfil-page .cadastro-ingrediente-form label {
   display: block;
-  font-weight: bold;
+  font-weight: 600;
   color: #333;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  margin-top: 16px;
 }
 
-.cadastro-ingrediente-form input,
-.cadastro-ingrediente-form textarea {
+.perfil-page .cadastro-ingrediente-form input,
+.perfil-page .cadastro-ingrediente-form textarea {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 24px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 15px;
-  resize: none; /* para textarea não ser redimensionável */
+  padding: 14px 16px;
+  margin-top: 4px;
+  border: 2px solid #bb5104;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: #333;
+  box-shadow: inset 0 2px 6px rgba(187, 81, 4, 0.15);
+  resize: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.upload-container {
+.perfil-page .cadastro-ingrediente-form input::placeholder,
+.perfil-page .cadastro-ingrediente-form textarea::placeholder {
+  font-style: italic;
+  color: #bb7a4a;
+}
+
+.perfil-page .cadastro-ingrediente-form input:focus,
+.perfil-page .cadastro-ingrediente-form textarea:focus {
+  outline: none;
+  border-color: #ff7f00;
+  box-shadow: 0 0 10px rgba(255, 127, 0, 0.6);
+}
+
+.perfil-page .upload-container {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.upload-container input[type="file"] {
+.perfil-page .upload-container input[type='file'] {
   cursor: pointer;
+  flex-grow: 1;
 }
 
-.image-preview img {
+.perfil-page .image-preview img {
   max-width: 100px;
-  border-radius: 6px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(187, 81, 4, 0.3);
+  margin-top: 10px;
 }
 
-.button {
+.perfil-page .button {
   background-color: #bb5104;
   color: white;
   border: none;
   padding: 14px;
   width: 100%;
-  border-radius: 6px;
-  font-size: 16px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(187, 81, 4, 0.4);
 }
 
-.button:hover {
+.perfil-page .button:hover {
   background-color: #ff7f00;
+  box-shadow: 0 6px 18px rgba(255, 127, 0, 0.6);
 }
 
 @media (max-width: 600px) {
-  .cadastro-ingrediente-container {
-    padding: 30px 20px;
+  .perfil-page {
+    padding: 40px 16px;
   }
 
-  .cadastro-ingrediente-form input,
-  .cadastro-ingrediente-form textarea {
-    font-size: 14px;
+  .perfil-page .cadastro-ingrediente-container {
+    padding: 30px 20px;
+    max-width: 100%;
+  }
+
+  .perfil-page .cadastro-ingrediente-form input,
+  .perfil-page .cadastro-ingrediente-form textarea {
+    font-size: 0.95rem;
+    padding: 12px 14px;
+  }
+
+  .perfil-page .button {
+    font-size: 1rem;
+    padding: 12px;
   }
 }
