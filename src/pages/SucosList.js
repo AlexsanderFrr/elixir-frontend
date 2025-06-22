@@ -3,87 +3,206 @@ import SucoCard from "../components/SucoCard";
 import "../css/SucoList.css";
 import { apiEndpoint } from "../config/constantes";
 import { useAuth } from "../contexts/AuthContext";
+import { FaSearch, FaFilter, FaTimes } from "react-icons/fa";
 
 const SucoList = () => {
   const [allSucos, setSucos] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const { user, token } = useAuth();
+  const [categoria, setCategoria] = useState("");
+  const [diagnostico, setDiagnostico] = useState([]);
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [sortOption, setSortOption] = useState("relevantes");
 
-  const fetchSucos = async () => {
-    try {
-      let url = `/suco/all`;
-      if (searchTerm.trim()) {
-        url = `/suco/title/${searchTerm.trim()}`;
-      }
-      const res = await apiEndpoint.get(url);
-      setSucos(res.data);
-    } catch (err) {
-      console.log("Erro no frontend:", err);
-    }
-  };
+  const [categorias, setCategorias] = useState([]);
+  const [diagnosticos, setDiagnosticos] = useState([]);
+
+  const { user, token } = useAuth();
 
   useEffect(() => {
     fetchSucos();
+    fetchFiltros();
   }, []);
 
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const handleSearchSubmit = (event) => {
-    event.preventDefault();
-    fetchSucos();
-  };
-
-  // Atualiza um suco na lista após edição
-  const updateSuco = (sucoAtualizado) => {
-    setSucos((prev) =>
-      prev.map((suco) => (suco.id === sucoAtualizado.id ? sucoAtualizado : suco))
-    );
-  };
-
-  // Remove um suco da lista após exclusão
-  const deleteSuco = async (id) => {
+  const fetchSucos = async () => {
     try {
-      await apiEndpoint.delete(`/suco/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setSucos((prev) => prev.filter((suco) => suco.id !== id));
-    } catch (error) {
-      alert("Erro ao deletar suco");
+      const url = searchTerm.trim()
+        ? `/suco/title/${searchTerm.trim()}`
+        : "/suco/all";
+      const res = await apiEndpoint.get(url);
+      setSucos(res.data);
+    } catch (err) {
+      console.log("Erro ao buscar sucos:", err);
     }
   };
 
+  const fetchFiltros = async () => {
+    try {
+      const [catRes, diagRes] = await Promise.all([
+        apiEndpoint.get("/categoria/all"),
+        apiEndpoint.get("/diagnostico/all"),
+      ]);
+      setCategorias(catRes.data);
+      setDiagnosticos(diagRes.data);
+    } catch (err) {
+      console.log("Erro ao carregar filtros:", err);
+    }
+  };
+
+  const handleFilterSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const params = new URLSearchParams();
+      if (categoria) params.append("categoria", categoria);
+      diagnostico.forEach((d) => params.append("diagnostico", d));
+
+      const res = await apiEndpoint.get(`/suco/filter?${params.toString()}`);
+      setSucos(res.data);
+    } catch (err) {
+      console.log("Erro ao aplicar filtros:", err);
+    }
+  };
+
+  // Função que estava faltando
+  const clearFilters = () => {
+    setCategoria("");
+    setDiagnostico([]);
+    setSearchTerm("");
+    fetchSucos();
+  };
+
+  const sortedSucos = [...allSucos].sort((a, b) => {
+    if (sortOption === "az") return a.titulo.localeCompare(b.titulo);
+    if (sortOption === "za") return b.titulo.localeCompare(a.titulo);
+    return 0; // Mais relevantes (ordem original)
+  });
+
   return (
-    <div className="container-suco-list">
-      <div className="container-meio">
-        <form onSubmit={handleSearchSubmit}>
-          <div className="search-container">
-            <input
-              type="text"
-              placeholder="Procurar por título..."
-              value={searchTerm}
-              onChange={handleSearchChange}
-            />
-            <button type="submit">Buscar</button>
+    <div className="listagemdesuco-page">
+      {/* Barra de busca */}
+      <div className="sticky-search-wrapper">
+      <div className="listagemdesuco-search-section">
+        <div className="listagemdesuco-search-container">
+          
+          <input
+            type="text"
+            placeholder="Procurar bebidas..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyPress={(e) => e.key === "Enter" && fetchSucos()}
+          />
+          <FaSearch className="listagemdesuco-search-icon" />
+          <button 
+            className="listagemdesuco-mobile-filter-btn"
+            onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
+          >
+            {mobileFiltersOpen ? <FaTimes /> : <FaFilter />}
+            {mobileFiltersOpen ? "Fechar" : "Filtros"}
+          </button>
+        </div>
+        </div>
+      </div>
+
+      <div className="listagemdesuco-main-container">
+        {/* Filtros */}
+        <div className={`listagemdesuco-filters-sidebar ${mobileFiltersOpen ? 'listagemdesuco-mobile-open' : ''}`}>
+          <div className="listagemdesuco-filters-header">
+            <h2>Filtros</h2>
+            <button onClick={clearFilters} className="listagemdesuco-clear-filters">
+              Limpar tudo
+            </button>
           </div>
-        </form>
 
-        <h2 className="title">Lista de Sucos</h2>
+          <div className="listagemdesuco-filter-group">
+            <h3>Categorias</h3>
+            <div className="listagemdesuco-filter-options">
+              <select
+                value={categoria}
+                onChange={(e) => setCategoria(e.target.value)}
+                className="listagemdesuco-filter-select"
+              >
+                <option value="">Todas as Categorias</option>
+                {categorias.map((cat) => (
+                  <option key={cat.id} value={cat.nome}>
+                    {cat.nome}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
 
-        <div className="sucos-list-container">
-          {allSucos.length > 0 &&
-            allSucos.map((suco) => (
-              <SucoCard
-                key={suco.id}
-                suco={suco}
-                isLoggedIn={!!user}
-                isAdmin={user?.isAdmin}
-                token={token}
-                onUpdateSuco={updateSuco}
-                onDeleteSuco={deleteSuco}
-              />
-            ))}
+          <div className="listagemdesuco-filter-group">
+            <h3>Condições</h3>
+            <div className="listagemdesuco-filter-options">
+              <div className="listagemdesuco-checkbox-list">
+                {diagnosticos.map((diag) => (
+                  <label key={diag.id} className="listagemdesuco-checkbox-item">
+                    <input
+                      type="checkbox"
+                      value={diag.nome_da_condicao}
+                      checked={diagnostico.includes(diag.nome_da_condicao)}
+                      onChange={(e) => {
+                        const selected = [...diagnostico];
+                        if (e.target.checked) {
+                          selected.push(e.target.value);
+                        } else {
+                          const index = selected.indexOf(e.target.value);
+                          selected.splice(index, 1);
+                        }
+                        setDiagnostico(selected);
+                      }}
+                    />
+                    <span className="listagemdesuco-checkmark"></span>
+                    <span className="listagemdesuco-condition-name">{diag.nome_da_condicao}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <button 
+            onClick={handleFilterSubmit} 
+            className="listagemdesuco-apply-filters"
+          >
+            Aplicar Filtros
+          </button>
+        </div>
+
+        {/* Conteúdo principal */}
+        <div className="listagemdesuco-products-container">
+          <div className="listagemdesuco-products-header">
+            <h1>Sucos Naturais</h1>
+            <div className="listagemdesuco-sort-options">
+              <label>Ordenar por:</label>
+              <select
+                value={sortOption}
+                onChange={(e) => setSortOption(e.target.value)}
+                className="listagemdesuco-sort-select"
+              >
+                <option value="relevantes">Mais relevantes</option>
+                <option value="az">Nome (A-Z)</option>
+                <option value="za">Nome (Z-A)</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="listagemdesuco-products-grid">
+            {sortedSucos.length > 0 ? (
+              sortedSucos.map((suco) => (
+                <SucoCard
+                  key={suco.id}
+                  suco={suco}
+                  isLoggedIn={!!user}
+                  isAdmin={user?.isAdmin}
+                  token={token}
+                />
+              ))
+            ) : (
+              <div className="listagemdesuco-no-results">
+                <p>Nenhum suco encontrado.</p>
+                <button onClick={clearFilters}>Limpar filtros</button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
