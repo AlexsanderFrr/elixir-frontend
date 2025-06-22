@@ -121,6 +121,11 @@
   align-items: center;
 }
 
+/* Suporte a inputs empilhados (ex: campos de senha) */
+.perfil-page .input-group input + input {
+  margin-top: 8px;
+}
+
 /* Botões principais (favoritos, sair) */
 .perfil-page .perfil-opcoes {
   display: flex;
