@@ -1,122 +1,200 @@
-.perfil-container {
+.perfil-page .perfil-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 100px 16px;
-  font-family: sans-serif;
-  max-width: 800px;
+  padding: 80px 24px 120px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 480px;
   margin: 0 auto;
   background-color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
   width: 100%;
   box-sizing: border-box;
 }
 
 /* Foto de perfil */
-.perfil-foto-wrapper {
+.perfil-page .perfil-foto-wrapper {
   position: relative;
-  margin-bottom: 15px;
+  margin-bottom: 28px;
 }
-
-.foto-perfil {
-  width: 120px;
-  height: 120px;
+.perfil-page .foto-perfil {
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #bb5104;
-  transition: width 0.3s ease, height 0.3s ease;
+  border: 4px solid #bb5104;
+  box-shadow: 0 2px 8px rgba(187, 81, 4, 0.4);
+  transition: transform 0.3s ease;
 }
-
-.icon-camera {
+.perfil-page .foto-perfil:hover {
+  transform: scale(1.05);
+}
+.perfil-page .icon-camera {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 6px;
+  right: 6px;
   background: #bb5104;
   color: white;
   border-radius: 50%;
-  padding: 6px;
+  padding: 8px;
   cursor: pointer;
-  font-size: 12px;
-}
-
-/* Nome e email */
-.perfil-info {
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-.perfil-info h2 {
-  margin: 0;
-  font-size: 20px;
-}
-
-.perfil-info p {
-  margin: 4px 0;
-  color: #555;
   font-size: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease;
+}
+.perfil-page .icon-camera:hover {
+  background-color: #8a3700;
 }
 
-/* Botões */
-.perfil-opcoes {
+/* Informações e edição */
+.perfil-page .perfil-info {
+  width: 100%;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
-  width: 50%;
-  gap: 12px;
+  gap: 18px;
+  margin-bottom: 32px;
 }
-
-.opcao-btn {
+.perfil-page .perfil-info h2,
+.perfil-page .perfil-info p {
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin: 0;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px;
+  justify-content: center;
+  gap: 12px;
+  color: #333;
+}
+.perfil-page .perfil-info p {
+  font-weight: 500;
+  color: #666;
+}
+
+/* Inputs de edição */
+.perfil-page .perfil-info input {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 2px solid #bb5104;
+  background-color: #fff5f0;
+  color: #bb3f00;
+  font-weight: 600;
+  box-shadow: inset 0 2px 6px rgba(187, 81, 4, 0.15);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.perfil-page .perfil-info input::placeholder {
+  font-style: italic;
+  color: #bb7a4a;
+}
+.perfil-page .perfil-info input:focus {
+  outline: none;
+  border-color: #ff7f00;
+  box-shadow: 0 0 10px rgba(255, 127, 0, 0.6);
+}
+
+/* Botões ícones (editar, salvar, cancelar) */
+.perfil-page .icon-button {
+  background: none;
   border: none;
-  background: #f3f3f3;
-  border-radius: 8px;
-  font-size: 16px;
   cursor: pointer;
-  transition: background 0.2s ease;
+  color: #bb5104;
+  font-size: 20px;
+  transition: color 0.25s ease;
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
-
-.opcao-btn:hover {
-  background: #e1e1e1;
+.perfil-page .icon-button:hover {
+  color: #8a3700;
+  background-color: #ffe2ce;
 }
 
-.opcao-btn .icon {
+/* Container para input + botões salvar/cancelar */
+.perfil-page .input-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Botões principais (favoritos, sair) */
+.perfil-page .perfil-opcoes {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  gap: 16px;
+}
+.perfil-page .opcao-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border: none;
+  background: #f7f2f0;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  cursor: pointer;
   color: #bb5104;
-  font-size: 18px;
+  font-weight: 700;
+  justify-content: center;
+  box-shadow: 0 3px 8px rgba(187, 81, 4, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.perfil-page .opcao-btn:hover {
+  background-color: #ffd1a8;
+  box-shadow: 0 6px 16px rgba(187, 81, 4, 0.35);
+}
+.perfil-page .opcao-btn .icon {
+  font-size: 22px;
 }
 
-.opcao-btn.sair {
+/* Botão sair, destacado e afastado */
+.perfil-page .opcao-btn.sair {
   background: #ffe6e6;
   color: #bb0000;
+  margin-top: 56px;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(187, 0, 0, 0.35);
+}
+.perfil-page .opcao-btn.sair:hover {
+  background: #ffb5b5;
+  box-shadow: 0 6px 18px rgba(187, 0, 0, 0.5);
 }
 
-/* Media Query para mobile */
+/* Responsivo */
 @media (max-width: 480px) {
-  .perfil-container {
-    padding: 16px 12px;
+  .perfil-page .perfil-container {
+    padding: 40px 16px 100px;
     max-width: 100%;
+    border-radius: 0;
+    box-shadow: none;
   }
-
-  .foto-perfil {
-    width: 90px;
-    height: 90px;
+  .perfil-page .foto-perfil {
+    width: 110px;
+    height: 110px;
   }
-
-  .perfil-info h2 {
+  .perfil-page .perfil-info h2,
+  .perfil-page .perfil-info p {
+    font-size: 1.1rem;
+  }
+  .perfil-page .perfil-info input {
+    font-size: 0.95rem;
+    padding: 12px 16px;
+  }
+  .perfil-page .opcao-btn {
+    font-size: 1rem;
+    padding: 12px 0;
+  }
+  .perfil-page .opcao-btn .icon,
+  .perfil-page .icon-button {
     font-size: 18px;
   }
-
-  .perfil-info p {
-    font-size: 13px;
-  }
-
-  .opcao-btn {
-    font-size: 14px;
-    padding: 10px;
-  }
-
-  .opcao-btn .icon {
-    font-size: 16px;
+  .perfil-page .opcao-btn.sair {
+    margin-top: 40px;
   }
 }
