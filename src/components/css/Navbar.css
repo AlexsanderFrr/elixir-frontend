@@ -63,3 +63,7 @@
     background-color: transparent;
     color: #f7d354; 
   }
+
+  .logo-container {
+    cursor: pointer;
+  }
