@@ -22,7 +22,7 @@ export default function AdminPanel() {
       title: "Gerenciar Bebidas",
       description: "Atualize ou remova bebidas já cadastradas no catálogo.",
       icon: "⚙️🍹",
-      route: "/admin/editarsuco",
+      route: "/admin/gerenciar",
     },
     {
       title: "Cadastrar Ingredientes",

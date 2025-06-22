@@ -11,13 +11,14 @@ function PerfilUsers() {
   const navigate = useNavigate();
   const [fotoPerfil, setFotoPerfil] = useState(user?.imagem || null);
 
-  // Estados para edição
   const [editNome, setEditNome] = useState(false);
   const [editEmail, setEditEmail] = useState(false);
+  const [editSenha, setEditSenha] = useState(false);
 
-  // Campos editáveis
   const [novoNome, setNovoNome] = useState(user?.nome || '');
   const [novoEmail, setNovoEmail] = useState(user?.email || '');
+  const [novaSenha, setNovaSenha] = useState('');
+  const [confirmarSenha, setConfirmarSenha] = useState('');
 
   useEffect(() => {
     if (user?.imagem) {
@@ -103,11 +104,38 @@ function PerfilUsers() {
     }
   };
 
+  const salvarSenha = async () => {
+    if (novaSenha !== confirmarSenha) {
+      alert('As senhas não coincidem.');
+      return;
+    }
+
+    try {
+      const response = await apiEndpoint.put(
+        "/usuario/me",
+        { senha: novaSenha },
+        { headers: { Authorization: `Bearer ${user.token}` } }
+      );
+      if (response.status === 200) {
+        setEditSenha(false);
+        setNovaSenha('');
+        setConfirmarSenha('');
+        alert("Senha atualizada com sucesso!");
+      } else {
+        alert("Falha ao atualizar senha.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao atualizar senha.");
+    }
+  };
+
   const isAdmin = user?.tipo === 'admin';
 
   return (
     <div className="perfil-page">
       <div className="perfil-container">
+
         {/* Foto de perfil */}
         <div className="perfil-foto-wrapper">
           <img
@@ -121,17 +149,14 @@ function PerfilUsers() {
           </label>
         </div>
 
-        {/* Nome e E-mail com edição */}
+        {/* Nome, Email e Senha */}
         <div className="perfil-info">
+
           {/* Nome */}
           {!editNome ? (
             <h2>
               {user?.nome || 'Usuário'}
-              <button
-                className="icon-button"
-                onClick={() => setEditNome(true)}
-                title="Editar nome"
-              >
+              <button className="icon-button" onClick={() => setEditNome(true)} title="Editar nome">
                 <FaEdit />
               </button>
             </h2>
@@ -144,19 +169,8 @@ function PerfilUsers() {
                 onChange={(e) => setNovoNome(e.target.value)}
                 placeholder="Digite seu novo nome"
               />
-              <button className="icon-button" onClick={salvarNome} title="Salvar nome">
-                <FaSave />
-              </button>
-              <button
-                className="icon-button"
-                onClick={() => {
-                  setNovoNome(user?.nome || '');
-                  setEditNome(false);
-                }}
-                title="Cancelar"
-              >
-                <FaTimes />
-              </button>
+              <button className="icon-button" onClick={salvarNome} title="Salvar nome"><FaSave /></button>
+              <button className="icon-button" onClick={() => { setNovoNome(user?.nome || ''); setEditNome(false); }} title="Cancelar"><FaTimes /></button>
             </div>
           )}
 
@@ -164,11 +178,7 @@ function PerfilUsers() {
           {!editEmail ? (
             <p>
               {user?.email || 'email@exemplo.com'}
-              <button
-                className="icon-button"
-                onClick={() => setEditEmail(true)}
-                title="Editar email"
-              >
+              <button className="icon-button" onClick={() => setEditEmail(true)} title="Editar email">
                 <FaEdit />
               </button>
             </p>
@@ -181,24 +191,44 @@ function PerfilUsers() {
                 onChange={(e) => setNovoEmail(e.target.value)}
                 placeholder="Digite seu novo e-mail"
               />
-              <button className="icon-button" onClick={salvarEmail} title="Salvar email">
-                <FaSave />
+              <button className="icon-button" onClick={salvarEmail} title="Salvar email"><FaSave /></button>
+              <button className="icon-button" onClick={() => { setNovoEmail(user?.email || ''); setEditEmail(false); }} title="Cancelar"><FaTimes /></button>
+            </div>
+          )}
+
+          {/* Senha */}
+          {!editSenha ? (
+            <p>
+              ********
+              <button className="icon-button" onClick={() => setEditSenha(true)} title="Alterar senha">
+                <FaEdit />
               </button>
-              <button
-                className="icon-button"
-                onClick={() => {
-                  setNovoEmail(user?.email || '');
-                  setEditEmail(false);
-                }}
-                title="Cancelar"
-              >
-                <FaTimes />
-              </button>
+            </p>
+          ) : (
+            <div className="input-group" style={{ flexDirection: 'column', gap: '12px' }}>
+              <input
+                className="input-editar"
+                type="password"
+                value={novaSenha}
+                onChange={(e) => setNovaSenha(e.target.value)}
+                placeholder="Nova senha"
+              />
+              <input
+                className="input-editar"
+                type="password"
+                value={confirmarSenha}
+                onChange={(e) => setConfirmarSenha(e.target.value)}
+                placeholder="Confirmar nova senha"
+              />
+              <div style={{ display: 'flex', gap: '10px' }}>
+                <button className="icon-button" onClick={salvarSenha} title="Salvar senha"><FaSave /></button>
+                <button className="icon-button" onClick={() => { setNovaSenha(''); setConfirmarSenha(''); setEditSenha(false); }} title="Cancelar"><FaTimes /></button>
+              </div>
             </div>
           )}
         </div>
 
-        {/* Botões de ação */}
+        {/* Ações */}
         <div className="perfil-opcoes">
           {!isAdmin && (
             <button className="opcao-btn" onClick={() => navigate('/favoritos')}>
