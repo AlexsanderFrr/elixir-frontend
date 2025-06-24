@@ -3,6 +3,7 @@
   background-color: #fff;
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 60px 20px;
   box-sizing: border-box;
   min-height: 100vh;
@@ -13,7 +14,7 @@
   padding: 40px 50px;
   border-radius: 12px;
   width: 100%;
-  max-width: 480px;
+  max-width: 720px; /* aumenta largura para notebooks */
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
 }
@@ -35,7 +36,8 @@
 }
 
 .perfil-page .cadastro-ingrediente-form input,
-.perfil-page .cadastro-ingrediente-form textarea {
+.perfil-page .cadastro-ingrediente-form textarea,
+.perfil-page .cadastro-ingrediente-form select {
   width: 100%;
   padding: 14px 16px;
   margin-top: 4px;
@@ -55,7 +57,8 @@
 }
 
 .perfil-page .cadastro-ingrediente-form input:focus,
-.perfil-page .cadastro-ingrediente-form textarea:focus {
+.perfil-page .cadastro-ingrediente-form textarea:focus,
+.perfil-page .cadastro-ingrediente-form select:focus {
   outline: none;
   border-color: #ff7f00;
   box-shadow: 0 0 10px rgba(255, 127, 0, 0.6);
@@ -93,6 +96,7 @@
   cursor: pointer;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 12px rgba(187, 81, 4, 0.4);
+  margin-top: 20px;
 }
 
 .perfil-page .button:hover {
@@ -100,14 +104,15 @@
   box-shadow: 0 6px 18px rgba(255, 127, 0, 0.6);
 }
 
-@media (max-width: 600px) {
+/* Adaptado para notebooks */
+@media (max-width: 1024px) {
   .perfil-page {
     padding: 40px 16px;
   }
 
   .perfil-page .cadastro-ingrediente-container {
     padding: 30px 20px;
-    max-width: 100%;
+    max-width: 90%;
   }
 
   .perfil-page .cadastro-ingrediente-form input,
