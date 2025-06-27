@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SucoCard from "../components/SucoCard";
-import "../css/SucoList.css";
+import "../css/GerenciarBebidas.css";  // CSS novo e específico para esta tela
 import { apiEndpoint } from "../config/constantes";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -57,7 +57,7 @@ const GerenciarBebidas = () => {
   return (
     <div className="container-suco-list">
       <div className="container-meio">
-        <form onSubmit={handleSearchSubmit}>
+        <form onSubmit={handleSearchSubmit} className="search-form">
           <div className="search-container">
             <input
               type="text"
@@ -65,14 +65,16 @@ const GerenciarBebidas = () => {
               value={searchTerm}
               onChange={handleSearchChange}
             />
-            <button type="submit">Buscar</button>
+            <button type="submit" aria-label="Buscar">
+              🔍
+            </button>
           </div>
         </form>
 
         <h2 className="title">Lista de Sucos</h2>
 
         <div className="sucos-list-container">
-          {allSucos.length > 0 &&
+          {allSucos.length > 0 ? (
             allSucos.map((suco) => (
               <SucoCard
                 key={suco.id}
@@ -80,11 +82,14 @@ const GerenciarBebidas = () => {
                 isLoggedIn={!!user}
                 isAdmin={user?.isAdmin}
                 token={token}
-                page='gerenciar'
+                page="gerenciar"
                 onUpdateSuco={updateSuco}
                 onDeleteSuco={deleteSuco}
               />
-            ))}
+            ))
+          ) : (
+            <p>Nenhum suco encontrado.</p>
+          )}
         </div>
       </div>
     </div>

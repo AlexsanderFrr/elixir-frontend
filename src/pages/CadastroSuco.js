@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { LiaFileUploadSolid } from "react-icons/lia";
-import "../css/Cadastro.css";
-import logo from "../imgs/copo-logo-branco.png";
-import { Link } from "react-router-dom";
+import "../css/CadIngrediente.css"; // Reaproveitando o estilo já existente
 import { apiEndpoint } from "../config/constantes";
 
 const CadastroSuco = () => {
@@ -22,7 +20,6 @@ const CadastroSuco = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // CORRIGIDO: uso correto da instância axios
         const diagnosticosResponse = await apiEndpoint.get("/diagnostico/all");
         setDiagnosticosList(diagnosticosResponse.data);
 
@@ -67,13 +64,11 @@ const CadastroSuco = () => {
       formData.append("img1", suco.img1, suco.img1.name);
     }
     formData.append("diagnostico", suco.diagnostico);
-
     suco.categoria.forEach((categoriaId) =>
       formData.append("categoria[]", categoriaId)
     );
 
     try {
-      // CORRIGIDO: uso da instância apiEndpoint
       await apiEndpoint.post("/suco/add", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -91,68 +86,107 @@ const CadastroSuco = () => {
         categoria: [],
       });
     } catch (error) {
-      console.error("Erro ao cadastrar o Suco:", error.message, error.response?.data);
+      console.error("Erro ao cadastrar o Suco:", error);
     }
   };
 
   return (
-    <div className="cadastro-container">
-      <div className="cadastro-suco-container">
+    <div className="perfil-page">
+      <div className="cadastro-ingrediente-container">
         <h1>Cadastro de Suco</h1>
-        <br />
-        <form onSubmit={handleSubmit} className="cadastro-suco-form">
+
+        <form onSubmit={handleSubmit} className="cadastro-ingrediente-form">
           <label>
-            Nome <br />
-            <input type="text" name="nome" value={suco.nome} onChange={handleInputChange} />
+            Nome
+            <input
+              type="text"
+              name="nome"
+              value={suco.nome}
+              onChange={handleInputChange}
+              placeholder="Ex: Suco Detox"
+              required
+            />
           </label>
-          <br /><br />
 
           <label>
-            Ingredientes<br />
-            <textarea name="ingredientes" value={suco.ingredientes} onChange={handleInputChange} />
+            Ingredientes
+            <textarea
+              name="ingredientes"
+              value={suco.ingredientes}
+              onChange={handleInputChange}
+              placeholder="Ex: Gengibre, Limão..."
+              rows={3}
+              required
+            />
           </label>
-          <br /><br />
 
           <label>
-            Modo de Preparo<br />
-            <textarea name="modo_de_preparo" value={suco.modo_de_preparo} onChange={handleInputChange} />
+            Modo de Preparo
+            <textarea
+              name="modo_de_preparo"
+              value={suco.modo_de_preparo}
+              onChange={handleInputChange}
+              placeholder="Ex: Bata tudo no liquidificador..."
+              rows={3}
+              required
+            />
           </label>
-          <br /><br />
 
           <label>
-            Benefícios<br />
-            <textarea name="beneficios" value={suco.beneficios} onChange={handleInputChange} />
+            Benefícios
+            <textarea
+              name="beneficios"
+              value={suco.beneficios}
+              onChange={handleInputChange}
+              placeholder="Ex: Fortalece a imunidade..."
+              rows={3}
+              required
+            />
           </label>
-          <br /><br />
 
           <label>
-            Diagnóstico<br />
-            <select name="diagnostico" value={suco.diagnostico} onChange={handleInputChange}>
-              <option value="">Selecione um diagnóstico</option>
-              {diagnosticosList.map((diagnostico) => (
-                <option key={diagnostico.id} value={diagnostico.id}>
-                  {diagnostico.nome_da_condicao}
+            Diagnóstico
+            <select
+              name="diagnostico"
+              value={suco.diagnostico}
+              onChange={handleInputChange}
+              required
+            >
+              <option value="">Selecione</option>
+              {diagnosticosList.map((d) => (
+                <option key={d.id} value={d.id}>
+                  {d.nome_da_condicao}
                 </option>
               ))}
             </select>
           </label>
-          <br /><br />
 
           <label>
-            Categoria<br />
-            <select name="categoria" value={suco.categoria} onChange={handleInputChange} multiple>
-              {categoriasList.map((categoria) => (
-                <option key={categoria.id} value={categoria.id}>
-                  {categoria.nome}
+            Categoria
+            <select
+              name="categoria"
+              value={suco.categoria}
+              onChange={handleInputChange}
+              multiple
+              required
+            >
+              {categoriasList.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.nome}
                 </option>
               ))}
             </select>
           </label>
-          <br /><br />
 
           <div className="upload-container">
-            <LiaFileUploadSolid />
-            <input type="file" name="img1" onChange={handleFileChange} />
+            <LiaFileUploadSolid size={22} color="#bb5104" />
+            <input
+              type="file"
+              name="img1"
+              accept="image/*"
+              onChange={handleFileChange}
+              aria-label="Upload da imagem do suco"
+            />
           </div>
 
           {suco.img1 && (
@@ -160,23 +194,14 @@ const CadastroSuco = () => {
               <img
                 src={URL.createObjectURL(suco.img1)}
                 alt="Preview da Imagem"
-                style={{ maxWidth: "100px" }}
               />
             </div>
           )}
-          <br /><br />
 
-          <button type="submit" className="button">Cadastrar Suco</button>
+          <button type="submit" className="button">
+            Cadastrar Suco
+          </button>
         </form>
-      </div>
-
-      <div className="teste-container">
-        <div className="logo-container-lateral">
-          <Link to="/caddiagnostico" className="logo-text">
-            <img src={logo} alt="Copo Logo" />
-            Elixir Natural
-          </Link>
-        </div>
       </div>
     </div>
   );

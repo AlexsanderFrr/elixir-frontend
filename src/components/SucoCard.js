@@ -105,8 +105,14 @@ const SucoCard = ({ suco, isLoggedIn, isAdmin, token, page, onDeleteSuco }) => {
         )}
       </div>
 
-      <h3 className="suco-title">{suco.suco_nome || suco.nome}</h3>
-      <h4>{suco.diagnostico_nome_da_condicao}</h4>
+<h3 className="suco-title">{suco.suco_nome || suco.nome}</h3>
+
+{suco.diagnostico_nome_da_condicao && (
+  <div className="suco-diagnostico-container">
+    <h4>Diagnóstico</h4>
+    <p>{suco.diagnostico_nome_da_condicao}</p>
+  </div>
+)}
 
       <div className="suco-details">
         { page != 'gerenciar' &&(
