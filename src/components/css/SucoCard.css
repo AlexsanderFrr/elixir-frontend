@@ -1,5 +1,5 @@
 .suco-card {
-  max-width: 350px;
+  width: 240px;
   border-radius: 10px;
   overflow: hidden;
   margin: 10px;
@@ -15,26 +15,33 @@
 
 .suco-fav-container {
   position: relative;
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
 }
 
 .suco-image {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
 }
 
 .favorito-btn {
   position: absolute;
-  bottom: 165px;
+  top: 10px;
   right: 10px;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.8);
   border: none;
   cursor: pointer;
   font-size: 24px;
   color: #bb5104;
-  padding: 0;
-  transition: transform 0.2s ease, color 0.2s ease;
+  padding: 6px;
+  border-radius: 50%;
+  transition: transform 0.2s ease, color 0.2s ease, background-color 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,6 +51,7 @@
 .favorito-btn:hover {
   transform: scale(1.2);
   color: red;
+  background-color: white;
 }
 
 .suco-title {
@@ -57,30 +65,35 @@
 .suco-details {
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-bottom: 16px;
-  gap: 12px;
+  margin: 16px 0;
 }
 
+/* Botão Ver Mais (igual estilo aplicar filtro) */
 .suco-button {
-  background-color: #bb5104;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+  width: 90%;
+  padding: 12px;
+  background-color: #BB5104;
+  color: white;
   border: none;
-  text-decoration: none;
-  text-align: center;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
   transition: background-color 0.3s;
+  text-align: center;
 }
 
+/* Hover do botão */
 .suco-button:hover {
-  background-color: #d27837;
+  background-color: #9a4203;
 }
 
+/* Link dentro do botão */
 .suco-link {
-  color: #fff;
+  color: white;
   text-decoration: none;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 /* Botões de admin editar/excluir */
@@ -107,4 +120,25 @@
 
 .admin-buttons button:hover {
   background-color: #d27837;
+}
+
+/* Estilo para Diagnóstico */
+.suco-diagnostico-container {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.suco-diagnostico-container h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #555; /* cinza escuro suave */
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.suco-diagnostico-container p {
+  font-size: 12px;
+  color: #777; /* cinza médio */
+  margin: 0;
 }

@@ -3,7 +3,7 @@ import SucoCard from "../components/SucoCard";
 import "../css/SucoList.css";
 import { apiEndpoint } from "../config/constantes";
 import { useAuth } from "../contexts/AuthContext";
-import { FaSearch, FaFilter, FaTimes } from "react-icons/fa";
+import { FaFilter, FaTimes } from "react-icons/fa";
 
 const SucoList = () => {
   const [allSucos, setSucos] = useState([]);
@@ -62,7 +62,6 @@ const SucoList = () => {
     }
   };
 
-  // Função que estava faltando
   const clearFilters = () => {
     setCategoria("");
     setDiagnostico([]);
@@ -71,40 +70,29 @@ const SucoList = () => {
   };
 
   const sortedSucos = [...allSucos].sort((a, b) => {
-    if (sortOption === "az") return a.titulo.localeCompare(b.titulo);
-    if (sortOption === "za") return b.titulo.localeCompare(a.titulo);
+    if (sortOption === "az") return (a.titulo || a.suco_nome || a.nome).localeCompare(b.titulo || b.suco_nome || b.nome);
+    if (sortOption === "za") return (b.titulo || b.suco_nome || b.nome).localeCompare(a.titulo || a.suco_nome || a.nome);
     return 0; // Mais relevantes (ordem original)
   });
 
   return (
     <div className="listagemdesuco-page">
-      {/* Barra de busca */}
-      <div className="sticky-search-wrapper">
-      <div className="listagemdesuco-search-section">
-        <div className="listagemdesuco-search-container">
-          
-          <input
-            type="text"
-            placeholder="Procurar bebidas..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            onKeyPress={(e) => e.key === "Enter" && fetchSucos()}
-          />
-          <FaSearch className="listagemdesuco-search-icon" />
-          <button 
-            className="listagemdesuco-mobile-filter-btn"
-            onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
-          >
-            {mobileFiltersOpen ? <FaTimes /> : <FaFilter />}
-            {mobileFiltersOpen ? "Fechar" : "Filtros"}
-          </button>
-        </div>
-        </div>
-      </div>
+      {/* Botão mobile filtros */}
+      <button
+        className="listagemdesuco-mobile-filter-btn"
+        onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
+      >
+        {mobileFiltersOpen ? <FaTimes /> : <FaFilter />}
+        {mobileFiltersOpen ? "Fechar" : "Filtros"}
+      </button>
 
       <div className="listagemdesuco-main-container">
         {/* Filtros */}
-        <div className={`listagemdesuco-filters-sidebar ${mobileFiltersOpen ? 'listagemdesuco-mobile-open' : ''}`}>
+        <div
+          className={`listagemdesuco-filters-sidebar ${
+            mobileFiltersOpen ? "listagemdesuco-mobile-open" : ""
+          }`}
+        >
           <div className="listagemdesuco-filters-header">
             <h2>Filtros</h2>
             <button onClick={clearFilters} className="listagemdesuco-clear-filters">
@@ -152,23 +140,44 @@ const SucoList = () => {
                       }}
                     />
                     <span className="listagemdesuco-checkmark"></span>
-                    <span className="listagemdesuco-condition-name">{diag.nome_da_condicao}</span>
+                    <span className="listagemdesuco-condition-name">
+                      {diag.nome_da_condicao}
+                    </span>
                   </label>
                 ))}
               </div>
             </div>
           </div>
 
-          <button 
-            onClick={handleFilterSubmit} 
-            className="listagemdesuco-apply-filters"
-          >
+          <button onClick={handleFilterSubmit} className="listagemdesuco-apply-filters">
             Aplicar Filtros
           </button>
         </div>
 
         {/* Conteúdo principal */}
         <div className="listagemdesuco-products-container">
+          {/* Barra de busca centralizada acima do título */}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              fetchSucos();
+            }}
+            className="search-form"
+          >
+            <div className="search-container">
+              <input
+                type="text"
+                placeholder="Procurar bebidas..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <button type="submit" aria-label="Buscar">
+                🔍
+              </button>
+            </div>
+          </form>
+
+          {/* Cabeçalho */}
           <div className="listagemdesuco-products-header">
             <h1>Sucos Naturais</h1>
             <div className="listagemdesuco-sort-options">
@@ -185,11 +194,12 @@ const SucoList = () => {
             </div>
           </div>
 
+          {/* Grid de sucos */}
           <div className="listagemdesuco-products-grid">
             {sortedSucos.length > 0 ? (
               sortedSucos.map((suco) => (
                 <SucoCard
-                  key={suco.id}
+                  key={suco.id || suco.suco_id}
                   suco={suco}
                   isLoggedIn={!!user}
                   isAdmin={user?.isAdmin}

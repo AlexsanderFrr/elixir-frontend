@@ -1,0 +1,85 @@
+/* Espaço para navbar fixo no topo */
+.container-suco-list {
+  padding-top: 70px; /* Altura aproximada do navbar para evitar sobreposição */
+  background-color: #fff; /* Fundo branco */
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.container-meio {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Formulário de busca */
+.search-form {
+  margin-bottom: 20px;
+}
+
+.search-container {
+  display: flex;
+  max-width: 400px;
+  width: 100%;
+}
+
+.search-container input {
+  flex-grow: 1;
+  padding: 8px 12px;
+  border: 2px solid #bb5104;
+  border-radius: 8px 0 0 8px;
+  font-size: 1rem;
+  outline: none;
+  box-shadow: inset 0 2px 8px rgba(187, 81, 4, 0.15);
+  transition: border-color 0.3s ease;
+}
+
+.search-container input:focus {
+  border-color: #ff7f00;
+  box-shadow: 0 0 8px rgba(255, 127, 0, 0.6);
+}
+
+.search-container button {
+  background-color: #bb5104;
+  border: none;
+  color: white;
+  padding: 0 16px;
+  font-size: 1.2rem;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-container button:hover {
+  background-color: #ff7f00;
+}
+
+/* Título da lista */
+.title {
+  color: #bb5104;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+/* Container dos cards - flex para lado a lado */
+.sucos-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+  background-color: #fff;
+  padding-bottom: 20px;
+}
+
+/* Responsivo para telas pequenas */
+@media (max-width: 768px) {
+  .sucos-list-container {
+    justify-content: center;
+  }
+
+  .search-container {
+    max-width: 100%;
+  }
+}
