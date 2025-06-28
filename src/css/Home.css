@@ -1,175 +1,177 @@
-/* App.css */
-
 .container {
   margin: 0;
   font-family: "Arial", sans-serif;
   color: white;
-  background: linear-gradient(to right, #f5deaa,#f0a671, #c75c10, #bb5104);
-  /* Outros estilos conforme necessário */
+  background: linear-gradient(to right, #f5deaa, #f0a671, #c75c10, #bb5104);
+  padding: 40px 20px 60px 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
-/* Navbar.css */
-
-#navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: transparent;
-  
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-}
-
-.logo-container img {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-}
-
-.logo-container span {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #ffffff; /* Cor do texto do logotipo */
-}
-
-.nav-links a {
-  color: #fff; /* Cor do texto dos links */
-  text-decoration: none;
-  margin-right: 20px;
-  font-size: 1rem;
-}
-
-/* Adicione estilos adicionais conforme necessário para links ativos, por exemplo */
-.nav-links a:hover {
-  text-decoration: underline;
-}
-
-/* Container inferior */
-/* Estilos para o contêiner da parte inferior da página Home */
-
-
-.container-baixo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start; 
-  max-height: 700vh; 
-  background-color: #fff; 
-}
-
-.textos-baixos {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start; 
-  max-height: 700vh; 
-  
-}
-/* Estilos para o grupo de h1 dentro do contêiner */
-.frasesuco {
-  display: flex;
-  flex-direction: row; /* Muda a direção do flex para coluna */
-  align-items: center; /* Centraliza os itens na coluna */
-}
-
-/* Estilos para cada h1 dentro do grupo */
-.suco1,
-.suco2 {
-  margin: 0; /* Remove as margens padrão */
-  padding: 10px; /* Adiciona algum preenchimento para espaçamento */
-}
-
-.suco1 {
-  color: #000000; /* Cor para o primeiro h1 */
-}
-
-.suco2 {
-  color: #bb5104; /* Cor para o segundo h1 */
-}
-
-/* Estilos para as divs de texto informativo */
-
-/* ... (outros estilos) */
-
-/* Estilos para as divs de texto informativo */
-.texto-informativo1,
-.texto-informativo2 {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  max-width: 800px; /* Largura máxima das divs */
-  margin: 0px auto; /* Margens superior e inferior com espaçamento automático nas laterais */
-  justify-content: space-between; /* Espaço entre os itens (alinhamento nos cantos) */
-}
-
-/* Estilos para a div de texto-informativo1 */
-
-
-/* Estilos para as imagens dentro das divs */
-.texto-informativo1 img,
-.texto-informativo2 img {
-  width: 80px; /* Largura da imagem */
-  height: 80px; /* Altura da imagem */
-   /* Espaçamento à direita da imagem */
-}
-
-/* Estilos para os textos dentro das divs */
-.texto-informativo1 h5,
-.texto-informativo2 h5 {
-  color: #000; /* Cor do texto preto */
-  font-size: 14px;
-}
-.texto-informativo1 {
-  margin-right: 250px; /* Adiciona margem à direita da div */
-}
-
-.texto-informativo2 {
-  /* ... (outros estilos) */
-  margin-left: 250px; /* Adiciona margem à esquerda da div */
-}
-
-
-.foto-frutas {
-  position: absolute;
-  top: -50px; /* Ajuste conforme necessário para a sobreposição */
-  left: 50px; /* Ajuste conforme necessário para a sobreposição */
-}
-
-/* Estilos para a imagem de frutas */
-.foto-frutas img {
-  width: 600px; /* Ajuste o tamanho da imagem conforme necessário */
-  height: auto;
-  margin-top: 100px;
-  margin-left: 50px;
-}
-
+/* Texto introdutório */
 .central {
-  margin-top: 20px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 60px 20px 20px 20px;
 }
+
 .container-lateral {
-  float: right; /* Faz com que a div flutue à esquerda */
-  width: 40%; /* Define a largura como 50% da largura do pai (div.central) */
+  /* opcional */
 }
 
 .title1 {
-  color: #ffffff; /* Cor para o primeiro h1 */
+  color: #ffffff;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 16px;
 }
 
-.title2 {
-  color: #8FF75B; /* Cor para o segundo h1 */
-}
 .linha {
-  color: #F5DEAA; /* Cor para o segundo h1 */
+  border: none;
+  height: 2px;
+  width: 140px;
+  background: #f5deaa;
+  margin: 0 auto 30px auto;
+  opacity: 0.7;
 }
 
-p {
-  font-size: 18px;
-  line-height: 1.5;
+.texto-lateral {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #ffffff;
+  max-width: 700px;
+  margin: 0 auto;
+}
 
+/* Frase Suco Saudável */
+.frasesuco {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 30px 0 10px 0;
+  flex-wrap: wrap;
+}
+.suco1 {
+  color: #fff; /* branco */
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.suco2 {
+  color: #bb5104; /* laranja */
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.frase-subtitulo {
+  text-align: center;
+  max-width: 580px;
+  margin: 10px auto 25px auto;
+  font-size: 1.1rem;
+  color: #444;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.4;
+  padding: 0 10px;
+}
+
+/* Container da área inferior (agora transparente para mostrar o fundo laranja) */
+.container-baixo {
+  padding: 30px 20px 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0 0 16px 16px;
+  max-width: 720px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+/* Card branco com cantos arredondados iguais */
+.card-branco {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 28px 30px;
+  max-width: 640px;
+  box-sizing: border-box;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Ícone branco usando filtro invert */
+.card-icon {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 18px;
+  filter: invert(1) brightness(2);
+}
+
+.card-title {
+  margin-top: 0;
+  margin-bottom: 14px;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #bb5104;
+  text-shadow: none;
+}
+
+.card-branco p {
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+  max-width: 520px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container-baixo {
+    max-width: 100%;
+    padding: 20px 15px 30px 15px;
+  }
+
+  .frasesuco {
+    font-size: 1.8rem;
+  }
+
+  .suco1,
+  .suco2 {
+    font-size: 1.8rem;
+  }
+
+  .frase-subtitulo {
+    font-size: 1rem;
+    max-width: 90%;
+    margin-bottom: 20px;
+  }
+
+  .card-branco {
+    padding: 20px 18px;
+    max-width: 100%;
+  }
+
+  .card-title {
+    font-size: 1.3rem;
+  }
+
+  .card-branco p {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .card-icon {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 15px;
+  }
 }

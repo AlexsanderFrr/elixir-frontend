@@ -1,84 +1,46 @@
 import React from "react";
 import "../css/Home.css";
-import cruz from "../imgs/img-logo-cruz.png";
 import medico from "../imgs/img-medico.png";
-import frutas from "../imgs/frutas-home.png";
-
+import CarrosselSucos from "../pages/CarrosselSucos";
 
 const Home = () => {
   return (
     <div className="container">
-      
-
+      {/* Texto introdutório com título e linha */}
       <div className="central">
-        <br />
-        <div className="foto-frutas">
-          <img src={frutas} alt="Frutas" />
-        </div>
         <div className="container-lateral">
-          <h1 className="title1">Faça o seu dia</h1>
-          <h1 className="title2">com Elixir Natural</h1>
-          <br />
-          <h2 className="linha">__________________________</h2>
-          <br />
+          <h1 className="title1">Faça o seu dia com Elixir Natural</h1>
+          <hr className="linha" />
           <p className="texto-lateral">
-            Desperte o seu bem-estar com o Elixir <br />
-            Natural, a essência da vitalidade em cada <br />
-            gole. Descubra uma revolução em saúde com <br />
-            a nossa linha exclusiva de sucos medicinais
-            <br />
-            e detox, cuidadosamente elaborados para <br />
-            nutrir o seu corpo e revitalizar a sua mente.
+            Desperte o seu bem-estar com o Elixir Natural, a essência da vitalidade em cada gole. Descubra uma revolução em saúde com a nossa linha exclusiva de sucos medicinais e detox, cuidadosamente elaborados para nutrir o seu corpo e revitalizar a sua mente.
           </p>
         </div>
       </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+
+      {/* Carrossel abaixo do texto */}
+      <CarrosselSucos />
 
       <div className="container-baixo">
-        <br />
+        {/* Frase Suco Saudável */}
         <div className="frasesuco">
-          <h1 className="suco1">Suco Saúdavel,</h1>
-          <h1 className="suco2">Você Saúdavel</h1>
+          <h1 className="suco1">Suco Saudável,</h1>
+          <h1 className="suco2">Você Saudável</h1>
         </div>
 
-        <div className="textos-baixos">
-          <div className="texto-informativo1">
-            <img src={medico} alt="Medico" />
-            <h5>
-              Se possível, consulte profissionais de saúde ou <br />
-              nutricionistas para garantir que suas recomendações
-              <br /> estejam alinhadas com práticas seguras e saudáveis.
-            </h5>
-          </div>
+        <p className="frase-subtitulo">
+          Nutra seu corpo de dentro para fora com nossas receitas naturais e saborosas. Afinal, saúde é o ingrediente mais precioso da vida!
+        </p>
 
-          <div className="texto-informativo2">
-            <img src={cruz} alt="Cruz" />
-            <h5>
-              Fortaleça sua saúde e sua imunidade com
-              <br /> os melhores sucos medicinais, do mercado e se, <br />
-              delicie através de uma mistura de sabores
-            </h5>
-          </div>
+        {/* Card branco com cantos arredondados */}
+        <div className="card-branco">
+          <img src={medico} alt="Médico" className="card-icon" />
+          <h3 className="card-title">Importância da Consulta Médica</h3>
+          <p>
+            Para sua segurança e saúde, consulte sempre profissionais especializados, como médicos e nutricionistas. Eles podem orientar a escolha dos sucos e receitas mais adequadas ao seu perfil, prevenindo riscos e promovendo benefícios reais.
+          </p>
+          <p>
+            <strong>Lembre-se:</strong> mesmo alimentos naturais podem ter contraindicações, por isso a recomendação personalizada é fundamental.
+          </p>
         </div>
       </div>
     </div>

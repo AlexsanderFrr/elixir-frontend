@@ -1,0 +1,117 @@
+.carrossel-container {
+  margin: 40px auto 60px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  max-width: 1100px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  color: #333;
+  position: relative;
+  z-index: 1;
+}
+
+.carrossel-titulo {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #bb5104;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.suco-card {
+  background: #fdf7ef;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  margin: 0 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.suco-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.suco-card img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.suco-card h3 {
+  margin: 10px 0 6px;
+  color: #bb5104;
+  font-size: 1.2rem;
+}
+
+.suco-card p {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* Botão "Ver mais" */
+.carrossel-botao {
+  display: block;
+  margin: 30px auto 0;
+  padding: 12px 36px;
+  background-color: #bb5104;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.carrossel-botao:hover {
+  background-color: #a34703;
+}
+
+/* Setas do slider */
+/* Seta esquerda: viva (laranja) */
+.slick-prev:before {
+  color: #bb5104 !important;
+  font-size: 30px !important;
+  opacity: 1 !important;
+}
+
+/* Seta direita: branca */
+.slick-next:before {
+  color: #fff !important;
+  font-size: 30px !important;
+  opacity: 1 !important;
+}
+
+.slick-prev {
+  left: -35px;
+  z-index: 2;
+}
+
+.slick-next {
+  right: -35px;
+  z-index: 2;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .suco-card {
+    padding: 12px;
+  }
+
+  .suco-card h3 {
+    font-size: 1rem;
+  }
+
+  .suco-card p {
+    font-size: 0.85rem;
+  }
+
+  .carrossel-titulo {
+    font-size: 1.5rem;
+  }
+}
