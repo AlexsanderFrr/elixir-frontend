@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react"; 
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import logo from "../imgs/copo-logo-branco.png";
 import { FaCommentAlt, FaBars, FaTimes, FaUser, FaCrown, FaSignInAlt } from "react-icons/fa";
@@ -11,6 +11,7 @@ const Navbar = () => {
   const { openPopup } = useChatPopup();
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
@@ -36,9 +37,27 @@ const Navbar = () => {
     return <div>Carregando...</div>;
   }
 
+  // Nova função para tratar clique no logo
+  const handleLogoClick = () => {
+    closeMenu();
+    navigate(-1);  // volta uma página no histórico
+  };
+
   return (
     <nav id="navbar">
-      <div className="logo-container">
+      {/* Logo + texto com clique para voltar */}
+      <div
+        className="logo-container"
+        onClick={handleLogoClick}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+          cursor: 'pointer',
+          userSelect: 'none',
+          color: 'inherit',
+        }}
+      >
         <img src={logo} alt="Copo Logo" />
         <span>Elixir Natural</span>
       </div>
@@ -49,7 +68,6 @@ const Navbar = () => {
             {menuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
           </button>
           
-          {/* Overlay para clicar e fechar o menu */}
           {menuOpen && (
             <div 
               className="menu-overlay" 

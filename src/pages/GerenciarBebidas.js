@@ -71,7 +71,7 @@ const GerenciarBebidas = () => {
           </div>
         </form>
 
-        <h2 className="title">Lista de Sucos</h2>
+        <h2 className="title">Lista de Bebidas</h2>
 
         <div className="sucos-list-container">
           {allSucos.length > 0 ? (
@@ -88,7 +88,7 @@ const GerenciarBebidas = () => {
               />
             ))
           ) : (
-            <p>Nenhum suco encontrado.</p>
+            <p>Nenhuma bebida encontrada.</p>
           )}
         </div>
       </div>

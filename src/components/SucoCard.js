@@ -4,7 +4,7 @@ import { FaHeart, FaRegHeart, FaEdit, FaTrash } from "react-icons/fa";
 import { apiEndpoint } from "../config/constantes";
 import "./css/SucoCard.css";
 
-const SucoCard = ({ suco, isLoggedIn, isAdmin, token, page, onDeleteSuco }) => {
+const SucoCard = ({ suco, isLoggedIn, isAdmin, token, page, onRemoveFavorito, onDeleteSuco }) => {
   const [favorito, setFavorito] = useState(false);
   const navigate = useNavigate();
   const imageUrl = suco.img1 || suco.img1;
@@ -60,6 +60,11 @@ const SucoCard = ({ suco, isLoggedIn, isAdmin, token, page, onDeleteSuco }) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setFavorito(false);
+
+      // Aqui avisamos o componente pai para remover o suco da lista local
+      if (onRemoveFavorito) {
+        onRemoveFavorito(suco.suco_id || suco.id);
+      }
     } catch (error) {
       alert("Erro ao remover favorito");
       console.error(error);
@@ -105,17 +110,17 @@ const SucoCard = ({ suco, isLoggedIn, isAdmin, token, page, onDeleteSuco }) => {
         )}
       </div>
 
-<h3 className="suco-title">{suco.suco_nome || suco.nome}</h3>
+      <h3 className="suco-title">{suco.suco_nome || suco.nome}</h3>
 
-{suco.diagnostico_nome_da_condicao && (
-  <div className="suco-diagnostico-container">
-    <h4>Diagnóstico</h4>
-    <p>{suco.diagnostico_nome_da_condicao}</p>
-  </div>
-)}
+      {suco.diagnostico_nome_da_condicao && (
+        <div className="suco-diagnostico-container">
+          <h4>Diagnóstico</h4>
+          <p>{suco.diagnostico_nome_da_condicao}</p>
+        </div>
+      )}
 
       <div className="suco-details">
-        { page != 'gerenciar' &&(
+        {page !== "gerenciar" && (
           <button className="suco-button">
             <Link
               to={`/suco/${suco.suco_id || suco.id}`}
@@ -127,7 +132,7 @@ const SucoCard = ({ suco, isLoggedIn, isAdmin, token, page, onDeleteSuco }) => {
         )}
       </div>
 
-      {isAdmin && page == 'gerenciar' &&(
+      {isAdmin && page === "gerenciar" && (
         <div className="admin-buttons">
           <button onClick={editarSuco} aria-label="Editar Suco">
             <FaEdit /> Editar

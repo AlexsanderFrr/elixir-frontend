@@ -46,7 +46,7 @@
   font-size: 30px; 
   color: #fbfbfb;
   order: 0; 
-  margin-left: -0px; 
+  margin-left: 0; 
   z-index: 1;
   cursor: pointer;
 }
@@ -77,11 +77,11 @@
 .listagemdesuco-filters-sidebar {
   width: 280px;
   background-color: #fff;
-  padding: 12px 15px;      /* padding interno menor */
+  padding: 12px 15px; /* padding interno menor */
   border-radius: 10px;
   box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-  max-height: 440px;       /* altura máxima reduzida para compactar */
-  overflow-y: auto;        /* scroll vertical se ultrapassar */
+  max-height: 440px; /* altura máxima reduzida para compactar */
+  overflow-y: auto;  /* scroll vertical se ultrapassar */
   position: sticky;
   top: 150px;
 }
@@ -115,11 +115,11 @@
 }
 
 .listagemdesuco-filter-group {
-  margin-bottom: 15px;     /* menor espaçamento entre grupos */
+  margin-bottom: 15px; /* menor espaçamento entre grupos */
 }
 
 .listagemdesuco-filter-group h3 {
-  margin-bottom: 10px;     /* espaçamento menor abaixo do título */
+  margin-bottom: 10px; /* espaçamento menor abaixo do título */
   font-size: 16px;
   color: #444;
   font-weight: 600;
@@ -143,7 +143,7 @@
 }
 
 .listagemdesuco-checkbox-list {
-  max-height: 180px;       /* altura menor para lista de checkboxes */
+  max-height: 180px; /* altura menor para lista de checkboxes */
   overflow-y: auto;
   padding-right: 5px;
 }

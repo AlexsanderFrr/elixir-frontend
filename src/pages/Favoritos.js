@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaHeart } from 'react-icons/fa';
+import { FaHeart } from 'react-icons/fa';
 import { apiEndpoint } from "../config/constantes";
 import SucoCard from "../components/SucoCard";
 import "../css/SucoList.css";
@@ -43,13 +43,6 @@ function Favoritos() {
   return (
     <div className="container-suco-list">
       <div className="container-meio">
-        <button
-          onClick={() => navigate(-1)}
-          className="btn-voltar"
-          style={{ marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8 }}
-        >
-          <FaArrowLeft style={{ color: '#bb5104' }} /> Voltar
-        </button>
 
         <h2 className="title" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <FaHeart style={{ color: '#bb5104' }} /> Meus Favoritos
@@ -67,7 +60,7 @@ function Favoritos() {
                 suco={item.suco}
                 isLoggedIn={!!token}
                 token={token}
-                onRemoveFavorito={handleRemoveFavorito}  // passa a callback para o SucoCard
+                onRemoveFavorito={handleRemoveFavorito}
               />
             ))}
           </div>

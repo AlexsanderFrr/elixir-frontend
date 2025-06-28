@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import logo from "../imgs/copo-logo-branco.png";
-import { Link } from "react-router-dom";
 import { apiEndpoint } from "../config/constantes";
 import "../css/CadDiagnostico.css"; // CSS separado
 
@@ -26,14 +25,15 @@ const CadDiagnostico = () => {
       );
 
       console.log("Diagnóstico cadastrado com sucesso!", response.data);
-      setDiagnostico({ nome_da_condicao: "", descricao: "" });
-      alert("Diagnóstico cadastrado com sucesso!");
+      alert("Diagnóstico cadastrado com sucesso!");  // alerta simples
+      setDiagnostico({ nome_da_condicao: "", descricao: "" });  // limpa formulário
     } catch (error) {
       console.error(
         "Erro ao cadastrar o Diagnóstico:",
         error.message,
         error.response?.data
       );
+      alert("Erro ao cadastrar o Diagnóstico. Tente novamente.");
     }
   };
 
@@ -76,9 +76,7 @@ const CadDiagnostico = () => {
           </button>
         </form>
 
-        <Link to="/cadsuco" className="link-back">
-          Voltar para Cadastro de Suco
-        </Link>
+        {/* Link removido conforme solicitado */}
       </div>
     </div>
   );

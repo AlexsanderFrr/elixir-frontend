@@ -61,11 +61,17 @@ const CarrosselSucos = () => {
           </div>
         ))}
       </Slider>
-      <div className="carrossel-botao-wrapper">
-        <button className="carrossel-botao" onClick={() => navigate("/sucos")}>
-          Ver mais sucos
-        </button>
-      </div>
+<div
+  className="carrossel-botao-wrapper"
+  style={{ textAlign: "center", marginTop: "30px" }}
+>
+  <button
+    className="carrossel-botao-slim"
+    onClick={() => navigate("/sucos")}
+  >
+    Venha conferir
+  </button>
+</div>
     </div>
   );
 };

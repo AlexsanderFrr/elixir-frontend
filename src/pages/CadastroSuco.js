@@ -93,7 +93,7 @@ const CadastroSuco = () => {
   return (
     <div className="perfil-page">
       <div className="cadastro-ingrediente-container">
-        <h1>Cadastro de Suco</h1>
+        <h1>Cadastro de Bebidas</h1>
 
         <form onSubmit={handleSubmit} className="cadastro-ingrediente-form">
           <label>

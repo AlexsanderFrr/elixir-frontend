@@ -179,9 +179,9 @@ const SucoList = () => {
 
           {/* Cabeçalho */}
           <div className="listagemdesuco-products-header">
-            <h1>Sucos Naturais</h1>
+            <h1>Bebidas Naturais</h1>
             <div className="listagemdesuco-sort-options">
-              <label>Ordenar por:</label>
+              <label>Ordenar:</label>
               <select
                 value={sortOption}
                 onChange={(e) => setSortOption(e.target.value)}
@@ -208,7 +208,7 @@ const SucoList = () => {
               ))
             ) : (
               <div className="listagemdesuco-no-results">
-                <p>Nenhum suco encontrado.</p>
+                <p>Nenhuma bebida encontrada.</p>
                 <button onClick={clearFilters}>Limpar filtros</button>
               </div>
             )}

@@ -1,4 +1,4 @@
-.perfil-page .perfil-container {
+.perfil-page .perfil-container { 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -162,13 +162,16 @@
 .perfil-page .opcao-btn.sair {
   background: #ffe6e6;
   color: #bb0000;
-  margin-top: 56px;
+  margin: 40px auto 0 auto; /* margem superior e centralizado horizontalmente */
   font-weight: 800;
   box-shadow: 0 4px 12px rgba(187, 0, 0, 0.35);
-}
-.perfil-page .opcao-btn.sair:hover {
-  background: #ffb5b5;
-  box-shadow: 0 6px 18px rgba(187, 0, 0, 0.5);
+  padding: 10px 0; /* altura menor */
+  font-size: 1rem; /* fonte menor */
+  border-radius: 12px;
+  max-width: 300px; /* largura limitada */
+  width: 100%;
+  display: block; /* garante que o botão respeite a margem auto */
+  text-align: center; /* centraliza texto */
 }
 
 /* Responsivo */

@@ -51,24 +51,23 @@
   color: #444;
 }
 
-/* Botão "Ver mais" */
-.carrossel-botao {
-  display: block;
-  margin: 30px auto 0;
-  padding: 12px 36px;
-  background-color: #bb5104;
-  color: #fff;
+/* Botão "Venha conferir" */
+.carrossel-botao-slim {
+  background-color: #BB5104;
+  color: white;
   border: none;
-  border-radius: 24px;
+  border-radius: 6px; /* borda igual ao botão SucoList */
+  padding: 12px 36px;
   font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  display: inline-block;
   text-align: center;
-  text-decoration: none;
   width: fit-content;
 }
 
-.carrossel-botao:hover {
+.carrossel-botao-slim:hover {
   background-color: #a34703;
 }
 
@@ -114,4 +113,18 @@
   .carrossel-titulo {
     font-size: 1.5rem;
   }
+}
+.suco1 {
+  color: #BB5104; /* laranja */
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+
+.suco2 {
+  color: #fff; /* branco */
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+.frase-subtitulo {
+  color: white;
 }
