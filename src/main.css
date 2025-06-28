@@ -1,3 +1,4 @@
+
 /* main.css */
 
 body, h1, h2, h3, p, ul, li {
@@ -7,7 +8,7 @@ body, h1, h2, h3, p, ul, li {
 }
 
 .main-container {
-  background-color: #bb5104;
+  background-color: #ffffff;
   padding-top: 64px; /* espaço para a navbar fixa */
   box-sizing: border-box;
   min-height: 100vh; /* garante altura mínima */

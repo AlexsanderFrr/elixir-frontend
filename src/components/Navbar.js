@@ -1,15 +1,36 @@
-// src/components/Navbar.js
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import logo from "../imgs/copo-logo-branco.png";
-import { FaCommentAlt } from "react-icons/fa";
-import { useChatPopup } from "../contexts/ChatPopupContext"; // Importa o contexto do popup
+import { FaCommentAlt, FaBars, FaTimes, FaUser, FaCrown, FaSignInAlt } from "react-icons/fa";
+import { useChatPopup } from "../contexts/ChatPopupContext";
 import "./css/Navbar.css";
 
 const Navbar = () => {
   const { user, loading } = useAuth();
-  const { openPopup } = useChatPopup(); // Usa a função para abrir o popup
+  const { openPopup } = useChatPopup();
+  const [isMobile, setIsMobile] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+      if (window.innerWidth > 768) setMenuOpen(false);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
 
   if (loading) {
     return <div>Carregando...</div>;
@@ -22,39 +43,56 @@ const Navbar = () => {
         <span>Elixir Natural</span>
       </div>
 
-      <div className="nav-links">
-        <Link to="/">Home</Link>
-        <Link to="/sucos"> | Bebidas</Link>
+      {isMobile && (
+        <>
+          <button className="menu-toggle" onClick={toggleMenu}>
+            {menuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+          </button>
+          
+          {/* Overlay para clicar e fechar o menu */}
+          {menuOpen && (
+            <div 
+              className="menu-overlay" 
+              onClick={closeMenu}
+            />
+          )}
+        </>
+      )}
+
+      <div className={`nav-links ${menuOpen ? 'active' : ''}`}>
+        <Link to="/" onClick={closeMenu}>
+          Home
+        </Link>
+        
+        <Link to="/sucos" onClick={closeMenu}>
+          Bebidas
+        </Link>
 
         {user?.isAdmin && (
-          <Link to="/admin" className="admin-link">
-            <i className="fas fa-crown"></i> | Painel do Administrador
+          <Link to="/admin" className="admin-link" onClick={closeMenu}>
+            <FaCrown /> Painel Admin
           </Link>
         )}
 
         {user && (
           <button
-            onClick={openPopup}
-            className="chat-link"
-            style={{
-              background: "none",
-              border: "none",
-              color: "white",
-              cursor: "pointer",
-              padding: 0,
+            onClick={() => {
+              openPopup();
+              closeMenu();
             }}
+            className="chat-link"
           >
             <FaCommentAlt /> ChatBot
           </button>
         )}
 
         {user ? (
-          <Link to="/perfil" className="profile-link">
-            <i className="fas fa-user"></i> | Perfil
+          <Link to="/perfil" className="profile-link" onClick={closeMenu}>
+            <FaUser /> Perfil
           </Link>
         ) : (
-          <Link to="/login" className="login-link">
-            <i className="fas fa-sign-in-alt"></i> Login/Cadastro
+          <Link to="/login" className="login-link" onClick={closeMenu}>
+            <FaSignInAlt /> Login
           </Link>
         )}
       </div>

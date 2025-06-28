@@ -10,6 +10,10 @@ export const AuthProvider = ({ children }) => {
     return storedUser ? JSON.parse(storedUser) : null;
   });
 
+  const token = user?.token;
+  const isAdmin = user?.isAdmin;
+  const isLoggedIn = !!user;
+
   const login = async (email, senha) => {
     try {
       const response = await apiEndpoint.post("/usuario/login", { email, senha });
@@ -21,7 +25,7 @@ export const AuthProvider = ({ children }) => {
           nome: data.nome,
           email: data.email,
           tipo: data.tipo,
-          imagem: data.imagem || null, // Adiciona imagem recebida (ou null)
+          imagem: data.imagem || null,
           isAdmin: data.tipo === "admin",
           token: data.token,
         };
@@ -46,14 +50,15 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
   };
 
-  // Função para atualizar usuário após mudanças, ex: imagem
   const updateUser = (newUserData) => {
     setUser(newUserData);
     localStorage.setItem("user", JSON.stringify(newUserData));
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, updateUser }}>
+    <AuthContext.Provider
+      value={{ user, token, isAdmin, isLoggedIn, login, logout, updateUser }}
+    >
       {children}
     </AuthContext.Provider>
   );
