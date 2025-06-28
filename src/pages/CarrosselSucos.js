@@ -63,7 +63,7 @@ const CarrosselSucos = () => {
       </Slider>
       <div className="carrossel-botao-wrapper">
         <button className="carrossel-botao" onClick={() => navigate("/sucos")}>
-          Ver mais sucos
+          Ver mais bebidas
         </button>
       </div>
     </div>
