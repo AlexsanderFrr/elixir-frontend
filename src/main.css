@@ -1,11 +1,30 @@
-.main-container {
-    background-color: #ffffff;
+
+/* main.css */
+
+body, h1, h2, h3, p, ul, li {
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
+.main-container {
+  background-color: #ffffff;
+  padding-top: 64px; /* espaço para a navbar fixa */
+  box-sizing: border-box;
+  min-height: 100vh; /* garante altura mínima */
+}
 
-  body, h1, h2, h3, p, ul, li {
-    margin: 0;
-    padding: 0;
-    border: 0;
-  }
-  
+/* Navbar fixa com altura definida */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px; /* altura fixa da navbar */
+  background-color: #BB5104;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  z-index: 1000;
+  box-sizing: border-box;
+}
