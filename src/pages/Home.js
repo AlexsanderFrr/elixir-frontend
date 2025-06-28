@@ -39,7 +39,7 @@ const Home = () => {
             Para sua segurança e saúde, consulte sempre profissionais especializados, como médicos e nutricionistas. Eles podem orientar a escolha dos bebidas e receitas mais adequadas ao seu perfil, prevenindo riscos e promovendo benefícios reais.
           </p>
           <p>
-            <strong>Lembre-se:</strong> mesmo alimentos naturais podem ter contraindicações, por isso a recomendação personalizada é fundamental.
+            <strong>Lembre-se:</strong> Mesmo alimentos naturais podem ter contraindicações, por isso a recomendação personalizada é fundamental.
           </p>
         </div>
       </div>

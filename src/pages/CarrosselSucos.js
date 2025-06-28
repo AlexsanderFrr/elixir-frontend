@@ -61,6 +61,7 @@ const CarrosselSucos = () => {
           </div>
         ))}
       </Slider>
+<<<<<<< HEAD
 <div
   className="carrossel-botao-wrapper"
   style={{ textAlign: "center", marginTop: "30px" }}
@@ -72,6 +73,13 @@ const CarrosselSucos = () => {
     Venha conferir
   </button>
 </div>
+=======
+      <div className="carrossel-botao-wrapper">
+        <button className="carrossel-botao" onClick={() => navigate("/sucos")}>
+          Ver mais bebidas
+        </button>
+      </div>
+>>>>>>> a9dadee9e1a65050bed6d4a8d86b79ef407fdc58
     </div>
   );
 };
