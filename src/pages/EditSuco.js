@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { LiaFileUploadSolid } from "react-icons/lia";
-import "../css/Cadastro.css";
-import logo from "../imgs/copo-logo-branco.png";
+import "../css/EditSuco.css"; // seu css separado
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { apiEndpoint } from "../config/constantes";
 
 const EditSuco = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const inputFileRef = useRef(null);
+
   const [suco, setSuco] = useState({
     nome: "",
     ingredientes: "",
@@ -26,14 +27,12 @@ const EditSuco = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Carrega listas de diagnóstico e categorias
         const diagnosticosResponse = await apiEndpoint.get("/diagnostico/all");
         setDiagnosticosList(diagnosticosResponse.data);
 
         const categoriasResponse = await apiEndpoint.get("/categoria/all");
         setCategoriasList(categoriasResponse.data);
 
-        // Carrega dados do suco existente
         const sucoResponse = await apiEndpoint.get(`/suco/${id}`);
         const sucoData = sucoResponse.data;
 
@@ -60,7 +59,6 @@ const EditSuco = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-
     if (name === "categoria") {
       const selectedOptions = Array.from(
         event.target.selectedOptions,
@@ -74,11 +72,17 @@ const EditSuco = () => {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    setSuco({ 
-      ...suco, 
-      img1: file,
-      img1Url: URL.createObjectURL(file)
-    });
+    if (file) {
+      setSuco({
+        ...suco,
+        img1: file,
+        img1Url: URL.createObjectURL(file),
+      });
+    }
+  };
+
+  const handleUploadButtonClick = () => {
+    inputFileRef.current.click();
   };
 
   const handleSubmit = async (event) => {
@@ -89,11 +93,11 @@ const EditSuco = () => {
     formData.append("ingredientes", suco.ingredientes);
     formData.append("modo_de_preparo", suco.modo_de_preparo);
     formData.append("beneficios", suco.beneficios);
-    
+
     if (suco.img1) {
       formData.append("img1", suco.img1, suco.img1.name);
     }
-    
+
     formData.append("diagnostico", suco.diagnostico);
     suco.categoria.forEach((categoriaId) => {
       formData.append("categoria[]", categoriaId);
@@ -122,58 +126,53 @@ const EditSuco = () => {
     <div className="cadastro-container">
       <div className="cadastro-suco-container">
         <h1>Editar Suco</h1>
-        <br />
         <form onSubmit={handleSubmit} className="cadastro-suco-form">
           <label>
             Nome <br />
-            <input 
-              type="text" 
-              name="nome" 
-              value={suco.nome} 
-              onChange={handleInputChange} 
+            <input
+              type="text"
+              name="nome"
+              value={suco.nome}
+              onChange={handleInputChange}
               required
             />
           </label>
-          <br /><br />
 
           <label>
-            Ingredientes<br />
-            <textarea 
-              name="ingredientes" 
-              value={suco.ingredientes} 
-              onChange={handleInputChange} 
+            Ingredientes <br />
+            <textarea
+              name="ingredientes"
+              value={suco.ingredientes}
+              onChange={handleInputChange}
               required
             />
           </label>
-          <br /><br />
 
           <label>
-            Modo de Preparo<br />
-            <textarea 
-              name="modo_de_preparo" 
-              value={suco.modo_de_preparo} 
-              onChange={handleInputChange} 
+            Modo de Preparo <br />
+            <textarea
+              name="modo_de_preparo"
+              value={suco.modo_de_preparo}
+              onChange={handleInputChange}
               required
             />
           </label>
-          <br /><br />
 
           <label>
-            Benefícios<br />
-            <textarea 
-              name="beneficios" 
-              value={suco.beneficios} 
-              onChange={handleInputChange} 
+            Benefícios <br />
+            <textarea
+              name="beneficios"
+              value={suco.beneficios}
+              onChange={handleInputChange}
               required
             />
           </label>
-          <br /><br />
 
           <label>
-            Diagnóstico<br />
-            <select 
-              name="diagnostico" 
-              value={suco.diagnostico} 
+            Diagnóstico <br />
+            <select
+              name="diagnostico"
+              value={suco.diagnostico}
               onChange={handleInputChange}
             >
               <option value="">Selecione um diagnóstico</option>
@@ -184,14 +183,13 @@ const EditSuco = () => {
               ))}
             </select>
           </label>
-          <br /><br />
 
           <label>
-            Categoria<br />
-            <select 
-              name="categoria" 
-              value={suco.categoria} 
-              onChange={handleInputChange} 
+            Categoria <br />
+            <select
+              name="categoria"
+              value={suco.categoria}
+              onChange={handleInputChange}
               multiple
               required
             >
@@ -202,39 +200,45 @@ const EditSuco = () => {
               ))}
             </select>
           </label>
-          <br /><br />
 
           <div className="upload-container">
-            <LiaFileUploadSolid />
-            <input type="file" name="img1" onChange={handleFileChange} />
-            <span>Alterar imagem</span>
+            <LiaFileUploadSolid size={24} color="#bb5104" />
+            <button
+              type="button"
+              className="upload-btn"
+              onClick={handleUploadButtonClick}
+            >
+              Selecionar Imagem
+            </button>
+            <input
+              type="file"
+              name="img1"
+              accept="image/*"
+              onChange={handleFileChange}
+              ref={inputFileRef}
+              style={{ display: "none" }}
+            />
           </div>
 
           {(suco.img1Url || suco.img1) && (
             <div className="image-preview">
               <img
-                src={suco.img1Url || suco.img1}
+                src={suco.img1Url || URL.createObjectURL(suco.img1)}
                 alt="Preview da Imagem"
-                style={{ maxWidth: "100px" }}
+                style={{ maxWidth: "120px", borderRadius: "8px", marginTop: "10px" }}
               />
             </div>
           )}
-          <br /><br />
 
           <div className="button-group">
-            <button type="submit" className="button">Salvar Alterações</button>
-            <Link to="/admin/sucos" className="button cancel">Cancelar</Link>
+            <button type="submit" className="button">
+              Salvar Alterações
+            </button>
+            <Link to="/admin/sucos" className="button cancel">
+              Cancelar
+            </Link>
           </div>
         </form>
-      </div>
-
-      <div className="teste-container">
-        <div className="logo-container-lateral">
-          <Link to="/admin/sucos" className="logo-text">
-            <img src={logo} alt="Copo Logo" />
-            Elixir Natural
-          </Link>
-        </div>
       </div>
     </div>
   );
